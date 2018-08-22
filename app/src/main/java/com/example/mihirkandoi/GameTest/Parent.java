@@ -1,5 +1,6 @@
 package com.example.mihirkandoi.GameTest;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -132,7 +133,7 @@ public class Parent {
             tb.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
+                    System.out.println("does this work?");
                 }
             });
         }
