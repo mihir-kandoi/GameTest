@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_checked="true" android:drawable="@drawable/sl_solid_background" />
+    <item android:state_checked="false">
+    <shape xmlns:android="http://schemas.android.com/apk/res/android">
+        <stroke android:width="4dp" android:color="@color/storyLyne" />
+        <corners android:radius="10dp" />
+        <solid android:color="#ffffff" />
+    </shape>
+    </item>
+</selector>

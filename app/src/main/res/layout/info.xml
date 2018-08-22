@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/info_background"
+    tools:layout_editor_absoluteY="56dp">
+
+    <TextView
+        android:id="@+id/def1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:text="Sample Text 1"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.033"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/def1des"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:text="Sample"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.063"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/def1" />
+
+    <TextView
+        android:id="@+id/def2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="Sample Text 2"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="@+id/def1"
+        app:layout_constraintHorizontal_bias="0.031"
+        app:layout_constraintStart_toStartOf="@+id/def1"
+        app:layout_constraintTop_toBottomOf="@+id/def1des" />
+
+    <TextView
+        android:id="@+id/def2des"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sample"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="@+id/def1des"
+        app:layout_constraintHorizontal_bias="0.076"
+        app:layout_constraintStart_toStartOf="@+id/def1des"
+        app:layout_constraintTop_toBottomOf="@+id/def2" />
+
+    <TextView
+        android:id="@+id/def3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="Sample Text 3"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="@+id/def2"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/def2"
+        app:layout_constraintTop_toBottomOf="@+id/def2des" />
+
+    <TextView
+        android:id="@+id/def3des"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sample"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="@+id/def2des"
+        app:layout_constraintHorizontal_bias="0.163"
+        app:layout_constraintStart_toStartOf="@+id/def2des"
+        app:layout_constraintTop_toBottomOf="@+id/def3" />
+
+    <TextView
+        android:id="@+id/def4des"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sample"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="@+id/def3des"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/def3des"
+        app:layout_constraintTop_toBottomOf="@+id/def4" />
+
+    <TextView
+        android:id="@+id/def4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="24dp"
+        android:text="Sample Text 4"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="@+id/def3"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/def3"
+        app:layout_constraintTop_toBottomOf="@+id/def3des" />
+
+    <TextView
+        android:id="@+id/def5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="Sample Text 5"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="@+id/def4"
+        app:layout_constraintStart_toStartOf="@+id/def4"
+        app:layout_constraintTop_toBottomOf="@+id/def4des" />
+
+    <TextView
+        android:id="@+id/def5des"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:text="Sample"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="@+id/def4des"
+        app:layout_constraintStart_toStartOf="@+id/def4des"
+        app:layout_constraintTop_toBottomOf="@+id/def5" />
+
+</android.support.constraint.ConstraintLayout>

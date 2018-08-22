@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#58dca3</color>
+    <color name="colorPrimaryDark">#09948d</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="storyLyne">#00bae5</color>
+    <color name="stryngOfThought">#f69a2b</color>
+    <color name="pieceOfMynd">#a8e124</color>
+    <color name="pyctures">#25bfe3</color>
+</resources>
