@@ -7,15 +7,17 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.ToggleButton;
 
 import com.example.mihirkandoi.GameTest.Parent;
 import com.example.mihirkandoi.GameTest.Pyctures.Start;
 import com.example.mihirkandoi.gametest.R;
 
-public class SelectImage extends AppCompatActivity {
+public class SelectImage extends AppCompatActivity implements CompoundButton.OnCheckedChangeListener{
 
     int result = 1;
+    ToggleButton[] toggleButtons;
 
     @Override
     public void onBackPressed() {
@@ -60,35 +62,22 @@ public class SelectImage extends AppCompatActivity {
                 Parent.moduleEnd(SelectImage.this, R.color.pieceOfMynd, Main.class, Start.class).show();
             }
         });
-        final ToggleButton image1 = findViewById(R.id.option1);
-        final ToggleButton image2 = findViewById(R.id.option2);
-        final ToggleButton image3 = findViewById(R.id.option3);
-        image1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                image1.setChecked(true);
-                image2.setChecked(false);
-                image3.setChecked(false);
-                findViewById(R.id.done).setEnabled(true);
-            }
-        });
-        image2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                image1.setChecked(false);
-                image2.setChecked(true);
-                image3.setChecked(false);
-                findViewById(R.id.done).setEnabled(true);
-            }
-        });
-        image3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                image1.setChecked(false);
-                image2.setChecked(false);
-                image3.setChecked(true);
-                findViewById(R.id.done).setEnabled(true);
-            }
-        });
+        toggleButtons = new ToggleButton[3];
+        for(int i = 1; i <= 3; i++)
+        {
+            toggleButtons[i - 1] = findViewById(getResources().getIdentifier("option" + Integer.toString(i), "id", getPackageName()));
+            toggleButtons[i - 1].setOnCheckedChangeListener(this);
+        }
+    }
+
+    @Override
+    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+        if(isChecked)
+        {
+            Parent.toggleButtons(this, toggleButtons,3, buttonView);
+            findViewById(R.id.done).setEnabled(true);
+        }
+        else
+            findViewById(R.id.done).setEnabled(false);
     }
 }

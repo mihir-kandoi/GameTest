@@ -6,16 +6,19 @@ import android.graphics.drawable.LayerDrawable;
 import android.graphics.drawable.StateListDrawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.ToggleButton;
 
 import com.example.mihirkandoi.GameTest.Parent;
 import com.example.mihirkandoi.gametest.R;
 
-public class Main extends AppCompatActivity {
+public class Main extends AppCompatActivity implements CompoundButton.OnCheckedChangeListener{
 
     int result = 1;
+    ToggleButton[] toggleButtons;
+    Intent intent;
+    String roundNo;
 
     @Override
     public void onBackPressed() {
@@ -24,7 +27,7 @@ public class Main extends AppCompatActivity {
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    protected void onActivityResult(int requestCode, int resultCode, Intent data){
         if(resultCode == 1)
             finish();
         super.onActivityResult(requestCode, resultCode, data);
@@ -40,8 +43,8 @@ public class Main extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pyctures);
-        final Intent intent = Parent.roundNo(this);
-        final String roundNo = getIntent().getStringExtra("roundNo");
+        intent = Parent.roundNo(this);
+        roundNo = getIntent().getStringExtra("roundNo");
         int drawables[] = {R.drawable.story1, R.drawable.story2, R.drawable.story3};
         int drawable;
         if(roundNo.equals("1/3"))
@@ -65,16 +68,23 @@ public class Main extends AppCompatActivity {
             stateListDrawable.addState(new int[] {-android.R.attr.state_checked}, findViewById(i).getBackground());
             findViewById(i).setBackground(stateListDrawable);
         }
-        ToggleButton happy = findViewById(R.id.option1);
-        ToggleButton sad = findViewById(R.id.option4);
-        ToggleButton angry = findViewById(R.id.option5);
-        ToggleButton fear = findViewById(R.id.option3);
-        ToggleButton laughing = findViewById(R.id.option2);
-        happy.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        toggleButtons = new ToggleButton[5];
+        for(int i = 1; i <= 5; i++)
+        {
+            toggleButtons[i - 1] = findViewById(getResources().getIdentifier("option" + Integer.toString(i), "id", getPackageName()));
+            toggleButtons[i - 1].setOnCheckedChangeListener(this);
+        }
+    }
 
-            }
-        });
+    @Override
+    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+        if(isChecked)
+        {
+            Parent.toggleButtons(this, toggleButtons, 5, buttonView);
+            if (!roundNo.equals("3/3"))
+                startActivityForResult(intent, 1);
+            else
+                Parent.moduleEnd(this, R.color.pyctures, Main.class, Start.class).show();
+        }
     }
 }

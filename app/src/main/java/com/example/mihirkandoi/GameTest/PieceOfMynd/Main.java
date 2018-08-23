@@ -81,13 +81,6 @@ public class Main extends AppCompatActivity implements View.OnTouchListener, Vie
             }
         }
 
-        findViewById(R.id.idkfam).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                findViewById(R.id.next).setEnabled(true);
-            }
-        });
-
         findViewById(R.id.next).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

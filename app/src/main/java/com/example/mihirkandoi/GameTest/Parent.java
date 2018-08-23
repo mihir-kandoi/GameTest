@@ -1,6 +1,5 @@
 package com.example.mihirkandoi.GameTest;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -47,7 +46,7 @@ public class Parent {
         obj.findViewById(R.id.info_icon).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                View view = obj.getLayoutInflater().inflate(R.layout.info, null);
+                    View view = obj.getLayoutInflater().inflate(R.layout.info, null);
                 GradientDrawable gd = (GradientDrawable) view.getBackground();
                 final float scale = obj.getResources().getDisplayMetrics().density;
                 gd.setStroke((int) (4 * scale + 0.5f), obj.getResources().getColor(color, obj. getTheme()));
@@ -125,17 +124,12 @@ public class Parent {
         });
     }
 
-    public static void compoundButtons(AppCompatActivity obj, int no)
+    public static void toggleButtons(AppCompatActivity obj, ToggleButton[] toggleButtons,  int no, View view)
     {
         for(int i = 1; i <= no; i++)
-        {
-            ToggleButton tb = obj.findViewById(obj.getResources().getIdentifier("option" + Integer.toString(i),"id", obj.getPackageName()));
-            tb.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    System.out.println("does this work?");
-                }
-            });
-        }
+            toggleButtons[i - 1] = obj.findViewById(obj.getResources().getIdentifier("option" + Integer.toString(i), "id", obj.getPackageName()));
+        for(ToggleButton toggleButton : toggleButtons)
+            if(view.getId() != toggleButton.getId())
+                toggleButton.setChecked(false);
     }
 }
