@@ -13,6 +13,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -48,8 +49,7 @@ public class Parent {
             public void onClick(View v) {
                     View view = obj.getLayoutInflater().inflate(R.layout.info, null);
                 GradientDrawable gd = (GradientDrawable) view.getBackground();
-                final float scale = obj.getResources().getDisplayMetrics().density;
-                gd.setStroke((int) (4 * scale + 0.5f), obj.getResources().getColor(color, obj. getTheme()));
+                gd.setStroke(convertToPixel(obj, 4), obj.getResources().getColor(color, obj. getTheme()));
                 AlertDialog alertDialog = new AlertDialog.Builder(obj).setView(view).create();
                 alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 alertDialog.show();
@@ -131,5 +131,10 @@ public class Parent {
         for(ToggleButton toggleButton : toggleButtons)
             if(view.getId() != toggleButton.getId())
                 toggleButton.setChecked(false);
+    }
+
+    public static int convertToPixel(AppCompatActivity obj, int dp)
+    {
+        return (int) (dp * obj.getResources().getDisplayMetrics().density + 0.5f);
     }
 }

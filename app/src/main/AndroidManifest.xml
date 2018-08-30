@@ -28,7 +28,10 @@
         <activity android:name="com.example.mihirkandoi.GameTest.PieceOfMynd.Instructions2" />
         <activity android:name="com.example.mihirkandoi.GameTest.Pyctures.Start" />
         <activity android:name="com.example.mihirkandoi.GameTest.Pyctures.Instructions" />
-        <activity android:name="com.example.mihirkandoi.GameTest.Pyctures.Main"></activity>
+        <activity android:name="com.example.mihirkandoi.GameTest.Pyctures.Main" />
+        <activity android:name="com.example.mihirkandoi.GameTest.Emotymeter.Start" />
+        <activity android:name="com.example.mihirkandoi.GameTest.Emotymeter.Instructions" />
+        <activity android:name="com.example.mihirkandoi.GameTest.Emotymeter.Main"></activity>
     </application>
 
 </manifest>

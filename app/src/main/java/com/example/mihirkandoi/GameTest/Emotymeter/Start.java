@@ -1,4 +1,4 @@
-package com.example.mihirkandoi.GameTest.StoryLyne;
+package com.example.mihirkandoi.GameTest.Emotymeter;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -12,6 +12,6 @@ public class Start extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
-        Parent.start(this, "Story Lyne", "Perception", "The ability to recognise and interpret certain stimuli.", R.color.storyLyne, Instructions.class);
+        Parent.start(this, "Emotymeter", "INDICATOR", "Determining the emotional states that exist presently.", R.color.storyLyne, Instructions.class);
     }
 }

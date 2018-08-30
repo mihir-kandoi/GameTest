@@ -11,7 +11,7 @@ public class Start extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.start);
+        setContentView(R.layout.activity_start);
         Parent.start(this, "Pyctures", "REVELATION", "Evoking emotion through dramatic means.", R.color.pyctures, Instructions.class);
     }
 }

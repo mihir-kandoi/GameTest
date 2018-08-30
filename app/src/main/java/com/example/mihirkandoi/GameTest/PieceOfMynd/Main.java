@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.view.DragEvent;
 import android.view.MotionEvent;
 import android.view.View;
+import android.webkit.WebView;
 import android.widget.ImageView;
 
 import com.example.mihirkandoi.GameTest.Parent;
@@ -92,6 +93,12 @@ public class Main extends AppCompatActivity implements View.OnTouchListener, Vie
                     intent1.putExtra("drawables", drawables);
                     startActivityForResult(intent1, 1);
                 }
+            }
+        });
+        findViewById(R.id.hack).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                findViewById(R.id.next).setEnabled(true);
             }
         });
     }

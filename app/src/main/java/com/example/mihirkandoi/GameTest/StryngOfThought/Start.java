@@ -11,7 +11,7 @@ public class Start extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.start);
+        setContentView(R.layout.activity_start);
         Parent.start(this, "Stryng Of Thought", "KNOWLEDGE", "Appreciation of the range of thoughts that silently exist.", R.color.stryngOfThought, Instructions.class);
     }
 }

@@ -11,7 +11,7 @@ public class Start extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.start);
+        setContentView(R.layout.activity_start);
         Parent.start(this, "Piece Of Mynd", "Pointer", "Indicating states of reaction that are evoked in the presence of certain stimuli.", R.color.pieceOfMynd, Instructions.class);
     }
 }
