@@ -1,16 +1,16 @@
-package com.example.mihirkandoi.GameTest.Pyctures;
+package com.example.mihirkandoi.GameTest.SonycSound;
 
 import android.content.Intent;
 import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.LayerDrawable;
 import android.graphics.drawable.StateListDrawable;
+import android.media.SoundPool;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.CompoundButton;
-import android.widget.ImageView;
 import android.widget.ToggleButton;
 
-import com.example.mihirkandoi.GameTest.Emotymeter.Start;
 import com.example.mihirkandoi.GameTest.Parent;
 import com.example.mihirkandoi.gametest.R;
 
@@ -20,6 +20,8 @@ public class Main extends AppCompatActivity implements CompoundButton.OnCheckedC
     ToggleButton[] toggleButtons = new ToggleButton[5];
     Intent intent;
     String roundNo;
+    SoundPool soundPool = new SoundPool.Builder().setMaxStreams(1).build();
+    int streamID;
 
     @Override
     public void onBackPressed() {
@@ -28,7 +30,7 @@ public class Main extends AppCompatActivity implements CompoundButton.OnCheckedC
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data){
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if(resultCode == 1)
             finish();
         super.onActivityResult(requestCode, resultCode, data);
@@ -43,18 +45,23 @@ public class Main extends AppCompatActivity implements CompoundButton.OnCheckedC
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_pyctures);
+        setContentView(R.layout.activity_ss);
         intent = Parent.roundNo(this);
         roundNo = getIntent().getStringExtra("roundNo");
-        int drawables[] = {R.drawable.story1, R.drawable.story2, R.drawable.story3};
-        int drawable;
+        int sounds[] = {R.raw.bell, R.raw.explosion, R.raw.alarm};
+        final int sound;
         if(roundNo.equals("1/3"))
-            drawable = drawables[0];
+            sound = soundPool.load(getApplicationContext(),sounds[0], 1);
         else if(roundNo.equals("2/3"))
-            drawable = drawables[1];
+            sound = soundPool.load(getApplicationContext(),sounds[1], 1);
         else
-            drawable = drawables[2];
-        ((ImageView) findViewById(R.id.story)).setImageResource(drawable);
+            sound = soundPool.load(getApplicationContext(),sounds[2], 1);
+        findViewById(R.id.sound).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                streamID = soundPool.play(sound, 1,1,1,0,1);
+            }
+        });
         int options[] = {R.id.option4, R.id.option1, R.id.option5, R.id.option3, R.id.option2};
         for(int i : options)
         {
@@ -76,6 +83,12 @@ public class Main extends AppCompatActivity implements CompoundButton.OnCheckedC
     }
 
     @Override
+    protected void onPause() {
+        super.onPause();
+        soundPool.stop(streamID);
+    }
+
+    @Override
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
         if(isChecked)
         {
@@ -83,7 +96,7 @@ public class Main extends AppCompatActivity implements CompoundButton.OnCheckedC
             if (!roundNo.equals("3/3"))
                 startActivityForResult(intent, 1);
             else
-                Parent.moduleEnd(this, R.color.pyctures, Main.class, Start.class).show();
+                Parent.moduleEnd(this, R.color.sonycSound, Main.class, Start.class).show();
         }
     }
 }

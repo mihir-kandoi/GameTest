@@ -1,14 +1,18 @@
 package com.example.mihirkandoi.GameTest.StryngOfThought;
 
 import android.content.ClipData;
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.SpannableString;
 import android.text.style.UnderlineSpan;
+import android.util.AttributeSet;
 import android.view.DragEvent;
 import android.view.MotionEvent;
 import android.view.View;
@@ -131,5 +135,43 @@ public class Main extends AppCompatActivity implements View.OnTouchListener{
             textView.setBackground(temp);
         }
         return false;
+    }
+}
+
+class UnderlinedTextView extends android.support.v7.widget.AppCompatTextView {
+    Paint paint = new Paint();
+
+    public UnderlinedTextView(Context context) {
+        super(context);
+    }
+
+    public UnderlinedTextView(Context context, AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
+    }
+
+    public UnderlinedTextView(Context context, AttributeSet attrs) {
+        super(context, attrs);
+    }
+
+    @Override
+    public void invalidate() {
+        super.invalidate();
+    }
+
+    @Override
+    protected void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+        if(getText().equals(""))
+        {
+            paint.setColor(Color.WHITE);
+            paint.setStrokeWidth(20f);
+            canvas.drawLine(0, getHeight(), getWidth(), getHeight(), paint);
+        }
+        else
+        {
+            paint.setColor(getResources().getColor(R.color.stryngOfThought, getContext().getTheme()));
+            paint.setStrokeWidth(20f);
+            canvas.drawLine(0, getHeight(), getWidth(), getHeight(), paint);
+        }
     }
 }

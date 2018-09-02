@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.mihirkandoi.GameTest.Parent;
+import com.example.mihirkandoi.GameTest.SonycSound.Start;
 import com.example.mihirkandoi.gametest.R;
 
 import java.util.Random;
@@ -62,14 +63,14 @@ public class Main extends AppCompatActivity implements View.OnClickListener{
                 layout.addView(fallingEmoji);
                 fallingEmoji.setLayoutParams(new ConstraintLayout.LayoutParams(Parent.convertToPixel(Main.this, 75), Parent.convertToPixel(Main.this, 75)));
                 fallingEmoji.setX(new Random().nextInt(displayMetrics.widthPixels + 1) - (param / 2));
-                fallingEmoji.setY(-fallingEmoji.getLayoutParams().height * 2);
-                fallingEmoji.animate().translationY(displayMetrics.heightPixels + (fallingEmoji.getLayoutParams().height * 2)).setDuration(3250).withEndAction(new Runnable() {
+                fallingEmoji.setY(-fallingEmoji.getLayoutParams().height );
+                fallingEmoji.animate().translationY(displayMetrics.heightPixels + fallingEmoji.getLayoutParams().height).setDuration(3000).withEndAction(new Runnable() {
                     @Override
                     public void run() {
                         layout.removeView(fallingEmoji);
                     }
-                });
-                handler.postDelayed(this, 250);
+                }).setInterpolator(null);
+                handler.postDelayed(this, 400);
             }
         };
         handler.post(runnable);
