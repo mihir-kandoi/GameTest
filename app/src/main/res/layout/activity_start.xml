@@ -13,7 +13,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="#00bae5"
-        android:foreground="?attr/selectableItemBackground"
+        android:foreground="?android:selectableItemBackground"
         android:text="Next"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

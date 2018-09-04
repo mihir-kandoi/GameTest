@@ -17,10 +17,11 @@ import com.example.mihirkandoi.gametest.R;
 public class Main extends AppCompatActivity implements CompoundButton.OnCheckedChangeListener{
 
     int result = 1;
+    int sound;
     ToggleButton[] toggleButtons = new ToggleButton[5];
     Intent intent;
     String roundNo;
-    SoundPool soundPool = new SoundPool.Builder().setMaxStreams(1).build();
+    SoundPool soundPool;
     int streamID;
 
     @Override
@@ -43,19 +44,30 @@ public class Main extends AppCompatActivity implements CompoundButton.OnCheckedC
     }
 
     @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        soundPool.release();
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ss);
         intent = Parent.roundNo(this);
         roundNo = getIntent().getStringExtra("roundNo");
+        soundPool = new SoundPool.Builder().setMaxStreams(1).build();
         int sounds[] = {R.raw.bell, R.raw.explosion, R.raw.alarm};
-        final int sound;
-        if(roundNo.equals("1/3"))
-            sound = soundPool.load(getApplicationContext(),sounds[0], 1);
-        else if(roundNo.equals("2/3"))
-            sound = soundPool.load(getApplicationContext(),sounds[1], 1);
-        else
-            sound = soundPool.load(getApplicationContext(),sounds[2], 1);
+        switch (roundNo) {
+            case "1/3":
+                sound = soundPool.load(getApplicationContext(), sounds[0], 1);
+                break;
+            case "2/3":
+                sound = soundPool.load(getApplicationContext(), sounds[1], 1);
+                break;
+            default:
+                sound = soundPool.load(getApplicationContext(), sounds[2], 1);
+                break;
+        }
         findViewById(R.id.sound).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

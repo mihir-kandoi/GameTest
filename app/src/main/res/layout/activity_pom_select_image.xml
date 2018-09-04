@@ -84,7 +84,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="@color/pieceOfMynd"
-        android:foreground="?attr/selectableItemBackground"
+        android:foreground="?android:selectableItemBackground"
         android:text="Done"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
