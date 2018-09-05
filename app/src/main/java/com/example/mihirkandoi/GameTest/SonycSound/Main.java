@@ -53,6 +53,7 @@ public class Main extends AppCompatActivity implements CompoundButton.OnCheckedC
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ss);
+        findViewById(R.id.sound).setVisibility(View.INVISIBLE);
         intent = Parent.roundNo(this);
         roundNo = getIntent().getStringExtra("roundNo");
         soundPool = new SoundPool.Builder().setMaxStreams(1).build();
@@ -72,6 +73,13 @@ public class Main extends AppCompatActivity implements CompoundButton.OnCheckedC
             @Override
             public void onClick(View v) {
                 streamID = soundPool.play(sound, 1,1,1,0,1);
+            }
+        });
+        soundPool.setOnLoadCompleteListener(new SoundPool.OnLoadCompleteListener() {
+            @Override
+            public void onLoadComplete(SoundPool soundPool, int sampleId, int status) {
+                findViewById(R.id.sound).setVisibility(View.VISIBLE);
+                findViewById(R.id.progressBar).setVisibility(View.GONE);
             }
         });
         int options[] = {R.id.option4, R.id.option1, R.id.option5, R.id.option3, R.id.option2};
