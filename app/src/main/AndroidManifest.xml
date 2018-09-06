@@ -34,7 +34,10 @@
         <activity android:name="com.example.mihirkandoi.GameTest.Emotymeter.Main" />
         <activity android:name="com.example.mihirkandoi.GameTest.SonycSound.Start" />
         <activity android:name="com.example.mihirkandoi.GameTest.SonycSound.Instructions" />
-        <activity android:name="com.example.mihirkandoi.GameTest.SonycSound.Main"></activity>
+        <activity android:name="com.example.mihirkandoi.GameTest.SonycSound.Main" />
+        <activity android:name="com.example.mihirkandoi.GameTest.SeeTheSygns.Start" />
+        <activity android:name="com.example.mihirkandoi.GameTest.SeeTheSygns.Instructions" />
+        <activity android:name="com.example.mihirkandoi.GameTest.SeeTheSygns.Main"></activity>
     </application>
 
 </manifest>

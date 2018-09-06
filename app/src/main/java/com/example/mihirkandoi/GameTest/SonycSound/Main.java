@@ -12,16 +12,18 @@ import android.widget.CompoundButton;
 import android.widget.ToggleButton;
 
 import com.example.mihirkandoi.GameTest.Parent;
+import com.example.mihirkandoi.GameTest.SeeTheSygns.Start;
 import com.example.mihirkandoi.gametest.R;
 
-public class Main extends AppCompatActivity implements CompoundButton.OnCheckedChangeListener{
+public class Main extends AppCompatActivity implements CompoundButton.OnCheckedChangeListener
+{
 
     int result = 1;
     int sound;
     ToggleButton[] toggleButtons = new ToggleButton[5];
     Intent intent;
     String roundNo;
-    SoundPool soundPool;
+    static SoundPool soundPool = new SoundPool.Builder().setMaxStreams(1).build();
     int streamID;
 
     @Override
@@ -44,19 +46,12 @@ public class Main extends AppCompatActivity implements CompoundButton.OnCheckedC
     }
 
     @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        soundPool.release();
-    }
-
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ss);
         findViewById(R.id.sound).setVisibility(View.INVISIBLE);
         intent = Parent.roundNo(this);
         roundNo = getIntent().getStringExtra("roundNo");
-        soundPool = new SoundPool.Builder().setMaxStreams(1).build();
         int sounds[] = {R.raw.bell, R.raw.explosion, R.raw.alarm};
         switch (roundNo) {
             case "1/3":
@@ -116,7 +111,10 @@ public class Main extends AppCompatActivity implements CompoundButton.OnCheckedC
             if (!roundNo.equals("3/3"))
                 startActivityForResult(intent, 1);
             else
+            {
                 Parent.moduleEnd(this, R.color.sonycSound, Main.class, Start.class).show();
+                soundPool.release();
+            }
         }
     }
 }

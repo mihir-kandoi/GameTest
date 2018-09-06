@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_constraintVertical_weight="1"
+    tools:context="com.example.mihirkandoi.GameTest.SeeTheSygns.Main">
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/constraintLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/stryngOfThought"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <ToggleButton
+            android:id="@+id/option1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginStart="20dp"
+            android:background="@drawable/sts_emotion"
+            android:gravity="center"
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp"
+            android:textAllCaps="false"
+            android:textOff="emotion A"
+            android:textOn="emotion A"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toTopOf="@+id/option3"
+            app:layout_constraintEnd_toStartOf="@+id/option2"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="spread"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <ToggleButton
+            android:id="@+id/option2"
+            android:layout_width="140dp"
+            android:layout_height="48dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginStart="8dp"
+            android:background="@drawable/sts_emotion"
+            android:gravity="center"
+            android:textOff="emotion B"
+            android:textOn="emotion B"
+            android:textSize="20sp"
+            android:textAllCaps="false"
+            app:layout_constraintBottom_toBottomOf="@+id/option1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/option1"
+            app:layout_constraintTop_toTopOf="@+id/option1" />
+
+        <ToggleButton
+            android:id="@+id/option3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginStart="20dp"
+            android:background="@drawable/sts_emotion"
+            android:gravity="center"
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp"
+            android:textOff="emotion C"
+            android:textOn="emotion C"
+            android:textSize="20sp"
+            android:textAllCaps="false"
+            app:layout_constraintBottom_toTopOf="@+id/option5"
+            app:layout_constraintEnd_toStartOf="@+id/option4"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <ToggleButton
+            android:id="@+id/option4"
+            android:layout_width="177dp"
+            android:layout_height="48dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginStart="8dp"
+            android:background="@drawable/sts_emotion"
+            android:gravity="center"
+            android:textOff="emotion D"
+            android:textOn="emotion D"
+            android:textSize="20sp"
+            android:textStyle="normal"
+            android:textAllCaps="false"
+            app:layout_constraintBottom_toBottomOf="@+id/option3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/option3"
+            app:layout_constraintTop_toTopOf="@+id/option3" />
+
+        <ToggleButton
+            android:id="@+id/option5"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/sts_emotion"
+            android:gravity="center"
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp"
+            android:textOff="emotion E"
+            android:textOn="emotion E"
+            android:textSize="20sp"
+            android:textAllCaps="false"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/option4"
+            app:layout_constraintStart_toStartOf="@+id/option3" />
+
+        <ImageView
+            android:id="@+id/info_icon"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="8dp"
+            android:textAllCaps="false"
+            app:layout_constraintBottom_toTopOf="@+id/option2"
+            app:layout_constraintEnd_toEndOf="@+id/option2"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/info_icon" />
+    </android.support.constraint.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/roundNo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="8dp"
+        android:text="0/3"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/symbol"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="110dp"
+        android:layout_marginEnd="110dp"
+        android:layout_marginStart="110dp"
+        android:layout_marginTop="110dp"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/roundNo"
+        app:srcCompat="@drawable/justice" />
+</android.support.constraint.ConstraintLayout>
