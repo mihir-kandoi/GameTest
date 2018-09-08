@@ -5,14 +5,20 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.DragEvent;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.webkit.WebView;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.example.mihirkandoi.GameTest.Parent;
 import com.example.mihirkandoi.gametest.R;
@@ -98,6 +104,10 @@ public class Main extends AppCompatActivity implements View.OnTouchListener, Vie
         findViewById(R.id.hack).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Log.i("idk", Integer.toString(findViewById(R.id.a7).getWidth()) + " " + Integer.toString(findViewById(R.id.a11).getWidth()));
+                Log.i("idk2", Integer.toString(findViewById(R.id.a7).getHeight()) + " " + Integer.toString(findViewById(R.id.a11).getHeight()));
+                View idk = findViewById(R.id.answers);
+                Toast.makeText(getApplicationContext(), Integer.toString(idk.getWidth()) + " " + Integer.toString(idk.getHeight()), Toast.LENGTH_LONG).show();
                 findViewById(R.id.next).setEnabled(true);
             }
         });
@@ -114,35 +124,34 @@ public class Main extends AppCompatActivity implements View.OnTouchListener, Vie
 
     @Override
     public boolean onDrag(View v, DragEvent event) {
-        int temp = 0;
         int action = event.getAction();
         switch (action)
         {
             case DragEvent.ACTION_DRAG_ENTERED:
             {
-                temp = v.getDrawingCacheBackgroundColor();
-                v.setBackgroundColor(Color.parseColor("#FFFFFF"));
+                v.setBackgroundColor(Color.WHITE); //highlight view
                 break;
             }
             case DragEvent.ACTION_DRAG_EXITED:
             {
-                v.setBackgroundColor(temp);
+                v.setBackgroundColor(Color.TRANSPARENT); //set color back to original
                 break;
             }
             case DragEvent.ACTION_DROP:
             {
                 ImageView question = (ImageView) event.getLocalState();
                 ImageView answer = (ImageView) v;
-                if(question.getTag().toString().equals(answer.getTag()))
+                if(question.getTag().toString().equals(answer.getTag())) //if piece is fitted correctly
                 {
                     answer.setImageBitmap(((BitmapDrawable) question.getDrawable()).getBitmap());
                     question.setImageBitmap(null);
                     question.setOnTouchListener(null);
                     count++;
-                    if(count == 12)
+                    if(count == 12) //if the puzzle is complete (12 pieces)
                         findViewById(R.id.next).setEnabled(true);
                 }
-                v.setBackgroundColor(temp);
+                else //piece fitted incorrectly
+                    v.setBackgroundColor(Color.TRANSPARENT); //set color back to original
                 break;
             }
         }

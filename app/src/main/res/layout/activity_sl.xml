@@ -5,7 +5,7 @@
     android:id="@+id/cs"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ffffff"
+    android:background="@android:color/white"
     tools:context="com.example.mihirkandoi.GameTest.StoryLyne.Main">
 
     <ToggleButton
@@ -109,7 +109,7 @@
             android:gravity="center"
             android:text="Sample Story"
             android:textColor="#ffffff"
-            android:textSize="50sp"
+            android:textSize="48sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

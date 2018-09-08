@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/holo_red_dark"
-    android:fitsSystemWindows="true"
     tools:context="com.example.mihirkandoi.GameTest.StoryLyne.Start">
 
     <Button
@@ -22,10 +21,10 @@
 
     <TextView
         android:id="@+id/module_name"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginStart="16dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginStart="24dp"
         android:layout_marginTop="16dp"
         android:gravity="center"
         android:text="Story Lyne"
@@ -38,9 +37,6 @@
         android:id="@+id/round"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="3dp"
         android:gravity="center"
         android:text="Round 1 of 3"
         android:textSize="34sp"
@@ -53,8 +49,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginStart="16dp"
         android:text="Perception"
         android:textAllCaps="true"
         android:textSize="18sp"
@@ -67,11 +61,13 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginStart="24dp"
         android:gravity="center"
         android:text="The ability to recognise and interpret certain stimuli."
         android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/startGame"
-        app:layout_constraintEnd_toEndOf="@+id/module_name"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.349"
-        app:layout_constraintStart_toStartOf="@+id/module_name" />
+        app:layout_constraintStart_toStartOf="parent" />
 </android.support.constraint.ConstraintLayout>

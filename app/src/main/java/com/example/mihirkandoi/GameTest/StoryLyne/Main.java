@@ -1,8 +1,10 @@
 package com.example.mihirkandoi.GameTest.StoryLyne;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.WindowManager;
 import android.widget.CompoundButton;
 import android.widget.ToggleButton;
 
