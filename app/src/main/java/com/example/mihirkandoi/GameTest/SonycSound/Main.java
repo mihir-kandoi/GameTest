@@ -15,12 +15,14 @@ import com.example.mihirkandoi.GameTest.Parent;
 import com.example.mihirkandoi.GameTest.SeeTheSygns.Start;
 import com.example.mihirkandoi.gametest.R;
 
+import java.util.ArrayList;
+
 public class Main extends AppCompatActivity implements CompoundButton.OnCheckedChangeListener
 {
 
     int result = 1;
     int sound;
-    ToggleButton[] toggleButtons = new ToggleButton[5];
+    ArrayList<ToggleButton> toggleButtons;
     Intent intent;
     String roundNo;
     static SoundPool soundPool = new SoundPool.Builder().setMaxStreams(1).build();
@@ -90,11 +92,7 @@ public class Main extends AppCompatActivity implements CompoundButton.OnCheckedC
             stateListDrawable.addState(new int[] {-android.R.attr.state_checked}, findViewById(i).getBackground());
             findViewById(i).setBackground(stateListDrawable);
         }
-        for(int i = 1; i <= 5; i++)
-        {
-            toggleButtons[i - 1] = findViewById(getResources().getIdentifier("option" + Integer.toString(i), "id", getPackageName()));
-            toggleButtons[i - 1].setOnCheckedChangeListener(this);
-        }
+        toggleButtons = Parent.setToggleButtons(this, 5);
     }
 
     @Override
@@ -107,14 +105,11 @@ public class Main extends AppCompatActivity implements CompoundButton.OnCheckedC
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
         if(isChecked)
         {
-            Parent.toggleButtons(this, toggleButtons, 5, buttonView);
+            Parent.toggleButtons(toggleButtons, buttonView);
             if (!roundNo.equals("3/3"))
                 startActivityForResult(intent, 1);
             else
-            {
                 Parent.moduleEnd(this, R.color.sonycSound, Main.class, Start.class).show();
-                soundPool.release();
-            }
         }
     }
 }

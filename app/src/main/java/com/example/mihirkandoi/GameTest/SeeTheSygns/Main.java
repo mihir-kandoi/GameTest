@@ -12,12 +12,14 @@ import com.example.mihirkandoi.GameTest.Parent;
 import com.example.mihirkandoi.GameTest.StryngOfThought.Start;
 import com.example.mihirkandoi.gametest.R;
 
+import java.util.ArrayList;
+
 public class Main extends AppCompatActivity implements  CompoundButton.OnCheckedChangeListener{
 
     int result = 1;
     Intent intent;
     String roundNo;
-    ToggleButton[] toggleButtons;
+    ArrayList<ToggleButton> toggleButtons;
 
     @Override
     public void onBackPressed() {
@@ -45,20 +47,20 @@ public class Main extends AppCompatActivity implements  CompoundButton.OnChecked
         Parent.infoIcon(this, R.color.seeTheSygns);
         intent = Parent.roundNo(this);
         roundNo = getIntent().getStringExtra("roundNo");
-        toggleButtons = new ToggleButton[5];
-        for(int i = 1; i <= 5; i++)
-        {
-            toggleButtons[i - 1] = findViewById(getResources().getIdentifier("option" + Integer.toString(i), "id", getPackageName()));
-            toggleButtons[i - 1].setOnCheckedChangeListener(this);
-        }
+        toggleButtons = Parent.setToggleButtons(this, 5);
         int drawables[] = {R.drawable.justice, R.drawable.flag, R.drawable.wheelchair};
         int drawable;
-        if(roundNo.equals("1/3"))
-            drawable = drawables[0];
-        else if(roundNo.equals("2/3"))
-            drawable = drawables[1];
-        else
-            drawable = drawables[2];
+        switch (roundNo) {
+            case "1/3":
+                drawable = drawables[0];
+                break;
+            case "2/3":
+                drawable = drawables[1];
+                break;
+            default:
+                drawable = drawables[2];
+                break;
+        }
         ((ImageView) findViewById(R.id.symbol)).setImageResource(drawable);
     }
 
@@ -67,7 +69,7 @@ public class Main extends AppCompatActivity implements  CompoundButton.OnChecked
         if(isChecked)
         {
             buttonView.setTextColor(Color.WHITE);
-            Parent.toggleButtons(this, toggleButtons, 5, buttonView);
+            Parent.toggleButtons(toggleButtons, buttonView);
             if (!roundNo.equals("3/3"))
                 startActivityForResult(intent, 1);
             else

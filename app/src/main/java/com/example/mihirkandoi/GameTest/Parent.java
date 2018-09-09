@@ -1,5 +1,6 @@
 package com.example.mihirkandoi.GameTest;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -13,13 +14,18 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import com.example.mihirkandoi.gametest.R;
+
+import java.util.ArrayList;
 
 public class Parent {
 
@@ -123,10 +129,19 @@ public class Parent {
         });
     }
 
-    public static void toggleButtons(AppCompatActivity obj, ToggleButton[] toggleButtons,  int no, View view)
+    public static ArrayList<ToggleButton> setToggleButtons(AppCompatActivity obj, int size)
     {
-        for(int i = 1; i <= no; i++)
-            toggleButtons[i - 1] = obj.findViewById(obj.getResources().getIdentifier("option" + Integer.toString(i), "id", obj.getPackageName()));
+        ArrayList<ToggleButton> toggleButtons = new ArrayList<>(size);
+        for(int i = 1; i <= size; i++)
+        {
+            toggleButtons.add((ToggleButton) obj.findViewById(obj.getResources().getIdentifier("option" + Integer.toString(i), "id", obj.getPackageName())));
+            toggleButtons.get(i - 1).setOnCheckedChangeListener((CompoundButton.OnCheckedChangeListener) obj);
+        }
+        return toggleButtons;
+    }
+
+    public static void toggleButtons(ArrayList<ToggleButton> toggleButtons, View view)
+    {
         for(ToggleButton toggleButton : toggleButtons)
             if(view.getId() != toggleButton.getId())
                 toggleButton.setChecked(false);

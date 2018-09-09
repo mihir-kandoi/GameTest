@@ -7,6 +7,7 @@ import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
+import android.os.Looper;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -15,6 +16,7 @@ import android.view.DragEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.view.WindowManager;
 import android.webkit.WebView;
 import android.widget.ImageView;
@@ -55,6 +57,17 @@ public class Main extends AppCompatActivity implements View.OnTouchListener, Vie
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pom);
         findViewById(R.id.next).setEnabled(false);
+        final View view = findViewById(R.id.a1);
+        view.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
+                view.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+                View temp = findViewById(R.id.answers);
+                ViewGroup.LayoutParams layoutParams = temp.getLayoutParams();
+                layoutParams.width = view.getWidth() * 4;
+                temp.setLayoutParams(layoutParams);
+            }
+        });
         final Intent intent = Parent.roundNo(this);
         final String roundNo = getIntent().getStringExtra("roundNo");
         final int drawables[] = {R.drawable.pom_sad, R.drawable.pom_angry, R.drawable.pom_happy};
@@ -104,10 +117,6 @@ public class Main extends AppCompatActivity implements View.OnTouchListener, Vie
         findViewById(R.id.hack).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.i("idk", Integer.toString(findViewById(R.id.a7).getWidth()) + " " + Integer.toString(findViewById(R.id.a11).getWidth()));
-                Log.i("idk2", Integer.toString(findViewById(R.id.a7).getHeight()) + " " + Integer.toString(findViewById(R.id.a11).getHeight()));
-                View idk = findViewById(R.id.answers);
-                Toast.makeText(getApplicationContext(), Integer.toString(idk.getWidth()) + " " + Integer.toString(idk.getHeight()), Toast.LENGTH_LONG).show();
                 findViewById(R.id.next).setEnabled(true);
             }
         });

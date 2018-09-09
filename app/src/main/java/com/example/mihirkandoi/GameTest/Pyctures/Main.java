@@ -14,10 +14,12 @@ import com.example.mihirkandoi.GameTest.Emotymeter.Start;
 import com.example.mihirkandoi.GameTest.Parent;
 import com.example.mihirkandoi.gametest.R;
 
+import java.util.ArrayList;
+
 public class Main extends AppCompatActivity implements CompoundButton.OnCheckedChangeListener{
 
     int result = 1;
-    ToggleButton[] toggleButtons = new ToggleButton[5];
+    ArrayList<ToggleButton> toggleButtons;
     Intent intent;
     String roundNo;
 
@@ -48,12 +50,17 @@ public class Main extends AppCompatActivity implements CompoundButton.OnCheckedC
         roundNo = getIntent().getStringExtra("roundNo");
         int drawables[] = {R.drawable.story1, R.drawable.story2, R.drawable.story3};
         int drawable;
-        if(roundNo.equals("1/3"))
-            drawable = drawables[0];
-        else if(roundNo.equals("2/3"))
-            drawable = drawables[1];
-        else
-            drawable = drawables[2];
+        switch (roundNo) {
+            case "1/3":
+                drawable = drawables[0];
+                break;
+            case "2/3":
+                drawable = drawables[1];
+                break;
+            default:
+                drawable = drawables[2];
+                break;
+        }
         ((ImageView) findViewById(R.id.story)).setImageResource(drawable);
         int options[] = {R.id.option4, R.id.option1, R.id.option5, R.id.option3, R.id.option2};
         for(int i : options)
@@ -68,18 +75,14 @@ public class Main extends AppCompatActivity implements CompoundButton.OnCheckedC
             stateListDrawable.addState(new int[] {-android.R.attr.state_checked}, findViewById(i).getBackground());
             findViewById(i).setBackground(stateListDrawable);
         }
-        for(int i = 1; i <= 5; i++)
-        {
-            toggleButtons[i - 1] = findViewById(getResources().getIdentifier("option" + Integer.toString(i), "id", getPackageName()));
-            toggleButtons[i - 1].setOnCheckedChangeListener(this);
-        }
+        toggleButtons = Parent.setToggleButtons(this, 5);
     }
 
     @Override
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
         if(isChecked)
         {
-            Parent.toggleButtons(this, toggleButtons, 5, buttonView);
+            Parent.toggleButtons(toggleButtons, buttonView);
             if (!roundNo.equals("3/3"))
                 startActivityForResult(intent, 1);
             else

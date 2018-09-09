@@ -12,12 +12,14 @@ import com.example.mihirkandoi.GameTest.Parent;
 import com.example.mihirkandoi.GameTest.StryngOfThought.Start;
 import com.example.mihirkandoi.gametest.R;
 
+import java.util.ArrayList;
+
 public class Main extends AppCompatActivity implements CompoundButton.OnCheckedChangeListener{
 
     int result = 1;
     Intent intent;
     String roundNo;
-    ToggleButton[] toggleButtons;
+    ArrayList<ToggleButton> toggleButtons;
 
     @Override
     public void onBackPressed() {
@@ -43,21 +45,18 @@ public class Main extends AppCompatActivity implements CompoundButton.OnCheckedC
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sl);
         Parent.infoIcon(this, R.color.storyLyne); //Set info icon listener
+        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        getWindow().setStatusBarColor(Color.parseColor("#a8e124"));
         intent = Parent.roundNo(this);
         roundNo = getIntent().getStringExtra("roundNo");
-        toggleButtons = new ToggleButton[5];
-        for(int i = 1; i <= 5; i++)
-        {
-            toggleButtons[i - 1] = findViewById(getResources().getIdentifier("option" + Integer.toString(i), "id", getPackageName()));
-            toggleButtons[i - 1].setOnCheckedChangeListener(this);
-        }
+        toggleButtons = Parent.setToggleButtons(this, 5);
     }
 
     @Override
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
         if(isChecked)
         {
-            Parent.toggleButtons(this, toggleButtons, 5, buttonView);
+            Parent.toggleButtons(toggleButtons, buttonView);
             if (!roundNo.equals("3/3"))
                 startActivityForResult(intent, 1);
             else

@@ -14,10 +14,12 @@ import com.example.mihirkandoi.GameTest.Parent;
 import com.example.mihirkandoi.GameTest.Pyctures.Start;
 import com.example.mihirkandoi.gametest.R;
 
+import java.util.ArrayList;
+
 public class SelectImage extends AppCompatActivity implements CompoundButton.OnCheckedChangeListener{
 
     int result = 1;
-    ToggleButton[] toggleButtons;
+    ArrayList<ToggleButton> toggleButtons;
 
     @Override
     public void onBackPressed() {
@@ -62,19 +64,14 @@ public class SelectImage extends AppCompatActivity implements CompoundButton.OnC
                 Parent.moduleEnd(SelectImage.this, R.color.pieceOfMynd, Main.class, Start.class).show();
             }
         });
-        toggleButtons = new ToggleButton[3];
-        for(int i = 1; i <= 3; i++)
-        {
-            toggleButtons[i - 1] = findViewById(getResources().getIdentifier("option" + Integer.toString(i), "id", getPackageName()));
-            toggleButtons[i - 1].setOnCheckedChangeListener(this);
-        }
+        toggleButtons = Parent.setToggleButtons(this, 3);
     }
 
     @Override
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
         if(isChecked)
         {
-            Parent.toggleButtons(this, toggleButtons,3, buttonView);
+            Parent.toggleButtons(toggleButtons, buttonView);
             findViewById(R.id.done).setEnabled(true);
         }
         else

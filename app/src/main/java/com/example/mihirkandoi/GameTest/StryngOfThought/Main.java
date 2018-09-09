@@ -17,10 +17,13 @@ import android.view.DragEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.mihirkandoi.GameTest.Parent;
 import com.example.mihirkandoi.GameTest.PieceOfMynd.Start;
 import com.example.mihirkandoi.gametest.R;
+
+import java.util.ArrayList;
 
 public class Main extends AppCompatActivity implements View.OnTouchListener{
 
@@ -56,16 +59,16 @@ public class Main extends AppCompatActivity implements View.OnTouchListener{
         Parent.infoIcon(this, R.color.stryngOfThought); //Set info icon listener
         final Intent intent = Parent.roundNo(this);
         final String roundNo = getIntent().getStringExtra("roundNo");
-        findViewById(R.id.option1).setOnTouchListener(this);
-        findViewById(R.id.option2).setOnTouchListener(this);
-        findViewById(R.id.option3).setOnTouchListener(this);
-        findViewById(R.id.option4).setOnTouchListener(this);
-        findViewById(R.id.option5).setOnTouchListener(this);
+        ArrayList<TextView> textViews = new ArrayList<>(5);
+        for(int i = 1; i <= 5; i++)
+        {
+            textViews.add((TextView) findViewById(getResources().getIdentifier("option" + Integer.toString(i), "id", getPackageName())));
+            textViews.get(i - 1).setOnTouchListener(this);
+        }
         TextView utv = findViewById(R.id.answer);
         utv.setOnDragListener(new View.OnDragListener() {
             @Override
             public boolean onDrag(View v, DragEvent event) {
-                int temp = 0;
                 int action = event.getAction();
                 TextView currentView = (TextView) v;
                 UnderlineSpan us = new UnderlineSpan();
@@ -73,13 +76,12 @@ public class Main extends AppCompatActivity implements View.OnTouchListener{
                 {
                     case DragEvent.ACTION_DRAG_ENTERED:
                     {
-                        temp = v.getDrawingCacheBackgroundColor();
                         v.setBackgroundColor(Color.parseColor("#40FFFFFF"));
                         break;
                     }
                     case DragEvent.ACTION_DRAG_EXITED:
                     {
-                        v.setBackgroundColor(temp);
+                        v.setBackgroundColor(Color.TRANSPARENT);
                         break;
                     }
                     case DragEvent.ACTION_DROP:
@@ -94,7 +96,7 @@ public class Main extends AppCompatActivity implements View.OnTouchListener{
                         currentView.setText(spannableString);
                         currentView.setTextColor(Color.WHITE);
                         currentView.setTextSize(((TextView) findViewById(R.id.iFeel)).getTextSize() / getResources().getDisplayMetrics().scaledDensity);
-                        v.setBackgroundColor(temp);
+                        v.setBackgroundColor(Color.TRANSPARENT);
                         old = (TextView) event.getLocalState();
                         old.setOnTouchListener(null);
                         if(!roundNo.equals("3/3"))
@@ -133,8 +135,14 @@ public class Main extends AppCompatActivity implements View.OnTouchListener{
                 v.startDragAndDrop(ClipData.newPlainText("option", textView.getText()), new View.DragShadowBuilder(v), v, 0);
             textView.setText("");
             textView.setBackground(temp);
+            return true;
         }
-        return false;
+        else if(action == MotionEvent.ACTION_UP)
+        {
+            textView.setText(text);
+            return true;
+        }
+            return false;
     }
 }
 

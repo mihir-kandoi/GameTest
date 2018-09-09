@@ -11,7 +11,6 @@
         android:id="@+id/startGame"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="#00bae5"
         android:foreground="?android:selectableItemBackground"
         android:text="Next"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -28,7 +27,7 @@
         android:layout_marginTop="16dp"
         android:gravity="center"
         android:text="Story Lyne"
-        android:textSize="54sp"
+        android:textSize="48sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -39,7 +38,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="Round 1 of 3"
-        android:textSize="34sp"
+        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/module_name" />
