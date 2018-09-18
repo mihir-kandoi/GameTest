@@ -37,7 +37,11 @@
         <activity android:name="com.example.mihirkandoi.GameTest.SonycSound.Main" />
         <activity android:name="com.example.mihirkandoi.GameTest.SeeTheSygns.Start" />
         <activity android:name="com.example.mihirkandoi.GameTest.SeeTheSygns.Instructions" />
-        <activity android:name="com.example.mihirkandoi.GameTest.SeeTheSygns.Main"></activity>
+        <activity android:name="com.example.mihirkandoi.GameTest.SeeTheSygns.Main" />
+        <activity android:name="com.example.mihirkandoi.GameTest.Grydlock.Start" />
+        <activity android:name="com.example.mihirkandoi.GameTest.Grydlock.Instructions" />
+        <activity android:name="com.example.mihirkandoi.GameTest.Grydlock.Instructions2" />
+        <activity android:name="com.example.mihirkandoi.GameTest.Grydlock.Main"></activity>
     </application>
 
 </manifest>

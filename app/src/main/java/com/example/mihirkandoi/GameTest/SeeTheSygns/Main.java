@@ -9,7 +9,7 @@ import android.widget.ImageView;
 import android.widget.ToggleButton;
 
 import com.example.mihirkandoi.GameTest.Parent;
-import com.example.mihirkandoi.GameTest.StryngOfThought.Start;
+import com.example.mihirkandoi.GameTest.Grydlock.Start;
 import com.example.mihirkandoi.gametest.R;
 
 import java.util.ArrayList;

@@ -43,7 +43,7 @@ public class SelectImage extends AppCompatActivity implements CompoundButton.OnC
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_pom_select_image);
+        setContentView(R.layout.activity_pom_sel_image);
         Button done = findViewById(R.id.done);
         done.setEnabled(false);
         int images[] = getIntent().getIntArrayExtra("drawables");
