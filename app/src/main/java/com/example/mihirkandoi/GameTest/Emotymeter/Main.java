@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.example.mihirkandoi.GameTest.Parent;
 import com.example.mihirkandoi.GameTest.SonycSound.Start;
@@ -20,6 +21,7 @@ public class Main extends AppCompatActivity implements View.OnClickListener{
     Intent intent;
     String roundNo;
     int result = 1;
+    final Handler handler = new Handler();
 
     @Override
     public void onBackPressed() {
@@ -53,7 +55,6 @@ public class Main extends AppCompatActivity implements View.OnClickListener{
         getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
         final int param = Parent.convertToPixel(this, 75);
         final int drawables[] = {R.drawable.angry_emoji, R.drawable.fear_emoji, R.drawable.happy_emoji, R.drawable.laughing_emoji, R.drawable.sad_emoji};
-        final Handler handler = new Handler();
         final Runnable runnable = new Runnable() {
             @Override
             public void run() {
@@ -82,5 +83,6 @@ public class Main extends AppCompatActivity implements View.OnClickListener{
             startActivityForResult(intent, 1);
         else
             Parent.moduleEnd(this, R.color.storyLyne, Main.class, Start.class).show();
+        handler.removeCallbacksAndMessages(null);
     }
 }
