@@ -2,10 +2,12 @@ package com.example.mihirkandoi.GameTest.StoryLyne;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.WindowManager;
 import android.widget.CompoundButton;
+import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import com.example.mihirkandoi.GameTest.Parent;
@@ -18,6 +20,7 @@ public class Main extends AppCompatActivity implements CompoundButton.OnCheckedC
 
     int result = 1;
     Intent intent;
+    AlertDialog alertDialog;
     String roundNo;
     ArrayList<ToggleButton> toggleButtons;
 
@@ -56,11 +59,23 @@ public class Main extends AppCompatActivity implements CompoundButton.OnCheckedC
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
         if(isChecked)
         {
+            getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE, WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
             Parent.toggleButtons(toggleButtons, buttonView);
             if (!roundNo.equals("3/3"))
                 startActivityForResult(intent, 1);
             else
-                Parent.moduleEnd(Main.this, R.color.storyLyne, Main.class, Start.class).show();
+            {
+                alertDialog = Parent.moduleEnd(Main.this, R.color.storyLyne, Main.class, Start.class);
+                alertDialog.show();
+            }
         }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+        if(roundNo.equals("3/3") && alertDialog != null)
+            alertDialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
     }
 }

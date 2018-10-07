@@ -1,6 +1,5 @@
 package com.example.mihirkandoi.GameTest;
 
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -14,13 +13,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
-import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import com.example.mihirkandoi.gametest.R;
@@ -41,6 +39,7 @@ public class Parent {
         obj.findViewById(R.id.startGame).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                obj.getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE, WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
                 Intent intent = new Intent(obj, nextClass);
                 obj.startActivity(intent);
             }
@@ -78,13 +77,15 @@ public class Parent {
     public static AlertDialog moduleEnd(final AppCompatActivity obj, int color, final Class sameModule, final Class nextModule)
     {
         View view = obj.getLayoutInflater().inflate(R.layout.complete, null);
-        AlertDialog alertDialog = new AlertDialog.Builder(obj).setView(view).create();
+        final AlertDialog alertDialog = new AlertDialog.Builder(obj).setView(view).create();
         alertDialog.setCancelable(false);
         alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         view.findViewById(R.id.nextGame).setBackgroundColor(obj.getResources().getColor(color, obj.getTheme()));
         view.findViewById(R.id.restartGame).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                obj.getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE, WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+                alertDialog.getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE, WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
                 Intent in = new Intent(obj, sameModule);
                 in.putExtra("roundNo", "1/3");
                 obj.finish();
@@ -94,6 +95,8 @@ public class Parent {
         view.findViewById(R.id.nextGame).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                obj.getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE, WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+                alertDialog.getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE, WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
                 Intent intent = new Intent(obj, nextModule);
                 obj.startActivity(intent);
             }
@@ -122,6 +125,7 @@ public class Parent {
         startButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                obj.getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE, WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
                 Intent intent = new Intent(obj, start);
                 intent.putExtra("roundNo","1/3");
                 obj.startActivityForResult(intent, 1);

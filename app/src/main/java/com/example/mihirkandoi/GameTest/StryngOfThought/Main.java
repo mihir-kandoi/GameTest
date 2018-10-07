@@ -8,6 +8,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.SpannableString;
@@ -16,6 +17,7 @@ import android.util.AttributeSet;
 import android.view.DragEvent;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,7 +31,8 @@ public class Main extends AppCompatActivity implements View.OnTouchListener{
 
     String text;
     TextView old;
-
+    String roundNo;
+    AlertDialog alertDialog;
     int result = 1;
 
     @Override
@@ -57,8 +60,9 @@ public class Main extends AppCompatActivity implements View.OnTouchListener{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sot);
         Parent.infoIcon(this, R.color.stryngOfThought); //Set info icon listener
-        final Intent intent = Parent.roundNo(this);
         final String roundNo = getIntent().getStringExtra("roundNo");
+        this.roundNo = roundNo;
+        final Intent intent = Parent.roundNo(this);
         ArrayList<TextView> textViews = new ArrayList<>(5);
         for(int i = 1; i <= 5; i++)
         {
@@ -99,10 +103,14 @@ public class Main extends AppCompatActivity implements View.OnTouchListener{
                         v.setBackgroundColor(Color.TRANSPARENT);
                         old = (TextView) event.getLocalState();
                         old.setOnTouchListener(null);
+                        getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE, WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
                         if(!roundNo.equals("3/3"))
                             startActivityForResult(intent, 1);
                         else
-                            Parent.moduleEnd(Main.this, R.color.stryngOfThought, Main.class, Start.class).show();
+                        {
+                            alertDialog = Parent.moduleEnd(Main.this, R.color.stryngOfThought, Main.class, Start.class);
+                            alertDialog.show();
+                        }
                         break;
                     }
                     case DragEvent.ACTION_DRAG_ENDED:
@@ -142,7 +150,15 @@ public class Main extends AppCompatActivity implements View.OnTouchListener{
             textView.setText(text);
             return true;
         }
-            return false;
+        return false;
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+        if(roundNo.equals("3/3") && alertDialog != null)
+            alertDialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
     }
 }
 

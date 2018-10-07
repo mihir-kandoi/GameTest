@@ -41,7 +41,11 @@
         <activity android:name="com.example.mihirkandoi.GameTest.Grydlock.Start" />
         <activity android:name="com.example.mihirkandoi.GameTest.Grydlock.Instructions" />
         <activity android:name="com.example.mihirkandoi.GameTest.Grydlock.Instructions2" />
-        <activity android:name="com.example.mihirkandoi.GameTest.Grydlock.Main"></activity>
+        <activity android:name="com.example.mihirkandoi.GameTest.Grydlock.Main" />
+        <activity android:name="com.example.mihirkandoi.GameTest.Twysted.Start" />
+        <activity android:name="com.example.mihirkandoi.GameTest.Twysted.Instructions" />
+        <activity android:name="com.example.mihirkandoi.GameTest.Twysted.Instructions2" />
+        <activity android:name="com.example.mihirkandoi.GameTest.Twysted.Main"></activity>
     </application>
 
 </manifest>

@@ -3,10 +3,12 @@ package com.example.mihirkandoi.GameTest.Emotymeter;
 import android.content.Intent;
 import android.os.Handler;
 import android.support.constraint.ConstraintLayout;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -22,6 +24,8 @@ public class Main extends AppCompatActivity implements View.OnClickListener{
     String roundNo;
     int result = 1;
     final Handler handler = new Handler();
+    Runnable runnable;
+    AlertDialog alertDialog;
 
     @Override
     public void onBackPressed() {
@@ -55,7 +59,7 @@ public class Main extends AppCompatActivity implements View.OnClickListener{
         getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
         final int param = Parent.convertToPixel(this, 75);
         final int drawables[] = {R.drawable.angry_emoji, R.drawable.fear_emoji, R.drawable.happy_emoji, R.drawable.laughing_emoji, R.drawable.sad_emoji};
-        final Runnable runnable = new Runnable() {
+        runnable = new Runnable() {
             @Override
             public void run() {
                 final Button fallingEmoji = new Button(getApplicationContext());
@@ -79,10 +83,24 @@ public class Main extends AppCompatActivity implements View.OnClickListener{
 
     @Override
     public void onClick(View v) {
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE, WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
         if(!roundNo.equals("3/3"))
             startActivityForResult(intent, 1);
         else
-            Parent.moduleEnd(this, R.color.storyLyne, Main.class, Start.class).show();
-        handler.removeCallbacksAndMessages(null);
+        {
+            alertDialog = Parent.moduleEnd(this, R.color.storyLyne, Main.class, Start.class);
+            alertDialog.show();
+        }
+        handler.removeCallbacks(runnable);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+        if(roundNo.equals("3/3") && alertDialog != null)
+            alertDialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+        if(!handler.hasMessages(0))
+            handler.post(runnable);
     }
 }

@@ -4,8 +4,10 @@ import android.content.Intent;
 import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.LayerDrawable;
 import android.graphics.drawable.StateListDrawable;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.WindowManager;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.ToggleButton;
@@ -22,6 +24,7 @@ public class Main extends AppCompatActivity implements CompoundButton.OnCheckedC
     ArrayList<ToggleButton> toggleButtons;
     Intent intent;
     String roundNo;
+    AlertDialog alertDialog;
 
     @Override
     public void onBackPressed() {
@@ -82,11 +85,23 @@ public class Main extends AppCompatActivity implements CompoundButton.OnCheckedC
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
         if(isChecked)
         {
+            getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE, WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
             Parent.toggleButtons(toggleButtons, buttonView);
             if (!roundNo.equals("3/3"))
                 startActivityForResult(intent, 1);
             else
-                Parent.moduleEnd(this, R.color.pyctures, Main.class, Start.class).show();
+            {
+                alertDialog = Parent.moduleEnd(this, R.color.pyctures, Main.class, Start.class);
+                alertDialog.show();
+            }
         }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+        if(roundNo.equals("3/3") && alertDialog != null)
+            alertDialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
     }
 }

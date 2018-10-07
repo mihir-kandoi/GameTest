@@ -2,53 +2,48 @@ package com.example.mihirkandoi.GameTest.Grydlock;
 
 import android.graphics.Color;
 import android.graphics.Rect;
-import android.support.constraint.ConstraintLayout;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.ListAdapter;
+import android.view.WindowManager;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.example.mihirkandoi.GameTest.Parent;
+import com.example.mihirkandoi.GameTest.Twysted.Start;
 import com.example.mihirkandoi.gametest.R;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 import java.util.Random;
 
 public class Main extends AppCompatActivity implements View.OnTouchListener{
 
     TextView allTextViews[][] = new TextView[10][10];
-    static Word wordObjs[] = new Word[8];
-    static ArrayList<TextView> occupied = new ArrayList<>();
+    ArrayList<TextView> occupied = new ArrayList<>();
     int temp[]=new int[2];
     ArrayList<TextView> right = new ArrayList<>();
     ArrayList<TextView> down = new ArrayList<>();
     ArrayList<TextView> finale = new ArrayList<>();
+    ArrayList<TextView> found = new ArrayList<>();
     ArrayList<String> words = new ArrayList<>(Arrays.asList("HORSE", "MONKEY", "ELEPHANT", "KEYBOARD", "MONITOR", "MOUSE", "INTERNET", "EARTH"));
+    AlertDialog alertDialog;
     boolean isRight = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_grydlock);
-        findViewById(R.id.submit).setEnabled(false);
         String alphabets = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-        int c,r;
-        c=r=0;
         Random random = new Random();
-        for(int i = 1; i <= 100; i++)
+        for(int i = 0,c = 1; i < 10; i++)
         {
-            allTextViews[r][c] = findViewById(getResources().getIdentifier("textView" + Integer.toString(i), "id", getPackageName()));
-            allTextViews[r][c].setText(Character.toString(alphabets.charAt(random.nextInt(26))));
-            allTextViews[r][c].setOnTouchListener(this);
-            if(c++ == 9)
+            for(int j = 0; j < 10; j++, c++)
             {
-                r++;
-                c=0;
+                allTextViews[i][j] = findViewById(getResources().getIdentifier("textView" + Integer.toString(c), "id", getPackageName()));
+                allTextViews[i][j].setText(Character.toString(alphabets.charAt(random.nextInt(26))));
+                allTextViews[i][j].setOnTouchListener(this);
             }
         }
 
@@ -59,7 +54,6 @@ public class Main extends AppCompatActivity implements View.OnTouchListener{
             int startR = random.nextInt(10 - words.get(i).length());
             int startC = random.nextInt(10);
 
-            // TODO - code review
             if(!isVertical)
             {
                 int idk = startR;
@@ -87,9 +81,19 @@ public class Main extends AppCompatActivity implements View.OnTouchListener{
                     else
                         wordTextViews.add(allTextViews[j][startC]);
 
-                wordObjs[i] = new Word(words.get(i), isVertical, startR, startC, wordTextViews);
+                occupied.addAll(wordTextViews);
+                for(int k=0; k<wordTextViews.size(); k++)
+                    wordTextViews.get(k).setText(Character.toString(words.get(i).charAt(k)));
                 wordTextViews.clear();
         }
+        findViewById(R.id.submit).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE, WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+                alertDialog = Parent.moduleEnd(Main.this, R.color.grydlock, Main.class, Start.class);
+                alertDialog.show();
+            }
+        });
     }
 
     @Override
@@ -121,7 +125,11 @@ public class Main extends AppCompatActivity implements View.OnTouchListener{
                         if(!isRight)
                         {
                             for(TextView textView : finale)
+                            {
+                                if (found.contains(textView))
+                                    continue;
                                 textView.setBackgroundColor(Color.TRANSPARENT);
+                            }
                             finale.clear();
                         }
                         for(int m=finale.size();m <= l;m++)
@@ -141,7 +149,11 @@ public class Main extends AppCompatActivity implements View.OnTouchListener{
                         if(isRight)
                         {
                             for(TextView textView : finale)
+                            {
+                                if (found.contains(textView))
+                                    continue;
                                 textView.setBackgroundColor(Color.TRANSPARENT);
+                            }
                             finale.clear();
                         }
                         for(int m=finale.size();m <= l;m++)
@@ -172,7 +184,13 @@ public class Main extends AppCompatActivity implements View.OnTouchListener{
                     word += textView.getText();
                 if(!words.contains(word) || word.isEmpty())
                     for(TextView textView : finale)
+                    {
+                        if(found.contains(textView))
+                            continue;
                         textView.setBackgroundColor(Color.TRANSPARENT);
+                    }
+                else
+                    found.addAll(finale);
                 right.clear();
                 down.clear();
                 finale.clear();
@@ -180,26 +198,12 @@ public class Main extends AppCompatActivity implements View.OnTouchListener{
         }
         return true;
     }
-}
 
-class Word
-{
-    String word;
-    boolean isVertical;
-    int startR, startC;
-    ArrayList<TextView> textViews;
-
-    Word(String word, boolean isVertical, int startR, int startC, ArrayList<TextView> textViews)
-    {
-        this.word = word;
-        this.isVertical = isVertical;
-        this.startR = startR;
-        this.startC = startC;
-        this.textViews = textViews;
-
-        Main.occupied.addAll(textViews);
-
-        for(int i=0; i<textViews.size(); i++)
-            textViews.get(i).setText(Character.toString(word.charAt(i)));
+    @Override
+    protected void onResume() {
+        super.onResume();
+        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+        if(alertDialog != null)
+            alertDialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
     }
 }

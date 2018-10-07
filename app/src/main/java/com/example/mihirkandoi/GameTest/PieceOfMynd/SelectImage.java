@@ -3,9 +3,11 @@ package com.example.mihirkandoi.GameTest.PieceOfMynd;
 import android.content.Intent;
 import android.graphics.drawable.LayerDrawable;
 import android.graphics.drawable.StateListDrawable;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.ToggleButton;
@@ -19,6 +21,7 @@ import java.util.ArrayList;
 public class SelectImage extends AppCompatActivity implements CompoundButton.OnCheckedChangeListener{
 
     int result = 1;
+    AlertDialog alertDialog;
     ArrayList<ToggleButton> toggleButtons;
 
     @Override
@@ -61,7 +64,9 @@ public class SelectImage extends AppCompatActivity implements CompoundButton.OnC
         done.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Parent.moduleEnd(SelectImage.this, R.color.pieceOfMynd, Main.class, Start.class).show();
+                getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE, WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+                alertDialog = Parent.moduleEnd(SelectImage.this, R.color.pieceOfMynd, Main.class, Start.class);
+                alertDialog.show();
             }
         });
         toggleButtons = Parent.setToggleButtons(this, 3);
@@ -76,5 +81,13 @@ public class SelectImage extends AppCompatActivity implements CompoundButton.OnC
         }
         else
             findViewById(R.id.done).setEnabled(false);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+        if(alertDialog != null)
+            alertDialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
     }
 }

@@ -9,6 +9,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Looper;
 import android.support.constraint.ConstraintLayout;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -32,6 +33,7 @@ public class Main extends AppCompatActivity implements View.OnTouchListener, Vie
 
     int count = 0;
     int result = 1;
+    String roundNo;
 
     @Override
     public void onBackPressed() {
@@ -70,6 +72,7 @@ public class Main extends AppCompatActivity implements View.OnTouchListener, Vie
         });
         final Intent intent = Parent.roundNo(this);
         final String roundNo = getIntent().getStringExtra("roundNo");
+        this.roundNo = roundNo;
         final int drawables[] = {R.drawable.pom_sad, R.drawable.pom_angry, R.drawable.pom_happy};
         int drawable;
         if(roundNo.equals("1/3"))
@@ -104,6 +107,7 @@ public class Main extends AppCompatActivity implements View.OnTouchListener, Vie
         findViewById(R.id.next).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE, WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
                 if(!roundNo.equals("3/3"))
                     startActivityForResult(intent, 1);
                 else
@@ -165,5 +169,11 @@ public class Main extends AppCompatActivity implements View.OnTouchListener, Vie
             }
         }
         return true;
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
     }
 }

@@ -1,4 +1,4 @@
-package com.example.mihirkandoi.GameTest.PieceOfMynd;
+package com.example.mihirkandoi.GameTest.Twysted;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -7,13 +7,13 @@ import android.view.WindowManager;
 import com.example.mihirkandoi.GameTest.Parent;
 import com.example.mihirkandoi.gametest.R;
 
-public class Instructions extends AppCompatActivity {
+public class Start extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_instructions);
-        Parent.instructions(this, R.layout.activity_pom, R.color.pieceOfMynd, "Drag the pieces above to complete the picture.", "3 puzzles will be shown one after the other.", "Next", Instructions2.class);
+        setContentView(R.layout.activity_start);
+        Parent.start(this, "Twysted", "IDENTIFICATION", "Verifying aspects of emotions that exist and bringing them to the forefront.", R.color.twysted, Instructions.class);
     }
 
     @Override
