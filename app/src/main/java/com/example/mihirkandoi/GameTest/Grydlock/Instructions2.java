@@ -13,7 +13,7 @@ public class Instructions2 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_instructions);
-        Parent.instructions(this, R.layout.activity_start, R.color.grydlock, "All the feelings words possible in the grid are shown.", "Tap as many as you identify with. Try and select atleast 2 words.", "Play Game", Main.class);
+        Parent.instructions(this, R.layout.activity_sel_words, R.color.grydlock, "All the feelings words possible in the grid are shown.", "Tap as many as you identify with. Try and select atleast 2 words.", "Play Game", Main.class);
     }
 
     @Override

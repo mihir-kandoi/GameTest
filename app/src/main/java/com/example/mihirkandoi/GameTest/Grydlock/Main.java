@@ -1,5 +1,6 @@
 package com.example.mihirkandoi.GameTest.Grydlock;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Rect;
 import android.support.v7.app.AlertDialog;
@@ -28,6 +29,7 @@ public class Main extends AppCompatActivity implements View.OnTouchListener{
     ArrayList<TextView> finale = new ArrayList<>();
     ArrayList<TextView> found = new ArrayList<>();
     ArrayList<String> words = new ArrayList<>(Arrays.asList("HORSE", "MONKEY", "ELEPHANT", "KEYBOARD", "MONITOR", "MOUSE", "INTERNET", "EARTH"));
+    ArrayList<String> wordsFound = new ArrayList<>();
     AlertDialog alertDialog;
     boolean isRight = true;
 
@@ -35,6 +37,7 @@ public class Main extends AppCompatActivity implements View.OnTouchListener{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_grydlock);
+        findViewById(R.id.submit).setEnabled(false);
         String alphabets = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         Random random = new Random();
         for(int i = 0,c = 1; i < 10; i++)
@@ -90,8 +93,10 @@ public class Main extends AppCompatActivity implements View.OnTouchListener{
             @Override
             public void onClick(View v) {
                 getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE, WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
-                alertDialog = Parent.moduleEnd(Main.this, R.color.grydlock, Main.class, Start.class);
-                alertDialog.show();
+                Intent intent = new Intent(Main.this, SelectWords.class);
+                intent.putStringArrayListExtra("all", words);
+                intent.putStringArrayListExtra("found", wordsFound);
+                startActivityForResult(intent, 1);
             }
         });
     }
@@ -190,7 +195,11 @@ public class Main extends AppCompatActivity implements View.OnTouchListener{
                         textView.setBackgroundColor(Color.TRANSPARENT);
                     }
                 else
+                {
                     found.addAll(finale);
+                    wordsFound.add(word);
+                    findViewById(R.id.submit).setEnabled(true);
+                }
                 right.clear();
                 down.clear();
                 finale.clear();

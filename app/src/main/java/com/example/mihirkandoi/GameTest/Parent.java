@@ -51,7 +51,7 @@ public class Parent {
         obj.findViewById(R.id.info_icon).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                    View view = obj.getLayoutInflater().inflate(R.layout.info, null);
+                View view = obj.getLayoutInflater().inflate(R.layout.info, null);
                 GradientDrawable gd = (GradientDrawable) view.getBackground();
                 gd.setStroke(convertToPixel(obj, 4), obj.getResources().getColor(color, obj. getTheme()));
                 AlertDialog alertDialog = new AlertDialog.Builder(obj).setView(view).create();
@@ -119,6 +119,8 @@ public class Parent {
         imageView.setImageBitmap(bitmap);
         ((TextView) obj.findViewById(R.id.instruction1)).setText(instruction1);
         ((TextView) obj.findViewById(R.id.instruction2)).setText(instruction2);
+        if(instruction2.isEmpty())
+            obj.findViewById(R.id.instruction2).setVisibility(View.GONE);
         ((Button) obj.findViewById(R.id.start)).setText(buttonText);
         Button startButton = obj.findViewById(R.id.start);
         startButton.setBackgroundColor(obj.getResources().getColor(color, obj.getTheme()));

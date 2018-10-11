@@ -86,8 +86,7 @@ public class Main extends AppCompatActivity implements View.OnClickListener{
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE, WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
         if(!roundNo.equals("3/3"))
             startActivityForResult(intent, 1);
-        else
-        {
+        else {
             alertDialog = Parent.moduleEnd(this, R.color.storyLyne, Main.class, Start.class);
             alertDialog.show();
         }

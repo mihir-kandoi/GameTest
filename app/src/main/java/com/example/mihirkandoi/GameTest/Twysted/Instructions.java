@@ -13,7 +13,7 @@ public class Instructions extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_instructions);
-        Parent.instructions(this, R.layout.activity_twysted, R.color.twysted, "Make as many words as you can from the words shown on the screen.", "It's ok if you can't get em all ;)", "Next", Instructions2.class);
+        Parent.instructions(this, R.layout.activity_twysted, R.color.twysted, "Make as many words as you can from the words shown on the screen.", "", "Next", Instructions2.class);
     }
 
     @Override

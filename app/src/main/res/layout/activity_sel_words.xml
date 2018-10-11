@@ -1,0 +1,459 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#f6f6f6"
+    tools:context="com.example.mihirkandoi.GameTest.Grydlock.SelectWords">
+
+    <Button
+        android:id="@+id/submit"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/storyLyne"
+        android:foreground="?android:selectableItemBackground"
+        android:text="Done"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/stepCounter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Step 2 of 2"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TableLayout
+        android:id="@+id/tableLayout1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:stretchColumns="*"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView">
+
+        <TableRow
+            android:id="@+id/tableRow1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ToggleButton
+                android:id="@+id/toggleButton9"
+                android:layout_width="75dp"
+                android:layout_height="35dp"
+                android:layout_marginBottom="2dp"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/sel_words_emotion"
+                android:gravity="center"
+                android:text="Guts"
+                android:textAllCaps="false"
+                android:textOff="Guts"
+                android:textOn="Guts"
+                android:textSize="20sp" />
+
+            <ToggleButton
+                android:id="@+id/toggleButton10"
+                android:layout_width="75dp"
+                android:layout_height="35dp"
+                android:layout_marginBottom="2dp"
+                android:layout_marginRight="12dp"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/sel_words_emotion"
+                android:gravity="center"
+                android:text="Glad"
+                android:textAllCaps="false"
+                android:textOff="Glad"
+                android:textOn="Glad"
+                android:textSize="20sp" />
+
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ToggleButton
+                android:id="@+id/toggleButton11"
+                android:layout_width="75dp"
+                android:layout_height="35dp"
+                android:layout_marginBottom="2dp"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/sel_words_emotion"
+                android:gravity="center"
+                android:text="Shame"
+                android:textAllCaps="false"
+                android:textOff="Shame"
+                android:textOn="Shame"
+                android:textSize="20sp" />
+
+            <ToggleButton
+                android:id="@+id/toggleButton12"
+                android:layout_width="75dp"
+                android:layout_height="35dp"
+                android:layout_marginBottom="2dp"
+                android:layout_marginRight="12dp"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/sel_words_emotion"
+                android:gravity="center"
+                android:text="Glee"
+                android:textAllCaps="false"
+                android:textOff="Glee"
+                android:textOn="Glee"
+                android:textSize="20sp" />
+
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ToggleButton
+                android:id="@+id/toggleButton13"
+                android:layout_width="75dp"
+                android:layout_height="35dp"
+                android:layout_marginBottom="2dp"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/sel_words_emotion"
+                android:gravity="center"
+                android:text="Glee"
+                android:textAllCaps="false"
+                android:textOff="Glee"
+                android:textOn="Glee"
+                android:textSize="20sp"
+                android:visibility="gone" />
+
+            <ToggleButton
+                android:id="@+id/toggleButton14"
+                android:layout_width="75dp"
+                android:layout_height="35dp"
+                android:layout_marginBottom="2dp"
+                android:layout_marginRight="12dp"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/sel_words_emotion"
+                android:gravity="center"
+                android:text="Glee"
+                android:textAllCaps="false"
+                android:textOff="Glee"
+                android:textOn="Glee"
+                android:textSize="20sp"
+                android:visibility="gone" />
+
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ToggleButton
+                android:id="@+id/toggleButton15"
+                android:layout_width="75dp"
+                android:layout_height="35dp"
+                android:layout_marginBottom="2dp"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/sel_words_emotion"
+                android:gravity="center"
+                android:text="Glee"
+                android:textAllCaps="false"
+                android:textOff="Glee"
+                android:textOn="Glee"
+                android:textSize="20sp"
+                android:visibility="gone" />
+
+            <ToggleButton
+                android:id="@+id/toggleButton16"
+                android:layout_width="75dp"
+                android:layout_height="35dp"
+                android:layout_marginBottom="2dp"
+                android:layout_marginRight="12dp"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/sel_words_emotion"
+                android:gravity="center"
+                android:text="Glee"
+                android:textAllCaps="false"
+                android:textOff="Glee"
+                android:textOn="Glee"
+                android:textSize="20sp"
+                android:visibility="gone" />
+
+        </TableRow>
+
+    </TableLayout>
+
+    <TextView
+        android:id="@+id/textView104"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        android:text="FEELING WORDS YOU FOUND"
+        android:textColor="@android:color/holo_blue_light"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView106" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="64dp"
+        android:text="OTHER POSSIBLE FEELING WORDS"
+        android:textColor="@android:color/holo_blue_light"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tableLayout2" />
+
+    <TableLayout
+        android:id="@+id/tableLayout2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:stretchColumns="*"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView104">
+
+        <TableRow
+            android:id="@+id/tableRow5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ToggleButton
+                android:id="@+id/toggleButton1"
+                android:layout_width="75dp"
+                android:layout_height="35dp"
+                android:layout_marginBottom="2dp"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/sel_words_emotion"
+                android:gravity="center"
+                android:paddingBottom="4dp"
+                android:paddingTop="4dp"
+                android:text="Calm"
+                android:textAllCaps="false"
+                android:textOff="Calm"
+                android:textOn="Calm"
+                android:textSize="20sp" />
+
+            <ToggleButton
+                android:id="@+id/toggleButton2"
+                android:layout_width="75dp"
+                android:layout_height="35dp"
+                android:layout_marginBottom="2dp"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/sel_words_emotion"
+                android:gravity="center"
+                android:paddingBottom="4dp"
+                android:paddingTop="4dp"
+                android:text="Vague"
+                android:textAllCaps="false"
+                android:textOff="Vague"
+                android:textOn="Vague"
+                android:textSize="20sp" />
+
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ToggleButton
+                android:id="@+id/toggleButton3"
+                android:layout_width="75dp"
+                android:layout_height="35dp"
+                android:layout_marginBottom="2dp"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/sel_words_emotion"
+                android:gravity="center"
+                android:paddingBottom="4dp"
+                android:paddingTop="4dp"
+                android:text="Care"
+                android:textAllCaps="false"
+                android:textOff="Care"
+                android:textOn="Care"
+                android:textSize="20sp" />
+
+            <ToggleButton
+                android:id="@+id/toggleButton4"
+                android:layout_width="75dp"
+                android:layout_height="35dp"
+                android:layout_marginBottom="2dp"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/sel_words_emotion"
+                android:gravity="center"
+                android:paddingBottom="4dp"
+                android:paddingTop="4dp"
+                android:text="Ire"
+                android:textAllCaps="false"
+                android:textOff="Ire"
+                android:textOn="Ire"
+                android:textSize="20sp" />
+
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow7"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+
+            <ToggleButton
+                android:id="@+id/toggleButton5"
+                android:layout_width="75dp"
+                android:layout_height="35dp"
+                android:layout_marginBottom="2dp"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/sel_words_emotion"
+                android:gravity="center"
+                android:paddingBottom="4dp"
+                android:paddingTop="4dp"
+                android:text="Calm"
+                android:textAllCaps="false"
+                android:textOff="Calm"
+                android:textOn="Calm"
+                android:textSize="20sp"
+                android:visibility="gone" />
+
+            <ToggleButton
+                android:id="@+id/toggleButton6"
+                android:layout_width="75dp"
+                android:layout_height="35dp"
+                android:layout_marginBottom="2dp"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/sel_words_emotion"
+                android:gravity="center"
+                android:paddingBottom="4dp"
+                android:paddingTop="4dp"
+                android:text="Calm"
+                android:textAllCaps="false"
+                android:textOff="Calm"
+                android:textOn="Calm"
+                android:textSize="20sp"
+                android:visibility="gone" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow8"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+
+            <ToggleButton
+                android:id="@+id/toggleButton7"
+                android:layout_width="75dp"
+                android:layout_height="35dp"
+                android:layout_marginBottom="2dp"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/sel_words_emotion"
+                android:gravity="center"
+                android:paddingBottom="4dp"
+                android:paddingTop="4dp"
+                android:text="Care"
+                android:textAllCaps="false"
+                android:textOff="Care"
+                android:textOn="Care"
+                android:textSize="20sp"
+                android:visibility="gone" />
+
+            <ToggleButton
+                android:id="@+id/toggleButton8"
+                android:layout_width="75dp"
+                android:layout_height="35dp"
+                android:layout_marginBottom="2dp"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/sel_words_emotion"
+                android:gravity="center"
+                android:paddingBottom="4dp"
+                android:paddingTop="4dp"
+                android:text="Calm"
+                android:textAllCaps="false"
+                android:textOff="Calm"
+                android:textOn="Calm"
+                android:textSize="20sp"
+                android:visibility="gone" />
+
+        </TableRow>
+
+    </TableLayout>
+
+    <TextView
+        android:id="@+id/textView106"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        android:text="Tap on as many words as you feel describes how you’ve been feeling in the recent past."
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view" />
+
+    <ImageButton
+        android:id="@+id/info_icon"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:background="@android:color/transparent"
+        android:foreground="?android:selectableItemBackground"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="@+id/textView104"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/textView104"
+        app:layout_constraintTop_toTopOf="@+id/textView104"
+        app:srcCompat="@drawable/info_icon" />
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="8dp"
+        android:background="@android:color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/stepCounter" />
+</android.support.constraint.ConstraintLayout>
