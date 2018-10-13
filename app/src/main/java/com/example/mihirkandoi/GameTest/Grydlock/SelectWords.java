@@ -18,22 +18,26 @@ import java.util.ArrayList;
 public class SelectWords extends AppCompatActivity implements CompoundButton.OnCheckedChangeListener{
 
     AlertDialog alertDialog;
+    ArrayList<ToggleButton> allButtons = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sel_words);
-        Parent.infoIcon(this, R.color.twysted);
-        ArrayList<ToggleButton> allButtons = new ArrayList<>();
+        findViewById(R.id.submit).setEnabled(false);
+        Parent.infoIcon(this, R.color.grydlock);
+
         for(int i=1;i<=16;i++) {
             ToggleButton temp = findViewById(getResources().getIdentifier("toggleButton" + Integer.toString(i), "id", getPackageName()));
             temp.setOnCheckedChangeListener(this);
             temp.setVisibility(View.GONE);
             allButtons.add(temp);
         }
+
         ArrayList<String> allWords = getIntent().getStringArrayListExtra("all");
         ArrayList<String> found = getIntent().getStringArrayListExtra("found");
         int i,j;
+
         for(i=0;i<found.size();i++) {
             ToggleButton temp = allButtons.get(i);
             String word = found.get(i);
@@ -44,8 +48,10 @@ public class SelectWords extends AppCompatActivity implements CompoundButton.OnC
             temp.setTextOn(word);
             temp.setVisibility(View.VISIBLE);
         }
+
         if(i%2!=0)
             allButtons.get(i).setVisibility(View.INVISIBLE);
+
         for(i=8,j=0;j<8;j++) {
             if(found.contains(allWords.get(j)))
                 continue;
@@ -58,8 +64,10 @@ public class SelectWords extends AppCompatActivity implements CompoundButton.OnC
             allButtons.get(i).setVisibility(View.VISIBLE);
             i++;
         }
+
         if(i==8)
             findViewById(R.id.textView).setVisibility(View.GONE);
+
         else if(i%2!=0)
             allButtons.get(i).setVisibility(View.INVISIBLE);
 
@@ -67,7 +75,7 @@ public class SelectWords extends AppCompatActivity implements CompoundButton.OnC
             @Override
             public void onClick(View v) {
                 getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE, WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
-                alertDialog = Parent.moduleEnd(SelectWords.this, R.color.twysted, Main.class, Start.class);
+                alertDialog = Parent.moduleEnd(SelectWords.this, R.color.grydlock, Main.class, Start.class);
                 alertDialog.show();
             }
         });
@@ -75,15 +83,24 @@ public class SelectWords extends AppCompatActivity implements CompoundButton.OnC
 
     @Override
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-        if(isChecked)
+        if (isChecked) {
             buttonView.setTextColor(Color.WHITE);
-        else
+            findViewById(R.id.submit).setEnabled(true);
+        } else {
             buttonView.setTextColor(Color.BLACK);
+            int i;
+            for(i=0;i<allButtons.size();i++)
+                if(allButtons.get(i).isChecked())
+                    break;
+            if(i==allButtons.size())
+                findViewById(R.id.submit).setEnabled(false);
+        }
     }
 
     @Override
     protected void onResume() {
         super.onResume();
+        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
         if(alertDialog != null)
             alertDialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
     }

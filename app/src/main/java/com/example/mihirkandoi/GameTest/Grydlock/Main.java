@@ -3,7 +3,6 @@ package com.example.mihirkandoi.GameTest.Grydlock;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Rect;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MotionEvent;
@@ -11,8 +10,6 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.TextView;
 
-import com.example.mihirkandoi.GameTest.Parent;
-import com.example.mihirkandoi.GameTest.Twysted.Start;
 import com.example.mihirkandoi.gametest.R;
 
 import java.util.ArrayList;
@@ -30,7 +27,6 @@ public class Main extends AppCompatActivity implements View.OnTouchListener{
     ArrayList<TextView> found = new ArrayList<>();
     ArrayList<String> words = new ArrayList<>(Arrays.asList("HORSE", "MONKEY", "ELEPHANT", "KEYBOARD", "MONITOR", "MOUSE", "INTERNET", "EARTH"));
     ArrayList<String> wordsFound = new ArrayList<>();
-    AlertDialog alertDialog;
     boolean isRight = true;
 
     @Override
@@ -89,6 +85,7 @@ public class Main extends AppCompatActivity implements View.OnTouchListener{
                     wordTextViews.get(k).setText(Character.toString(words.get(i).charAt(k)));
                 wordTextViews.clear();
         }
+
         findViewById(R.id.submit).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -212,7 +209,5 @@ public class Main extends AppCompatActivity implements View.OnTouchListener{
     protected void onResume() {
         super.onResume();
         getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
-        if(alertDialog != null)
-            alertDialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
     }
 }

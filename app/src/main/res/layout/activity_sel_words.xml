@@ -257,7 +257,6 @@
                 android:text="Calm"
                 android:textAllCaps="false"
                 android:textOff="Calm"
-                android:textOn="Calm"
                 android:textSize="20sp" />
 
             <ToggleButton
