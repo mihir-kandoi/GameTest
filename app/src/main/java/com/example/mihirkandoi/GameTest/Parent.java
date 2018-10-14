@@ -19,6 +19,7 @@ import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import com.example.mihirkandoi.gametest.R;
@@ -110,6 +111,8 @@ public class Parent {
         obj.getWindowManager().getDefaultDisplay().getSize(size);
         ConstraintLayout cs = new ConstraintLayout(obj.getBaseContext());
         obj.getLayoutInflater().inflate(layout, cs, true);
+        if(layout == R.layout.activity_sel_words)
+            cs.findViewById(R.id.submit).setBackground(obj.getDrawable(color));
         cs.measure(View.MeasureSpec.makeMeasureSpec(size.x, View.MeasureSpec.EXACTLY), View.MeasureSpec.makeMeasureSpec(size.y, View.MeasureSpec.EXACTLY));
         cs.layout(0, 0, cs.getMeasuredWidth(), cs.getMeasuredHeight());
         Bitmap bitmap = Bitmap.createBitmap(cs.getMeasuredWidth(), cs.getMeasuredHeight(), Bitmap.Config.ARGB_8888);
@@ -121,8 +124,8 @@ public class Parent {
         ((TextView) obj.findViewById(R.id.instruction2)).setText(instruction2);
         if(instruction2.isEmpty())
             obj.findViewById(R.id.instruction2).setVisibility(View.GONE);
-        ((Button) obj.findViewById(R.id.start)).setText(buttonText);
         Button startButton = obj.findViewById(R.id.start);
+        startButton.setText(buttonText);
         startButton.setBackgroundColor(obj.getResources().getColor(color, obj.getTheme()));
         startButton.setOnClickListener(new View.OnClickListener() {
             @Override

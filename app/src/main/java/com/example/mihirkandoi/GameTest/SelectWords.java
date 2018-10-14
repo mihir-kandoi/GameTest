@@ -1,4 +1,4 @@
-package com.example.mihirkandoi.GameTest.Grydlock;
+package com.example.mihirkandoi.GameTest;
 
 import android.graphics.Color;
 import android.support.v7.app.AlertDialog;
@@ -9,7 +9,7 @@ import android.view.WindowManager;
 import android.widget.CompoundButton;
 import android.widget.ToggleButton;
 
-import com.example.mihirkandoi.GameTest.Parent;
+import com.example.mihirkandoi.GameTest.Grydlock.Main;
 import com.example.mihirkandoi.GameTest.Twysted.Start;
 import com.example.mihirkandoi.gametest.R;
 
@@ -26,6 +26,7 @@ public class SelectWords extends AppCompatActivity implements CompoundButton.OnC
         setContentView(R.layout.activity_sel_words);
         findViewById(R.id.submit).setEnabled(false);
         Parent.infoIcon(this, R.color.grydlock);
+        findViewById(R.id.submit).setBackground(getDrawable(getIntent().getIntExtra("color", 0)));
 
         for(int i=1;i<=16;i++) {
             ToggleButton temp = findViewById(getResources().getIdentifier("toggleButton" + Integer.toString(i), "id", getPackageName()));
@@ -52,7 +53,7 @@ public class SelectWords extends AppCompatActivity implements CompoundButton.OnC
         if(i%2!=0)
             allButtons.get(i).setVisibility(View.INVISIBLE);
 
-        for(i=8,j=0;j<8;j++) {
+        for(i=8,j=0;j<allWords.size();j++) {
             if(found.contains(allWords.get(j)))
                 continue;
             String word = allWords.get(j);

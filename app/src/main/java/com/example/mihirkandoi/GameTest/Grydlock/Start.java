@@ -13,7 +13,7 @@ public class Start extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
-        Parent.start(this, "Grydlock", "RECOGNITION", "Involves the process of identifying the existence of emotional states.", R.color.grydlock, Instructions.class);
+        Parent.start(this, "Grydlock", "RECOGNITION", "Involves the process of identifying the existence of emotional states.", R.color.storyLyne, Instructions.class);
     }
 
     @Override

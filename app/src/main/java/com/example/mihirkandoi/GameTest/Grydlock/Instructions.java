@@ -13,7 +13,7 @@ public class Instructions extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_instructions);
-        Parent.instructions(this, R.layout.activity_grydlock, R.color.grydlock, "Find words that best describe feelings by swiping horizontally or vertically in the grid.", "", "Next", Instructions2.class);
+        Parent.instructions(this, R.layout.activity_grydlock, R.color.storyLyne, "Find words that best describe feelings by swiping horizontally or vertically in the grid.", "", "Next", Instructions2.class);
     }
 
     @Override

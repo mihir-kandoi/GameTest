@@ -42,10 +42,10 @@
         <activity android:name="com.example.mihirkandoi.GameTest.Grydlock.Instructions" />
         <activity android:name="com.example.mihirkandoi.GameTest.Grydlock.Instructions2" />
         <activity android:name="com.example.mihirkandoi.GameTest.Grydlock.Main" />
-        <activity android:name="com.example.mihirkandoi.GameTest.Twysted.Start" android:exported="true"/>
+        <activity android:name="com.example.mihirkandoi.GameTest.Twysted.Start"/>
         <activity android:name="com.example.mihirkandoi.GameTest.Twysted.Instructions" />
         <activity android:name="com.example.mihirkandoi.GameTest.Twysted.Instructions2" />
         <activity android:name="com.example.mihirkandoi.GameTest.Twysted.Main"/>
-        <activity android:name="com.example.mihirkandoi.GameTest.Grydlock.SelectWords" />
+        <activity android:name="com.example.mihirkandoi.GameTest.SelectWords" />
     </application>
 </manifest>

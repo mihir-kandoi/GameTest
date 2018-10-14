@@ -142,12 +142,12 @@ public class Main extends AppCompatActivity implements View.OnTouchListener, Vie
         {
             case DragEvent.ACTION_DRAG_ENTERED:
             {
-                v.setBackgroundColor(Color.WHITE); //highlight view
+                v.setBackgroundColor(Color.WHITE);
                 break;
             }
             case DragEvent.ACTION_DRAG_EXITED:
             {
-                v.setBackgroundColor(Color.TRANSPARENT); //set color back to original
+                v.setBackgroundColor(Color.TRANSPARENT);
                 break;
             }
             case DragEvent.ACTION_DROP:
@@ -160,11 +160,11 @@ public class Main extends AppCompatActivity implements View.OnTouchListener, Vie
                     question.setImageBitmap(null);
                     question.setOnTouchListener(null);
                     count++;
-                    if(count == 12) //if the puzzle is complete (12 pieces)
+                    if(count == 12)
                         findViewById(R.id.next).setEnabled(true);
                 }
-                else //piece fitted incorrectly
-                    v.setBackgroundColor(Color.TRANSPARENT); //set color back to original
+                else
+                    v.setBackgroundColor(Color.TRANSPARENT);
                 break;
             }
         }

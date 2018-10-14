@@ -5,13 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#f6f6f6"
-    tools:context="com.example.mihirkandoi.GameTest.Grydlock.SelectWords">
+    tools:context="com.example.mihirkandoi.GameTest.SelectWords">
 
     <Button
         android:id="@+id/submit"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="@color/storyLyne"
         android:foreground="?android:selectableItemBackground"
         android:text="Done"
         app:layout_constraintBottom_toBottomOf="parent"

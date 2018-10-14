@@ -1,12 +1,15 @@
 package com.example.mihirkandoi.GameTest.Twysted;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewTreeObserver;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TableLayout;
 import android.widget.TableRow;
@@ -14,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.mihirkandoi.GameTest.Parent;
+import com.example.mihirkandoi.GameTest.SelectWords;
 import com.example.mihirkandoi.gametest.R;
 
 import java.util.ArrayList;
@@ -28,9 +32,30 @@ public class Main extends AppCompatActivity implements View.OnClickListener{
     TableLayout tableLayout;
     TableRow tableRow;
     ArrayList<TextView> arrayList = new ArrayList<>();
+    ArrayList<String> words = new ArrayList<>(Arrays.asList("Fear", "Mad", "Gay", "Sad", "Dreams", "Frayed", "Rage"));
+    ArrayList<String> wordsFound = new ArrayList<>();
+    Handler handler = new Handler();
+    Runnable runnable = new Runnable() {
+        @Override
+        public void run() {
+            for (int i = 0; i < word.length(); i++) {
+                tableRow.removeView(arrayList.get(arrayList.size() - 1));
+                arrayList.remove(arrayList.size() - 1);
+                if (tableRow.getChildCount() == 0) {
+                    tableLayout.removeViewAt(tableLayout.getChildCount() - 1);
+                    tableRow = (TableRow) tableLayout.getChildAt(tableLayout.getChildCount() - 1);
+                }
+            }
+            word="";
+            getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+        }
+    };
+    Intent intent;
     final int[] x = new int[1];
     final int[] y = new int[1];
-    ArrayList<String> words = new ArrayList<>(Arrays.asList("Fear", "Mad", "Gay", "Sad", "Dreams", "Frayed", "Rage"));
+    int count=0;
+    int ogCount = words.size();
+    String word="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -38,6 +63,9 @@ public class Main extends AppCompatActivity implements View.OnClickListener{
         setContentView(R.layout.activity_twysted);
         findViewById(R.id.submit).setEnabled(false);
         tableLayout = findViewById(R.id.tableLayout);
+        intent = new Intent(Main.this, SelectWords.class);
+        intent.putStringArrayListExtra("all", words);
+        intent.putExtra("color", R.color.twysted);
 
         StringBuilder sb = new StringBuilder();
         for(String string : words)
@@ -76,10 +104,40 @@ public class Main extends AppCompatActivity implements View.OnClickListener{
                     return;
                 tableRow.removeView(arrayList.get(arrayList.size() - 1));
                 arrayList.remove(arrayList.size() - 1);
+                word = new StringBuilder(word).deleteCharAt(word.length() - 1).toString();
                 if(tableRow.getChildCount() == 0) {
                     tableLayout.removeView(tableRow);
                     tableRow = (TableRow) tableLayout.getChildAt(tableLayout.getChildCount() -1);
                 }
+            }
+        });
+
+        findViewById(R.id.backspace).setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                if(arrayList.isEmpty())
+                    return true;
+                int size = arrayList.size();
+                for(int i=0;i<size;i++) {
+                    tableRow.removeView(arrayList.get(arrayList.size() - 1));
+                    arrayList.remove(arrayList.size() - 1);
+                    if (tableRow.getChildCount() == 0) {
+                        tableLayout.removeView(tableRow);
+                        tableRow = (TableRow) tableLayout.getChildAt(tableLayout.getChildCount() - 1);
+                    }
+                }
+                word = "";
+                return true;
+            }
+        });
+
+        findViewById(R.id.submit).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE, WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+                intent.putStringArrayListExtra("found", wordsFound);
+                intent.putExtra("color", R.color.twysted);
+                startActivityForResult(intent, 1);
             }
         });
     }
@@ -115,6 +173,29 @@ public class Main extends AppCompatActivity implements View.OnClickListener{
         textView.setAllCaps(true);
         tableRow.addView(textView);
         arrayList.add(textView);
+        word += textView.getText();
+        String string="";
+        for(String str : words)
+        {
+            if (str.equalsIgnoreCase(word))
+            {
+                getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE, WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+                handler.postDelayed(runnable, 750);
+                wordsFound.add(str);
+                findViewById(R.id.submit).setEnabled(true);
+                string = str;
+                ((TextView) findViewById(R.id.wordCounter)).setText(Integer.toString(++count)+"\nwords");
+                if(count == ogCount) {
+                    Toast.makeText(getApplicationContext(), "All words found!", Toast.LENGTH_SHORT).show();
+                    findViewById(R.id.submit).performClick();
+                }
+                else
+                    Toast.makeText(getApplicationContext(), "Word found!", Toast.LENGTH_SHORT).show();
+                break;
+            }
+        }
+        if(!string.isEmpty())
+            words.remove(string);
     }
 
     void setTableRow(TableRow tableRow)
@@ -123,5 +204,11 @@ public class Main extends AppCompatActivity implements View.OnClickListener{
         tableRow.getLayoutParams().height = TableRow.LayoutParams.WRAP_CONTENT;
         tableRow.setGravity(Gravity.CENTER_HORIZONTAL);
         tableRow.requestLayout();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
     }
 }

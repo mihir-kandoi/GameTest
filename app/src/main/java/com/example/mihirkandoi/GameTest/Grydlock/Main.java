@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.TextView;
 
+import com.example.mihirkandoi.GameTest.SelectWords;
 import com.example.mihirkandoi.gametest.R;
 
 import java.util.ArrayList;
@@ -25,7 +26,7 @@ public class Main extends AppCompatActivity implements View.OnTouchListener{
     ArrayList<TextView> down = new ArrayList<>();
     ArrayList<TextView> finale = new ArrayList<>();
     ArrayList<TextView> found = new ArrayList<>();
-    ArrayList<String> words = new ArrayList<>(Arrays.asList("HORSE", "MONKEY", "ELEPHANT", "KEYBOARD", "MONITOR", "MOUSE", "INTERNET", "EARTH"));
+    ArrayList<String> words = new ArrayList<>(Arrays.asList("CALM", "VAGUE", "IRE", "CARE", "GUTS", "GLAD", "SHAME", "GLEE"));
     ArrayList<String> wordsFound = new ArrayList<>();
     boolean isRight = true;
 
@@ -93,6 +94,7 @@ public class Main extends AppCompatActivity implements View.OnTouchListener{
                 Intent intent = new Intent(Main.this, SelectWords.class);
                 intent.putStringArrayListExtra("all", words);
                 intent.putStringArrayListExtra("found", wordsFound);
+                intent.putExtra("color", R.color.grydlock);
                 startActivityForResult(intent, 1);
             }
         });
