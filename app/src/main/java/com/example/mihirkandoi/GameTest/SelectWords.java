@@ -1,5 +1,6 @@
 package com.example.mihirkandoi.GameTest;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -19,6 +20,26 @@ public class SelectWords extends AppCompatActivity implements CompoundButton.OnC
 
     AlertDialog alertDialog;
     ArrayList<ToggleButton> allButtons = new ArrayList<>();
+    int result = 1;
+
+    @Override
+    public void onBackPressed() {
+        result = 0;
+        super.onBackPressed();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(resultCode == 1)
+            finish();
+        super.onActivityResult(requestCode, resultCode, data);
+    }
+
+    @Override
+    public void finish() {
+        setResult(result);
+        super.finish();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

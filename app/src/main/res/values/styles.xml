@@ -22,4 +22,19 @@
         <item name="layout_constraintStart_toStartOf">parent</item>
     </style>
 
+    <style name="RoundNo">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:text">0/3</item>
+        <item name="android:textSize">15sp</item>
+    </style>
+
+    <style name="InfoIcon">
+        <item name="android:layout_width">30dp</item>
+        <item name="android:layout_height">30dp</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:foreground">?android:selectableItemBackground</item>
+        <item name="android:scaleType">fitCenter</item>
+        <item name="srcCompat">@drawable/info_icon</item>
+    </style>
 </resources>

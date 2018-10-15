@@ -89,7 +89,7 @@ public class Main extends AppCompatActivity implements CompoundButton.OnCheckedC
             LayerDrawable layerDrawable = (LayerDrawable) getDrawable(R.drawable.image_selected);
             layerDrawable.mutate();
             layerDrawable.setDrawable(0, findViewById(i).getBackground());
-            ((GradientDrawable) layerDrawable.getDrawable(1)).setStroke(Parent.convertToPixel(this, 4), getResources().getColor(R.color.pyctures, getTheme()));
+            ((GradientDrawable) layerDrawable.getDrawable(1)).setStroke(Parent.convertToPixel(this, 4), getResources().getColor(R.color.sonycSound, getTheme()));
             ((GradientDrawable) layerDrawable.getDrawable(1)).setCornerRadius(Parent.convertToPixel(this, 10));
             stateListDrawable.addState(new int[] {android.R.attr.state_checked}, layerDrawable);
             stateListDrawable.addState(new int[] {-android.R.attr.state_checked}, findViewById(i).getBackground());

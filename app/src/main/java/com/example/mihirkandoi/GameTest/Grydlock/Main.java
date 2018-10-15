@@ -21,7 +21,6 @@ public class Main extends AppCompatActivity implements View.OnTouchListener{
 
     TextView allTextViews[][] = new TextView[10][10];
     ArrayList<TextView> occupied = new ArrayList<>();
-    int temp[]=new int[2];
     ArrayList<TextView> right = new ArrayList<>();
     ArrayList<TextView> down = new ArrayList<>();
     ArrayList<TextView> finale = new ArrayList<>();
@@ -29,6 +28,27 @@ public class Main extends AppCompatActivity implements View.OnTouchListener{
     ArrayList<String> words = new ArrayList<>(Arrays.asList("CALM", "VAGUE", "IRE", "CARE", "GUTS", "GLAD", "SHAME", "GLEE"));
     ArrayList<String> wordsFound = new ArrayList<>();
     boolean isRight = true;
+    int result = 1;
+    int temp[]=new int[2];
+
+    @Override
+    public void onBackPressed() {
+        result = 0;
+        super.onBackPressed();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(resultCode == 1)
+            finish();
+        super.onActivityResult(requestCode, resultCode, data);
+    }
+
+    @Override
+    public void finish() {
+        setResult(result);
+        super.finish();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,7 +114,7 @@ public class Main extends AppCompatActivity implements View.OnTouchListener{
                 Intent intent = new Intent(Main.this, SelectWords.class);
                 intent.putStringArrayListExtra("all", words);
                 intent.putStringArrayListExtra("found", wordsFound);
-                intent.putExtra("color", R.color.grydlock);
+                intent.putExtra("color", R.color.storyLyne);
                 startActivityForResult(intent, 1);
             }
         });

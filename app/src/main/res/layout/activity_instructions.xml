@@ -58,14 +58,9 @@
         app:srcCompat="@null" />
 
     <Button
+        style="@style/BottomButton"
         android:id="@+id/start"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:foreground="?android:selectableItemBackground"
         android:text="Go"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/instruction2" />
 
 </android.support.constraint.ConstraintLayout>

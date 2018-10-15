@@ -55,7 +55,27 @@ public class Main extends AppCompatActivity implements View.OnClickListener{
     final int[] y = new int[1];
     int count=0;
     int ogCount = words.size();
+    int result = 1;
     String word="";
+
+    @Override
+    public void onBackPressed() {
+        result = 0;
+        super.onBackPressed();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(resultCode == 1)
+            finish();
+        super.onActivityResult(requestCode, resultCode, data);
+    }
+
+    @Override
+    public void finish() {
+        setResult(result);
+        super.finish();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState){

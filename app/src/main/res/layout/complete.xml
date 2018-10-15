@@ -49,16 +49,10 @@
         app:layout_constraintTop_toBottomOf="@+id/thumbs_up" />
 
     <Button
+        style="@style/BottomButton"
         android:id="@+id/restartGame"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
         android:background="@drawable/complete_play_again"
-        android:foreground="?android:selectableItemBackground"
         android:text="Play Again"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/nextGame" />
 
 </android.support.constraint.ConstraintLayout>

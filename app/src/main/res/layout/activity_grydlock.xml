@@ -18,17 +18,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/submit"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="@color/storyLyne"
-        android:foreground="?android:selectableItemBackground"
-        android:text="Submit"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
     <android.support.constraint.ConstraintLayout
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -1344,5 +1333,11 @@
             app:layout_constraintTop_toTopOf="parent" />
 
     </android.support.constraint.ConstraintLayout>
+
+    <Button
+        style="@style/BottomButton"
+        android:background="@color/storyLyne"
+        android:id="@+id/submit"
+        android:text="Button" />
 
 </android.support.constraint.ConstraintLayout>

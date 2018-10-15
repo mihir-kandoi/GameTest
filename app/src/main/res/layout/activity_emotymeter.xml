@@ -9,13 +9,10 @@
     tools:context="com.example.mihirkandoi.GameTest.Emotymeter.Main">
 
     <TextView
+        style="@style/RoundNo"
         android:id="@+id/roundNo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
         android:layout_marginTop="8dp"
-        android:text="0/3"
-        android:textSize="16sp"
+        android:layout_marginEnd="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
