@@ -1,13 +1,24 @@
 package com.example.mihirkandoi.GameTest.StoryLyne;
 
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.ColorFilter;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.ShapeDrawable;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.AttributeSet;
+import android.util.Log;
 import android.view.WindowManager;
 import android.widget.CompoundButton;
-import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import com.example.mihirkandoi.GameTest.Parent;
@@ -15,6 +26,7 @@ import com.example.mihirkandoi.GameTest.StryngOfThought.Start;
 import com.example.mihirkandoi.gametest.R;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Main extends AppCompatActivity implements CompoundButton.OnCheckedChangeListener{
 

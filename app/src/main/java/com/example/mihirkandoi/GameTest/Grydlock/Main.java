@@ -3,6 +3,8 @@ package com.example.mihirkandoi.GameTest.Grydlock;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Rect;
+import android.graphics.drawable.ColorDrawable;
+import android.support.v4.graphics.ColorUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MotionEvent;
@@ -27,8 +29,11 @@ public class Main extends AppCompatActivity implements View.OnTouchListener{
     ArrayList<TextView> found = new ArrayList<>();
     ArrayList<String> words = new ArrayList<>(Arrays.asList("CALM", "VAGUE", "IRE", "CARE", "GUTS", "GLAD", "SHAME", "GLEE"));
     ArrayList<String> wordsFound = new ArrayList<>();
+    ArrayList<TextView> overlappingViews = new ArrayList<>();
+    ArrayList<Integer> overlappingColors = new ArrayList<>();
+    Random random=new Random();
     boolean isRight = true;
-    int result = 1;
+    int result = 1, color = 0;
     int temp[]=new int[2];
 
     @Override
@@ -56,7 +61,6 @@ public class Main extends AppCompatActivity implements View.OnTouchListener{
         setContentView(R.layout.activity_grydlock);
         findViewById(R.id.submit).setEnabled(false);
         String alphabets = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-        Random random = new Random();
         for(int i = 0,c = 1; i < 10; i++)
         {
             for(int j = 0; j < 10; j++, c++)
@@ -127,7 +131,15 @@ public class Main extends AppCompatActivity implements View.OnTouchListener{
         switch (action)
         {
             case MotionEvent.ACTION_DOWN:
-                v.setBackgroundColor(Color.parseColor("#FFFFD76A"));
+                color = Color.argb(255, random.nextInt(255), random.nextInt(255), random.nextInt(255));
+                if(!found.contains(v))
+                    v.setBackgroundColor(color);
+                else {
+                    overlappingViews.add((TextView) v);
+                    int ogColor = ((ColorDrawable) v.getBackground()).getColor();
+                    overlappingColors.add(ogColor);
+                    v.setBackgroundColor(ColorUtils.blendARGB(ogColor, color, 0.5F));
+                }
                 outer: for(i = 0 ; i < 10 ; i++)
                     for(j = 0; j < 10; j++)
                         if(v.getId() == allTextViews[i][j].getId())
@@ -150,15 +162,24 @@ public class Main extends AppCompatActivity implements View.OnTouchListener{
                         {
                             for(TextView textView : finale)
                             {
-                                if (found.contains(textView))
+                                if (found.contains(textView)) {
+                                    textView.setBackgroundColor(overlappingColors.get(overlappingViews.indexOf(textView)));
                                     continue;
+                                }
                                 textView.setBackgroundColor(Color.TRANSPARENT);
                             }
                             finale.clear();
                         }
                         for(int m=finale.size();m <= l;m++)
                         {
-                            right.get(m).setBackgroundColor(Color.parseColor("#FFFFD76A"));
+                            if(!found.contains(right.get(m)))
+                                right.get(m).setBackgroundColor(color);
+                            else {
+                                overlappingViews.add(right.get(m));
+                                int ogColor = ((ColorDrawable) right.get(m).getBackground()).getColor();
+                                overlappingColors.add(ogColor);
+                                right.get(m).setBackgroundColor(ColorUtils.blendARGB(ogColor, color, 0.5F));
+                            }
                             finale.add(right.get(m));
                             isRight = true;
                         }
@@ -174,15 +195,24 @@ public class Main extends AppCompatActivity implements View.OnTouchListener{
                         {
                             for(TextView textView : finale)
                             {
-                                if (found.contains(textView))
+                                if (found.contains(textView)) {
+                                    textView.setBackgroundColor(overlappingColors.get(overlappingViews.indexOf(textView)));
                                     continue;
+                                }
                                 textView.setBackgroundColor(Color.TRANSPARENT);
                             }
                             finale.clear();
                         }
                         for(int m=finale.size();m <= l;m++)
                         {
-                            down.get(m).setBackgroundColor(Color.parseColor("#FFFFD76A"));
+                            if(!found.contains(down.get(m)))
+                                down.get(m).setBackgroundColor(color);
+                            else {
+                                overlappingViews.add(down.get(m));
+                                int ogColor = ((ColorDrawable) down.get(m).getBackground()).getColor();
+                                overlappingColors.add(ogColor);
+                                down.get(m).setBackgroundColor(ColorUtils.blendARGB(ogColor, color, 0.5F));
+                            }
                             finale.add(down.get(m));
                             isRight = false;
                         }
@@ -196,7 +226,10 @@ public class Main extends AppCompatActivity implements View.OnTouchListener{
                     {
                         int temp2=finale.size();
                         for(int m=l+1;m<temp2;m++)
-                            finale.get(m).setBackgroundColor(Color.TRANSPARENT);
+                            if (found.contains(finale.get(m)))
+                                finale.get(m).setBackgroundColor(overlappingColors.get(overlappingViews.indexOf(finale.get(m))));
+                            else
+                                finale.get(m).setBackgroundColor(Color.TRANSPARENT);
                         for(int m=l+1;m<temp2;m++)
                             finale.remove(finale.get(l+1));
                     }
@@ -210,8 +243,9 @@ public class Main extends AppCompatActivity implements View.OnTouchListener{
                     for(TextView textView : finale)
                     {
                         if(found.contains(textView))
-                            continue;
-                        textView.setBackgroundColor(Color.TRANSPARENT);
+                            textView.setBackgroundColor(overlappingColors.get(overlappingViews.indexOf(textView)));
+                        else
+                            textView.setBackgroundColor(Color.TRANSPARENT);
                     }
                 else
                 {
@@ -219,6 +253,8 @@ public class Main extends AppCompatActivity implements View.OnTouchListener{
                     wordsFound.add(word);
                     findViewById(R.id.submit).setEnabled(true);
                 }
+                overlappingViews.clear();
+                overlappingColors.clear();
                 right.clear();
                 down.clear();
                 finale.clear();

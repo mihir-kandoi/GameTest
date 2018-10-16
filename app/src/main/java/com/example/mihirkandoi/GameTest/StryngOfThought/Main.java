@@ -191,11 +191,5 @@ class UnderlinedTextView extends android.support.v7.widget.AppCompatTextView {
             paint.setStrokeWidth(20f);
             canvas.drawLine(0, getHeight(), getWidth(), getHeight(), paint);
         }
-        else
-        {
-            paint.setColor(getResources().getColor(R.color.stryngOfThought, getContext().getTheme()));
-            paint.setStrokeWidth(20f);
-            canvas.drawLine(0, getHeight(), getWidth(), getHeight(), paint);
-        }
     }
 }
