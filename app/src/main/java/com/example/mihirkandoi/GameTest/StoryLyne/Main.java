@@ -13,10 +13,10 @@ import android.graphics.drawable.Drawable;
 import android.graphics.drawable.StateListDrawable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.WindowManager;
 import android.widget.CompoundButton;
 import android.widget.ToggleButton;
@@ -99,9 +99,98 @@ public class Main extends AppCompatActivity implements CompoundButton.OnCheckedC
             findViewById(getResources().getIdentifier("option" + Integer.toString(i), "id", getPackageName())).setBackground(stateListDrawable);
         }
 
-        SLEmotion slEmotionObj = new SLEmotion(new Path());
-        slEmotionObj.paint.setColor(getResources().getColor(R.color.storyLyne, getTheme()));
-        findViewById(R.id.inner).setBackground(slEmotionObj);
+        final int[] y = new int[2];
+        final Drawable outerDrawable = new Drawable() {
+            Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
+            Path path = new Path();
+            Rect bounds;
+            Random random = new Random();
+
+            @Override
+            public void draw(@NonNull Canvas canvas) {
+                if(path.isEmpty()) {
+                    bounds = getBounds();
+                    paint.setColor(Color.parseColor("#a8e124"));
+                    path.moveTo(0, 0);
+                    path.lineTo(bounds.width(), 0);
+                    int Ymax = bounds.height();
+                    int Ymin = Ymax - convertToPixel(26);
+                    y[0] = random.nextInt((Ymax - Ymin) + 1) + Ymin;
+                    path.lineTo(bounds.width(), y[0]);
+                    y[1] = random.nextInt((Ymax - Ymin) + 1) + Ymin;
+                    path.lineTo(0, y[1]);
+                    path.close();
+                }
+                canvas.drawPath(path, paint);
+            }
+
+            @Override
+            public void setAlpha(int alpha) {
+                paint.setAlpha(alpha);
+            }
+
+            @Override
+            public void setColorFilter(@Nullable ColorFilter colorFilter) {
+                paint.setColorFilter(colorFilter);
+            }
+
+            @Override
+            public int getOpacity() {
+                return PixelFormat.OPAQUE;
+            }
+
+            int convertToPixel(int dp) {
+                return (int) (dp * getResources().getDisplayMetrics().density + 0.5f);
+            }
+
+        };
+        findViewById(R.id.outer).setBackground(outerDrawable);
+
+        final Drawable innerDrawable = new Drawable() {
+            Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
+            Path path = new Path();
+            Rect bounds;
+            Random random = new Random();
+
+            @Override
+            public void draw(@NonNull Canvas canvas) {
+                if(path.isEmpty()) {
+                    paint.setColor(getResources().getColor(R.color.storyLyne, getTheme()));
+                    paint.setPathEffect(new CornerPathEffect(convertToPixel(6)));
+                    bounds = getBounds();
+                    path.moveTo(convertToPixel(random.nextInt(21)), convertToPixel(random.nextInt(21)));
+                    int Xmax = bounds.width();
+                    int Xmin = Xmax - convertToPixel(21);
+                    path.lineTo(random.nextInt((Xmax - Xmin) + 1) + Xmin, convertToPixel(random.nextInt(21)));
+                    ConstraintLayout.LayoutParams layoutParams = (ConstraintLayout.LayoutParams) findViewById(R.id.inner).getLayoutParams();
+                    int offset = layoutParams.topMargin + layoutParams.bottomMargin;
+                    path.lineTo(random.nextInt((Xmax - Xmin) + 1) + Xmin, y[0] - offset);
+                    path.lineTo(convertToPixel(random.nextInt(11)), y[1] - offset);
+                    path.close();
+                }
+                canvas.drawPath(path, paint);
+            }
+
+            @Override
+            public void setAlpha(int alpha) {
+                paint.setAlpha(alpha);
+            }
+
+            @Override
+            public void setColorFilter(@Nullable ColorFilter colorFilter) {
+                paint.setColorFilter(colorFilter);
+            }
+
+            @Override
+            public int getOpacity() {
+                return PixelFormat.OPAQUE;
+            }
+
+            int convertToPixel(int dp) {
+                return (int) (dp * getResources().getDisplayMetrics().density + 0.5f);
+            }
+        };
+        findViewById(R.id.inner).setBackground(innerDrawable);
     }
 
     @Override

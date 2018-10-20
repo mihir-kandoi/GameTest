@@ -4,9 +4,18 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.ColorFilter;
+import android.graphics.CornerPathEffect;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.PixelFormat;
 import android.graphics.Point;
+import android.graphics.Rect;
 import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -25,6 +34,7 @@ import android.widget.ToggleButton;
 import com.example.mihirkandoi.gametest.R;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Parent {
 
@@ -52,9 +62,60 @@ public class Parent {
         obj.findViewById(R.id.info_icon).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                View view = obj.getLayoutInflater().inflate(R.layout.info, null);
-                GradientDrawable gd = (GradientDrawable) view.getBackground();
-                gd.setStroke(convertToPixel(obj, 4), obj.getResources().getColor(color, obj. getTheme()));
+                final View view = obj.getLayoutInflater().inflate(R.layout.info, null);
+                view.findViewById(R.id.parent).setBackground(new Drawable() {
+
+                    Paint paint;
+                    Path path;
+                    Random random;
+                    Rect bounds;
+                    int strokeWidth;
+
+                    @Override
+                    public void draw(@NonNull Canvas canvas) {
+                        paint = new Paint(Paint.ANTI_ALIAS_FLAG);
+                        strokeWidth = convertToPixel(3);
+                        paint.setStrokeWidth(strokeWidth);
+                        paint.setPathEffect(new CornerPathEffect(convertToPixel(6)));
+                        random = new Random();
+                        path = new Path();
+                        bounds = getBounds();
+                        path.moveTo(convertToPixel(random.nextInt(21)) + strokeWidth, convertToPixel(random.nextInt(21)) + strokeWidth);
+                        int Xmax = bounds.width() - strokeWidth;
+                        int Xmin = Xmax - convertToPixel(21);
+                        path.lineTo(random.nextInt((Xmax - Xmin) + 1) + Xmin, convertToPixel(random.nextInt(21)) + strokeWidth);
+                        int Ymax = bounds.height() - strokeWidth;
+                        int Ymin = Ymax - convertToPixel(21);
+                        path.lineTo(random.nextInt((Xmax - Xmin) + 1) + Xmin, random.nextInt((Ymax - Ymin) + 1) + Ymin);
+                        path.lineTo(convertToPixel(random.nextInt(21)) + strokeWidth, random.nextInt((Ymax - Ymin) + 1) + Ymin);
+                        path.close();
+                        paint.setStyle(Paint.Style.FILL);
+                        paint.setColor(Color.WHITE);
+                        canvas.drawPath(path, paint);
+                        paint.setStyle(Paint.Style.STROKE);
+                        paint.setColor(view.getResources().getColor(color, obj.getTheme()));
+                        canvas.drawPath(path, paint);
+                    }
+
+                    @Override
+                    public void setAlpha(int alpha) {
+                        paint.setAlpha(alpha);
+                    }
+
+                    @Override
+                    public void setColorFilter(@Nullable ColorFilter colorFilter) {
+                        paint.setColorFilter(colorFilter);
+                    }
+
+                    @Override
+                    public int getOpacity() {
+                        return PixelFormat.OPAQUE;
+                    }
+
+                    int convertToPixel(int dp) {
+                        return (int) (dp * view.getResources().getDisplayMetrics().density + 0.5f);
+                    }
+                });
                 AlertDialog alertDialog = new AlertDialog.Builder(obj).setView(view).create();
                 alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 alertDialog.show();
