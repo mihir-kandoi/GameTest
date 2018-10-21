@@ -114,7 +114,7 @@ public class Main extends AppCompatActivity implements CompoundButton.OnCheckedC
                     path.moveTo(0, 0);
                     path.lineTo(bounds.width(), 0);
                     int Ymax = bounds.height();
-                    int Ymin = Ymax - convertToPixel(26);
+                    int Ymin = Ymax - convertToPixel(16);
                     y[0] = random.nextInt((Ymax - Ymin) + 1) + Ymin;
                     path.lineTo(bounds.width(), y[0]);
                     y[1] = random.nextInt((Ymax - Ymin) + 1) + Ymin;
@@ -158,10 +158,10 @@ public class Main extends AppCompatActivity implements CompoundButton.OnCheckedC
                     paint.setColor(getResources().getColor(R.color.storyLyne, getTheme()));
                     paint.setPathEffect(new CornerPathEffect(convertToPixel(6)));
                     bounds = getBounds();
-                    path.moveTo(convertToPixel(random.nextInt(21)), convertToPixel(random.nextInt(21)));
+                    path.moveTo(convertToPixel(random.nextInt(11)), convertToPixel(random.nextInt(11)));
                     int Xmax = bounds.width();
-                    int Xmin = Xmax - convertToPixel(21);
-                    path.lineTo(random.nextInt((Xmax - Xmin) + 1) + Xmin, convertToPixel(random.nextInt(21)));
+                    int Xmin = Xmax - convertToPixel(11);
+                    path.lineTo(random.nextInt((Xmax - Xmin) + 1) + Xmin, convertToPixel(random.nextInt(11)));
                     ConstraintLayout.LayoutParams layoutParams = (ConstraintLayout.LayoutParams) findViewById(R.id.inner).getLayoutParams();
                     int offset = layoutParams.topMargin + layoutParams.bottomMargin;
                     path.lineTo(random.nextInt((Xmax - Xmin) + 1) + Xmin, y[0] - offset);
@@ -253,14 +253,14 @@ public class Main extends AppCompatActivity implements CompoundButton.OnCheckedC
         public void draw(@NonNull Canvas canvas) {
             if(path.isEmpty()) {
                 bounds = getBounds();
-                path.moveTo(convertToPixel(random.nextInt(11)) + strokeWidth, convertToPixel(random.nextInt(11)) + strokeWidth);
+                path.moveTo(convertToPixel(random.nextInt(8)) + strokeWidth, convertToPixel(random.nextInt(8)) + strokeWidth);
                 int Xmax = bounds.width() - strokeWidth;
-                int Xmin = Xmax - convertToPixel(11);
-                path.lineTo(random.nextInt((Xmax - Xmin) + 1) + Xmin, convertToPixel(random.nextInt(11)) + strokeWidth);
+                int Xmin = Xmax - convertToPixel(8);
+                path.lineTo(random.nextInt((Xmax - Xmin) + 1) + Xmin, convertToPixel(random.nextInt(8)) + strokeWidth);
                 int Ymax = bounds.height() - strokeWidth;
-                int Ymin = Ymax - convertToPixel(11);
+                int Ymin = Ymax - convertToPixel(8);
                 path.lineTo(random.nextInt((Xmax - Xmin) + 1) + Xmin, random.nextInt((Ymax - Ymin) + 1) + Ymin);
-                path.lineTo(convertToPixel(random.nextInt(11)) + strokeWidth, random.nextInt((Ymax - Ymin) + 1) + Ymin);
+                path.lineTo(convertToPixel(random.nextInt(8)) + strokeWidth, random.nextInt((Ymax - Ymin) + 1) + Ymin);
                 path.close();
             }
             canvas.drawPath(path, paint);
