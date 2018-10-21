@@ -37,7 +37,6 @@
         app:srcCompat="@drawable/fear_emoji" />
 
     <ImageView
-        android:id="@+id/imageView15"
         android:layout_width="75dp"
         android:layout_height="75dp"
         android:layout_marginBottom="60dp"
@@ -76,7 +75,6 @@
         app:srcCompat="@drawable/angry_emoji" />
 
     <ImageView
-        android:id="@+id/imageView19"
         android:layout_width="75dp"
         android:layout_height="75dp"
         android:layout_marginStart="160dp"
@@ -86,7 +84,6 @@
         app:srcCompat="@drawable/happy_emoji" />
 
     <ImageView
-        android:id="@+id/imageView20"
         android:layout_width="75dp"
         android:layout_height="75dp"
         android:layout_marginEnd="116dp"
