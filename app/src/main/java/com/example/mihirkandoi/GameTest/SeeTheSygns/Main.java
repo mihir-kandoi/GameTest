@@ -2,16 +2,16 @@ package com.example.mihirkandoi.GameTest.SeeTheSygns;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.WindowManager;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.ToggleButton;
 
-import com.example.mihirkandoi.GameTest.Parent;
 import com.example.mihirkandoi.GameTest.Grydlock.Start;
+import com.example.mihirkandoi.GameTest.Parent;
 import com.example.mihirkandoi.gametest.R;
 
 import java.util.ArrayList;

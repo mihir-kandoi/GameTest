@@ -1,7 +1,7 @@
 package com.example.mihirkandoi.GameTest.StryngOfThought;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.WindowManager;
 
 import com.example.mihirkandoi.GameTest.Parent;
