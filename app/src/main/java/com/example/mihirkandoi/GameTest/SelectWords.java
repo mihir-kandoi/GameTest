@@ -46,7 +46,7 @@ public class SelectWords extends AppCompatActivity implements CompoundButton.OnC
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sel_words);
         findViewById(R.id.submit).setEnabled(false);
-        Parent.infoIcon(this, R.color.grydlock);
+        Parent.infoIcon(this, getIntent().getIntExtra("color", 0));
         findViewById(R.id.submit).setBackground(getDrawable(getIntent().getIntExtra("color", 0)));
 
         for(int i=1;i<=16;i++) {
