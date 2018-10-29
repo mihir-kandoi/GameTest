@@ -129,8 +129,14 @@ public class Parent {
         Intent intent = new Intent(obj, obj.getClass());
         if(roundNo.equals("1/3"))
             intent.putExtra("roundNo", "2/3");
-        else
+        else if(roundNo.equals("2/3"))
             intent.putExtra("roundNo", "3/3");
+        else if(roundNo.equals("1/4"))
+            intent.putExtra("roundNo", "2/4");
+        else if(roundNo.equals("2/4"))
+            intent.putExtra("roundNo", "3/4");
+        else if(roundNo.equals("3/4"))
+            intent.putExtra("roundNo", "4/4");
         return intent;
     }
 
@@ -147,7 +153,10 @@ public class Parent {
                 obj.getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE, WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
                 alertDialog.getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE, WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
                 Intent in = new Intent(obj, sameModule);
-                in.putExtra("roundNo", "1/3");
+                if(sameModule == com.example.mihirkandoi.GameTest.StoryLyne.Main.class)
+                    in.putExtra("roundNo", "1/4");
+                else
+                    in.putExtra("roundNo", "1/3");
                 obj.finish();
                 obj.startActivityForResult(in, 1);
             }
@@ -164,7 +173,7 @@ public class Parent {
         return alertDialog;
     }
 
-    public static void instructions(final AppCompatActivity obj, int layout, int color, String instruction1, String instruction2, String buttonText, final Class start)
+    public static void instructions(final AppCompatActivity obj, final int layout, int color, String instruction1, String instruction2, String buttonText, final Class start)
     {
         Point size = new Point();
         obj.getWindowManager().getDefaultDisplay().getSize(size);
@@ -191,7 +200,10 @@ public class Parent {
             public void onClick(View v) {
                 obj.getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE, WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
                 Intent intent = new Intent(obj, start);
-                intent.putExtra("roundNo","1/3");
+                if(layout == R.layout.activity_sl)
+                    intent.putExtra("roundNo","1/4");
+                else
+                    intent.putExtra("roundNo","1/3");
                 obj.startActivityForResult(intent, 1);
             }
         });

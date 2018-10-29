@@ -161,7 +161,7 @@
         android:layout_marginEnd="8dp"
         android:background="@drawable/twysted_letter"
         android:text="I"
-        android:textSize="24sp"
+        android:textSize="28sp"
         app:layout_constraintBottom_toBottomOf="@+id/backspace"
         app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintEnd_toStartOf="@+id/backspace"

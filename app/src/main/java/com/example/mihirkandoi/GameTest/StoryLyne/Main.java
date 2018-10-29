@@ -63,6 +63,17 @@ public class Main extends AppCompatActivity implements CompoundButton.OnCheckedC
         intent = Parent.roundNo(this);
         roundNo = getIntent().getStringExtra("roundNo");
         toggleButtons = Parent.setToggleButtons(this, 5);
+        for(int i=1;i<=5;i++) {
+            ToggleButton toggleButton = findViewById(getResources().getIdentifier("option" + Integer.toString(i), "id", getPackageName()));
+            toggleButton.setBackground(null);
+            ConstraintLayout.LayoutParams layoutParams = ((ConstraintLayout.LayoutParams) toggleButton.getLayoutParams());
+            layoutParams.width = ConstraintLayout.LayoutParams.WRAP_CONTENT;
+            layoutParams.height = ConstraintLayout.LayoutParams.WRAP_CONTENT;
+            layoutParams.setMargins(0,0,0,0);
+            layoutParams.horizontalChainStyle = ConstraintLayout.LayoutParams.CHAIN_SPREAD;
+            toggleButton.setPadding(Parent.convertToPixel(this, 75), Parent.convertToPixel(this, 24), Parent.convertToPixel(this, 75), Parent.convertToPixel(this, 24));
+            toggleButton.requestLayout();
+        }
         findViewById(R.id.cs).setBackground(new Drawable() {
 
             Paint paint = new Paint();
@@ -198,8 +209,9 @@ public class Main extends AppCompatActivity implements CompoundButton.OnCheckedC
         if(isChecked)
         {
             getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE, WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+            buttonView.setTextColor(Color.WHITE);
             Parent.toggleButtons(toggleButtons, buttonView);
-            if (!roundNo.equals("3/3"))
+            if (!roundNo.equals("4/4"))
                 startActivityForResult(intent, 1);
             else
             {
@@ -207,6 +219,8 @@ public class Main extends AppCompatActivity implements CompoundButton.OnCheckedC
                 alertDialog.show();
             }
         }
+        else
+            buttonView.setTextColor(Color.BLACK);
     }
 
     @Override
