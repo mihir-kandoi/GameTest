@@ -19,26 +19,37 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.WindowManager;
 import android.widget.CompoundButton;
+import android.widget.TextView;
 import android.widget.ToggleButton;
 
 import com.example.mihirkandoi.GameTest.Parent;
 import com.example.mihirkandoi.GameTest.StryngOfThought.Start;
 import com.example.mihirkandoi.gametest.R;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class Main extends AppCompatActivity implements CompoundButton.OnCheckedChangeListener{
+public class Main extends AppCompatActivity implements CompoundButton.OnCheckedChangeListener {
 
     int result = 1;
     Intent intent;
     AlertDialog alertDialog;
     String roundNo;
     ArrayList<ToggleButton> toggleButtons;
+    static int count = 0;
+    static JSONArray jsonArray = null;
 
     @Override
     public void onBackPressed() {
         result = 0;
+        count--;
         super.onBackPressed();
     }
 
@@ -59,10 +70,26 @@ public class Main extends AppCompatActivity implements CompoundButton.OnCheckedC
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sl);
-        Parent.infoIcon(this, R.color.storyLyne);
         intent = Parent.roundNo(this);
         roundNo = getIntent().getStringExtra("roundNo");
         toggleButtons = Parent.setToggleButtons(this, 5);
+
+        if (jsonArray == null) {
+            try {
+                jsonArray = new JSONArray(getIntent().getStringExtra("JSONarray"));
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+
+        TextView inner = findViewById(R.id.inner);
+
+        try {
+            inner.setText(jsonArray.getJSONObject(count).getString("question"));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        ArrayList<String> options = new ArrayList<>(5);
         for(int i=1;i<=5;i++) {
             ToggleButton toggleButton = findViewById(getResources().getIdentifier("option" + Integer.toString(i), "id", getPackageName()));
             toggleButton.setBackground(null);
@@ -73,7 +100,25 @@ public class Main extends AppCompatActivity implements CompoundButton.OnCheckedC
             layoutParams.horizontalChainStyle = ConstraintLayout.LayoutParams.CHAIN_SPREAD;
             toggleButton.setPadding(Parent.convertToPixel(this, 75), Parent.convertToPixel(this, 24), Parent.convertToPixel(this, 75), Parent.convertToPixel(this, 24));
             toggleButton.requestLayout();
+            try {
+                inner.setTextSize(Parent.convertToPixel(this, 5.5f));
+                String option = jsonArray.getJSONObject(count).getString("option" + Integer.toString(i));
+                toggleButton.setText(option);
+                toggleButton.setTextOn(option);
+                toggleButton.setTextOff(option);
+                options.add(option);
+            }
+            catch (JSONException ex) {
+                ex.printStackTrace();
+            }
         }
+        count++;
+        try {
+            Parent.infoIcon(this, R.color.storyLyne, options);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
         findViewById(R.id.cs).setBackground(new Drawable() {
 
             Paint paint = new Paint();
@@ -201,7 +246,7 @@ public class Main extends AppCompatActivity implements CompoundButton.OnCheckedC
                 return (int) (dp * getResources().getDisplayMetrics().density + 0.5f);
             }
         };
-        findViewById(R.id.inner).setBackground(innerDrawable);
+        inner.setBackground(innerDrawable);
     }
 
     @Override

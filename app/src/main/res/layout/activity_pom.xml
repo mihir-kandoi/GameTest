@@ -358,8 +358,9 @@
         android:text="Next" />
 
     <TextView
-        style="@style/RoundNo"
         android:id="@+id/roundNo"
+        style="@style/RoundNo"
+        android:text="0/5"
         app:layout_constraintBottom_toTopOf="@+id/questions"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"

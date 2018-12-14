@@ -14,6 +14,8 @@ import com.example.mihirkandoi.GameTest.Grydlock.Main;
 import com.example.mihirkandoi.GameTest.Twysted.Start;
 import com.example.mihirkandoi.gametest.R;
 
+import org.json.JSONException;
+
 import java.util.ArrayList;
 
 public class SelectWords extends AppCompatActivity implements CompoundButton.OnCheckedChangeListener{
@@ -46,7 +48,11 @@ public class SelectWords extends AppCompatActivity implements CompoundButton.OnC
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sel_words);
         findViewById(R.id.submit).setEnabled(false);
-        Parent.infoIcon(this, getIntent().getIntExtra("color", 0));
+        try {
+            Parent.infoIcon(this, getIntent().getIntExtra("color", 0), null);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
         findViewById(R.id.submit).setBackground(getDrawable(getIntent().getIntExtra("color", 0)));
 
         for(int i=1;i<=16;i++) {

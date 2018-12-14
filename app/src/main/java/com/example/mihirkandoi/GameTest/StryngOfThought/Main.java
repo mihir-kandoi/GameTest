@@ -24,6 +24,12 @@ import com.example.mihirkandoi.GameTest.Parent;
 import com.example.mihirkandoi.GameTest.PieceOfMynd.Start;
 import com.example.mihirkandoi.gametest.R;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 
 public class Main extends AppCompatActivity implements View.OnTouchListener{
@@ -33,10 +39,13 @@ public class Main extends AppCompatActivity implements View.OnTouchListener{
     String roundNo;
     AlertDialog alertDialog;
     int result = 1;
+    static int count = 0;
+    static JSONArray jsonArray = null;
 
     @Override
     public void onBackPressed() {
         result = 0;
+        count--;
         super.onBackPressed();
     }
 
@@ -58,16 +67,44 @@ public class Main extends AppCompatActivity implements View.OnTouchListener{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sot);
-        Parent.infoIcon(this, R.color.stryngOfThought); //Set info icon listener
         final String roundNo = getIntent().getStringExtra("roundNo");
         this.roundNo = roundNo;
         final Intent intent = Parent.roundNo(this);
+
+        if(jsonArray == null) {
+            try {
+                jsonArray = new JSONArray(getIntent().getStringExtra("JSONarray"));
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+
         ArrayList<TextView> textViews = new ArrayList<>(5);
+        ArrayList<String> options = new ArrayList<>(5);
+        try {
+            ((TextView) findViewById(R.id.question)).setText(jsonArray.getJSONObject(count).getString("question"));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
         for(int i = 1; i <= 5; i++)
         {
             textViews.add((TextView) findViewById(getResources().getIdentifier("option" + Integer.toString(i), "id", getPackageName())));
             textViews.get(i - 1).setOnTouchListener(this);
+            try {
+                String option = jsonArray.getJSONObject(count).getString("option" + Integer.toString(i));
+                textViews.get(i - 1).setText(option);
+                options.add(option);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
         }
+        count++;
+        try {
+            Parent.infoIcon(this, R.color.stryngOfThought, options);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
         TextView utv = findViewById(R.id.answer);
         utv.setOnDragListener(new View.OnDragListener() {
             @Override

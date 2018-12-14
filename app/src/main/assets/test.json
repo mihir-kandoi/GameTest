@@ -1,0 +1,281 @@
+{
+	"StoryLyne": [
+
+		{
+			"question": "Did everything to make money.\nBorrowed and never returned! Duped and escaped!\nLay in a coffin with cash in the cupboard but nobody in church!",
+			"option1": "Anger",
+			"option2": "Pity",
+			"option3": "Disgust",
+			"option4": "Surprise",
+			"option5": "None of these"
+		},
+
+		{
+			"question": "He didn’t recognize her efforts, took for granted her care. Over time came the distance. And before he knew it she had fled.\n\nLove is lost in small, small ways.",
+			"option1": "Anxiety",
+			"option2": "Despair",
+			"option3": "Embarrassed",
+			"option4": "Sympathetic",
+			"option5": "Furious"
+		},
+
+		{
+			"question": "And she thought short cuts would take her through. Hard work was an allergy. Managing schedules was difficult.\n\nMiracle. She did get by!",
+			"option1": "Relief",
+			"option2": "Anxiety",
+			"option3": "Depressed",
+			"option4": "Resentful",
+			"option5": "Cheerful"
+		},
+
+		{
+			"question": "Lethargic. Lazy. Slothful. You would think they would come in the way of success.\n\nSuccess to him meant doing nothing!",
+			"option1": "Depressed",
+			"option2": "Enraged",
+			"option3": "Frustrated",
+			"option4": "Joyous",
+			"option5": "None of these"
+		},
+
+		{
+			"question": "Wanting to fit, she hung out with the 'cool' crowd. The 'with it' people.\n\nTrue friends need not be cool!",
+			"option1": "Sad",
+			"option2": "Hurt",
+			"option3": "Angry",
+			"option4": "Indifferent",
+			"option5": "Morose"
+        },
+
+        {
+          "question": "Asking for favors didn't make him feel small. It's all about the money honey!\n\nFriends are to be used!",
+          "option1": "Frustrated",
+          "option2": "Annoyed",
+          "option3": "Gloomy",
+          "option4": "Confused",
+          "option5": "None of the above"
+        },
+
+        {
+          "question": "He believed that if he did a few rituals luck would back him.\n\nHe forgot. God helps those who help themselves!",
+          "option1": "Nervous",
+          "option2": "Dejected",
+          "option3": "Incensed",
+          "option4": "Intolerant",
+          "option5": "None of the above"
+        },
+
+        {
+          "question": "When ruthlessness becomes a way of life it is hard to be compassionate.\n\nSensitivity requires sensibilities.",
+          "option1": "Depressed",
+          "option2": "Annoyed",
+          "option3": "Panicky",
+          "option4": "Discontent",
+          "option5": "Hurt"
+        },
+
+        {
+          "question": "An apple. An orange. A banana. More than a fruit basket.\n\nWellness is nutrition of being and soul.",
+          "option1": "Happy",
+          "option2": "Thrilled",
+          "option3": "Content",
+          "option4": "Remorseful",
+          "option5": "Nervous"
+        },
+
+        {
+          "question": "Wasn’t going to be invited to the party. Feared missing out.\n\nBecoming submissive and groveling was his only way!",
+          "option1": "Angry",
+          "option2": "Anxious",
+          "option3": "Depressed",
+          "option4": "Frustrated",
+          "option5": "None of the above"
+        },
+
+        {
+          "question": "Flirted and teased. Made suggestive advances.\n\nWondered why people labeled her easy going!",
+          "option1": "Exasperated",
+          "option2": "Tense",
+          "option3": "Regretful",
+          "option4": "Resolute",
+          "option5": "Tickled"
+        },
+
+        {
+          "question": "Was stopped from what she wanted to do. Hated control!\n\nEverything may not be the way you see it!",
+          "option1": "Apprehensive",
+          "option2": "Calm",
+          "option3": "Concerned",
+          "option4": "Miserable",
+          "option5": "Annoyed"
+        }
+	],
+
+    "StryngOfThought":
+    [
+        {
+          "question": "Today is the first day of a new job/class.",
+          "option1": "Excited",
+          "option2": "Worried",
+          "option3": "Anxious",
+          "option4": "Energetic",
+          "option5": "Bored"
+        },
+
+        {
+          "question": "I am late for an important meeting because I am stuck in traffic.",
+          "option1": "Angry",
+          "option2": "Frustrated",
+          "option3": "Nervous",
+          "option4": "Indifferent",
+          "option5": "Calm"
+        },
+
+        {
+          "question": "I am on my way to a party.",
+          "option1": "Happy",
+          "option2": "Edgy",
+          "option3": "Hopeless",
+          "option4": "Frustrated",
+          "option5": "None of the above"
+        },
+
+        {
+          "question": "There is too much work to do.",
+          "option1": "Rage",
+          "option2": "Panicky",
+          "option3": "Depressed",
+          "option4": "Concerned",
+          "option5": "Motivated"
+        },
+
+        {
+          "question": "On the way to the airport to catch a flight.",
+          "option1": "Anxious",
+          "option2": "Sad",
+          "option3": "Thrilled",
+          "option4": "Indifferent",
+          "option5": "Tense"
+        },
+
+        {
+          "question": "When my partner is really angry with me",
+          "option1": "Gloomy",
+          "option2": "Apprehensive",
+          "option3": "Despair",
+          "option4": "Exasperated",
+          "option5": "Regretful"
+        },
+
+        {
+          "question": "I have given a presentation / taken a test and have not done well on it.",
+          "option1": "Edgy",
+          "option2": "Sad",
+          "option3": "Angry",
+          "option4": "Frustrated",
+          "option5": "None of the above"
+        },
+
+        {
+          "question": "That promotion should have been mine. I deserved it.",
+          "option1": "Furious",
+          "option2": "Self-Pity",
+          "option3": "Confused",
+          "option4": "Annoyed",
+          "option5": "Despair"
+        },
+
+        {
+          "question": "I want to spend the day with my friend. But h/she refused.",
+          "option1": "Cheerful",
+          "option2": "Exasperated",
+          "option3": "Dejected",
+          "option4": "Disgusted",
+          "option5": "Tense"
+        },
+
+        {
+          "question": "I lost the medal by a whisker.",
+          "option1": "Desolate",
+          "option2": "Enraged",
+          "option3": "Frustrated",
+          "option4": "Hopeless",
+          "option5": "Indifferent"
+        },
+
+        {
+          "question": "Music makes me feel",
+          "option1": "Cheerful",
+          "option2": "Depressed",
+          "option3": "Angry",
+          "option4": "Remorseful",
+          "option5": "Nothing"
+        },
+
+        {
+          "question": "My lover ditched me. I feel",
+          "option1": "Hopeless",
+          "option2": "Resentful",
+          "option3": "Self-pity",
+          "option4": "Panicky",
+          "option5": "Joyous"
+        }
+    ],
+
+  "definitions":
+            {
+              "Anger": "It is the intense emotion that you feel when you think that someone has behaved in an unfair, cruel, or unacceptable way",
+              "Pity": "If you pity someone, you feel very sorry for them",
+              "Disgust": "It is a feeling of very strong dislike or disapproval",
+              "Surprise": "is the feeling that you have when something unexpected happens",
+              "Anxiety": "A state of intense apprehension or worry often accompanied by physical symptoms such as shaking, intense feelings in the gut, etc, after a very distressing experience",
+              "Despair": "The feeling that everything is wrong and that nothing will improve",
+              "Embarrassed": "Having or showing awareness of one's own existence, actions, etc.; conscious of oneself",
+              "Sympathetic": "If you are sympathetic to someone who is in a bad situation, you are kind to them and show that you understand their feelings",
+              "Furious": "Someone who is furious is extremely angry",
+              "Relief": "If you feel a sense of relief, you feel happy because something unpleasant has not happened or is no longer happening",
+              "Depressed": "If you are depressed you feel that you cannot enjoy anything, because your situation is so difficult and unpleasant that it will never improve",
+              "Resentful": "It is bitterness and anger that someone feels about something",
+              "Cheerful": "hearty; ungrudging; enthusiastic",
+              "Enraged": "If you are enraged by something, it makes you extremely angry",
+              "Frustrated": "Having feelings of dissatisfaction or lack of fulfillment leading one to feel angry",
+              "Joyous": "Full of joy; glad",
+              "Sad": "If you are sad, you feel unhappy, usually because something has happened that you do not like",
+              "Hurt": "A feeling of hurt is a feeling that you have when you think that you have been treated badly or judged unfairly",
+              "Angry": "The intense emotion that you feel when you think that someone has behaved in an unfair, cruel, or unacceptable way",
+              "Indifferent": "Showing no care or concern; uninterested",
+              "Morose": "Characterized by gloom",
+              "Annoyed": "To irritate or displease",
+              "Gloomy": "It does not give you much hope of success or happiness",
+              "Confused": "Feeling or exhibiting an inability to understand; bewildered; perplexed",
+              "Nervous": "Very excitable or sensitive; highly strung",
+              "Dejected": "Miserable; despondent; downhearted",
+              "Incensed": "Greatly enraged",
+              "Intolerant": "Not able or willing to tolerate or endure",
+              "Panicky": "Panic is a very strong feeling of anxiety or fear, which makes you act without thinking carefully",
+              "Discontent": "Discontent is the feeling that you have when you are not satisfied with your situation",
+              "Happy": "Someone who is happy has feelings of pleasure, usually because something nice has happened or because they feel satisfied with their life",
+              "Thrilled": "Extremely pleased",
+              "Content": "If you are content, you are fairly happy or satisfied",
+              "Remorseful": "If you are remorseful, you feel very guilty and sorry about something wrong that you have done.",
+              "Anxious": "A state of intense apprehension or worry often accompanied by physical symptoms such as shaking, intense feelings in the gut, etc, after a very distressing experience",
+              "Exasperated": "If you describe a person as exasperated, you mean that they are frustrated or angry because of something that is happening or something that another person is doing",
+              "Tense": "If you are tense, you are anxious and nervous and cannot relax",
+              "Regretful": "Regret is a feeling of sadness or disappointment, which is caused by something that has happened or something that you have done or not done.",
+              "Tickled": "If a fact or a situation tickles you, it amuses you or gives you pleasure",
+              "Apprehensive": "Anxious or fearful about the future; uneasy",
+              "Calm": "Not disturbed, agitated, or excited; under control",
+              "Concerned": "Involved or interested",
+              "Miserable": "If you describe a place or situation as miserable, you mean that it makes you feel depressed.",
+              "Excited": "If you are excited, you are so happy that you cannot relax, especially because you are thinkingabout something pleasant that is going to happen to you",
+              "Worried": "Feeling uneasy about a situation or thing; anxious",
+              "Energetic": "Having or showing much energy or force; vigorous",
+              "Bored": "If you are bored, you feel tired and impatient because you have lost interest in something or because it is too difficult to do",
+              "Edgy": "If someone is edgy, they are nervous and anxious, and seem likely to lose control of themselves",
+              "Hopeless": "If you feel hopeless, you feel very unhappy because there seems to be no possibility of a better situation or success",
+              "Rage": "Rage is strong anger that is difficult to control",
+              "Motivated": "Inspired by a desire to achieve something",
+              "Self-Pity": "Self-pity is a feeling of unhappiness that you have about yourself and your problems, especially when this is unnecessary or greatly exaggerated",
+              "Disgusted": "It is a feeling of very strong dislike or disapproval",
+              "Desolate": "If someone is desolate, they feel very depressed, alone, and without hope"
+            }
+}

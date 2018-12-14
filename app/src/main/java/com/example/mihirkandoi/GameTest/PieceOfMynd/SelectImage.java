@@ -16,6 +16,7 @@ import com.example.mihirkandoi.GameTest.Parent;
 import com.example.mihirkandoi.GameTest.Pyctures.Start;
 import com.example.mihirkandoi.gametest.R;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 
 public class SelectImage extends AppCompatActivity implements CompoundButton.OnCheckedChangeListener{
@@ -49,16 +50,16 @@ public class SelectImage extends AppCompatActivity implements CompoundButton.OnC
         setContentView(R.layout.activity_pom_sel_image);
         Button done = findViewById(R.id.done);
         done.setEnabled(false);
-        int images[] = getIntent().getIntArrayExtra("drawables");
-        int options[] = {R.id.option1, R.id.option2, R.id.option3};
-        for(int i = 0; i < 3; i++)
+        final ArrayList<Integer> images = getIntent().getIntegerArrayListExtra("drawables");
+        int options[] = {R.id.option1, R.id.option2, R.id.option3, R.id.option4, R.id.option5};
+        for(int i = 0; i < 5; i++)
         {
             StateListDrawable stateListDrawable = new StateListDrawable();
             LayerDrawable layerDrawable = (LayerDrawable) getDrawable(R.drawable.image_selected);
             layerDrawable.mutate();
-            layerDrawable.setDrawable(0, getDrawable(images[i]));
+            layerDrawable.setDrawable(0, getDrawable(images.get(i)));
             stateListDrawable.addState(new int[] {android.R.attr.state_checked}, layerDrawable);
-            stateListDrawable.addState(new int[] {-android.R.attr.state_checked}, getDrawable(images[i]));
+            stateListDrawable.addState(new int[] {-android.R.attr.state_checked}, getDrawable(images.get(i)));
             findViewById(options[i]).setBackground(stateListDrawable);
         }
         done.setOnClickListener(new View.OnClickListener() {
@@ -67,9 +68,10 @@ public class SelectImage extends AppCompatActivity implements CompoundButton.OnC
                 getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE, WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
                 alertDialog = Parent.moduleEnd(SelectImage.this, R.color.pieceOfMynd, Main.class, Start.class);
                 alertDialog.show();
+                images.clear();
             }
         });
-        toggleButtons = Parent.setToggleButtons(this, 3);
+        toggleButtons = Parent.setToggleButtons(this, 5);
     }
 
     @Override

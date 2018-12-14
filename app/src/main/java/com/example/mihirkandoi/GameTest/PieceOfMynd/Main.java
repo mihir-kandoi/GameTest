@@ -24,13 +24,16 @@ import java.util.Random;
 
 public class Main extends AppCompatActivity implements View.OnTouchListener, View.OnDragListener{
 
-    int count = 0;
+    int successCounter = 0;
+    public static int count = 1;
+    static ArrayList<Integer> drawables = new ArrayList<>(15);
     int result = 1;
-    String roundNo;
+    public String roundNo;
 
     @Override
     public void onBackPressed() {
         result = 0;
+        count--;
         super.onBackPressed();
     }
 
@@ -66,14 +69,8 @@ public class Main extends AppCompatActivity implements View.OnTouchListener, Vie
         final Intent intent = Parent.roundNo(this);
         final String roundNo = getIntent().getStringExtra("roundNo");
         this.roundNo = roundNo;
-        final int drawables[] = {R.drawable.pom_sad, R.drawable.pom_angry, R.drawable.pom_happy};
-        int drawable;
-        if(roundNo.equals("1/3"))
-            drawable = drawables[0];
-        else if(roundNo.equals("2/3"))
-            drawable = drawables[1];
-        else
-            drawable = drawables[2];
+        int drawable = getResources().getIdentifier("pom_q" + Integer.toString(count++), "drawable", getPackageName());
+        drawables.add(drawable);
         Bitmap image = BitmapFactory.decodeResource(getResources(), drawable);
         ArrayList<ImageView> imageViews = new ArrayList<>(12);
         for(int i = 1; i <= 12 ; i++ )
@@ -101,12 +98,12 @@ public class Main extends AppCompatActivity implements View.OnTouchListener, Vie
             @Override
             public void onClick(View v) {
                 getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE, WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
-                if(!roundNo.equals("3/3"))
+                if(!roundNo.equals("5/5"))
                     startActivityForResult(intent, 1);
                 else
                 {
                     Intent intent1 = new Intent(Main.this, SelectImage.class);
-                    intent1.putExtra("drawables", drawables);
+                    intent1.putIntegerArrayListExtra("drawables", drawables);
                     startActivityForResult(intent1, 1);
                 }
             }
@@ -152,8 +149,8 @@ public class Main extends AppCompatActivity implements View.OnTouchListener, Vie
                     answer.setImageBitmap(((BitmapDrawable) question.getDrawable()).getBitmap());
                     question.setImageBitmap(null);
                     question.setOnTouchListener(null);
-                    count++;
-                    if(count == 12)
+                    successCounter++;
+                    if(successCounter == 12)
                         findViewById(R.id.next).setEnabled(true);
                 }
                 else

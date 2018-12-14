@@ -14,6 +14,8 @@ import com.example.mihirkandoi.GameTest.Grydlock.Start;
 import com.example.mihirkandoi.GameTest.Parent;
 import com.example.mihirkandoi.gametest.R;
 
+import org.json.JSONException;
+
 import java.util.ArrayList;
 
 public class Main extends AppCompatActivity implements  CompoundButton.OnCheckedChangeListener{
@@ -47,7 +49,11 @@ public class Main extends AppCompatActivity implements  CompoundButton.OnChecked
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sts);
-        Parent.infoIcon(this, R.color.seeTheSygns);
+        try {
+            Parent.infoIcon(this, R.color.seeTheSygns, null);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
         intent = Parent.roundNo(this);
         roundNo = getIntent().getStringExtra("roundNo");
         toggleButtons = Parent.setToggleButtons(this, 5);

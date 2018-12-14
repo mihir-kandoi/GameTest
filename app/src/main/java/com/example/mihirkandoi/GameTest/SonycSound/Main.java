@@ -8,6 +8,7 @@ import android.media.SoundPool;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.CompoundButton;
@@ -29,11 +30,13 @@ public class Main extends AppCompatActivity implements CompoundButton.OnCheckedC
     String roundNo;
     AlertDialog alertDialog;
     static SoundPool soundPool = new SoundPool.Builder().setMaxStreams(1).build();
+    static int count = 1;
     int streamID;
 
     @Override
     public void onBackPressed() {
         result = 0;
+        count--;
         super.onBackPressed();
     }
 
@@ -57,18 +60,7 @@ public class Main extends AppCompatActivity implements CompoundButton.OnCheckedC
         findViewById(R.id.sound).setVisibility(View.INVISIBLE);
         intent = Parent.roundNo(this);
         roundNo = getIntent().getStringExtra("roundNo");
-        int sounds[] = {R.raw.bell, R.raw.explosion, R.raw.alarm};
-        switch (roundNo) {
-            case "1/3":
-                sound = soundPool.load(getApplicationContext(), sounds[0], 1);
-                break;
-            case "2/3":
-                sound = soundPool.load(getApplicationContext(), sounds[1], 1);
-                break;
-            default:
-                sound = soundPool.load(getApplicationContext(), sounds[2], 1);
-                break;
-        }
+        sound = soundPool.load(this, getResources().getIdentifier("ss_q" + Integer.toString(count++), "raw", getPackageName()), 1);
         findViewById(R.id.sound).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
