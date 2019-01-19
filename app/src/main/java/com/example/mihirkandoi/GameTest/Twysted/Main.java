@@ -33,6 +33,7 @@ public class Main extends AppCompatActivity implements View.OnClickListener{
     TableRow tableRow;
     ArrayList<TextView> arrayList = new ArrayList<>();
     ArrayList<String> words = new ArrayList<>(Arrays.asList("Fear", "Mad", "Gay", "Sad", "Dreams", "Frayed", "Rage"));
+    ArrayList<String> wordsClone = new ArrayList<>();
     ArrayList<String> wordsFound = new ArrayList<>();
     Handler handler = new Handler();
     Runnable runnable = new Runnable() {
@@ -81,11 +82,14 @@ public class Main extends AppCompatActivity implements View.OnClickListener{
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_twysted);
+
+        wordsClone.addAll(words);
+
         findViewById(R.id.submit).setEnabled(false);
         tableLayout = findViewById(R.id.tableLayout);
         intent = new Intent(Main.this, SelectWords.class);
         intent.putStringArrayListExtra("all", words);
-        intent.putExtra("color", R.color.twysted);
+        intent.putExtra("color", R.color.sonycSound);
 
         StringBuilder sb = new StringBuilder();
         for(String string : words)
@@ -156,7 +160,7 @@ public class Main extends AppCompatActivity implements View.OnClickListener{
             public void onClick(View v) {
                 getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE, WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
                 intent.putStringArrayListExtra("found", wordsFound);
-                intent.putExtra("color", R.color.twysted);
+                intent.putExtra("color", R.color.sonycSound);
                 startActivityForResult(intent, 1);
             }
         });
@@ -195,7 +199,7 @@ public class Main extends AppCompatActivity implements View.OnClickListener{
         arrayList.add(textView);
         word += textView.getText();
         String string="";
-        for(String str : words)
+        for(String str : wordsClone)
         {
             if (str.equalsIgnoreCase(word))
             {
@@ -215,7 +219,7 @@ public class Main extends AppCompatActivity implements View.OnClickListener{
             }
         }
         if(!string.isEmpty())
-            words.remove(string);
+            wordsClone.remove(string);
     }
 
     void setTableRow(TableRow tableRow)

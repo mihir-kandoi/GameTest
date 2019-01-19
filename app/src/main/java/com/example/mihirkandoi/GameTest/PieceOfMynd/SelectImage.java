@@ -48,6 +48,12 @@ public class SelectImage extends AppCompatActivity implements CompoundButton.OnC
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pom_sel_image);
+
+        // set navigation/status bar black
+        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
+        getWindow().getDecorView().setSystemUiVisibility(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS | View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR);
+        getWindow().getDecorView().setSystemUiVisibility(getWindow().getDecorView().getSystemUiVisibility() | View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+
         Button done = findViewById(R.id.done);
         done.setEnabled(false);
         final ArrayList<Integer> images = getIntent().getIntegerArrayListExtra("drawables");
@@ -67,6 +73,7 @@ public class SelectImage extends AppCompatActivity implements CompoundButton.OnC
             public void onClick(View v) {
                 getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE, WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
                 alertDialog = Parent.moduleEnd(SelectImage.this, R.color.pieceOfMynd, Main.class, Start.class);
+                Main.drawables.clear();
                 alertDialog.show();
                 images.clear();
             }

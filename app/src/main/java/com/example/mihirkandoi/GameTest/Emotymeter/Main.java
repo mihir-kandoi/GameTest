@@ -49,7 +49,7 @@ public class Main extends AppCompatActivity implements View.OnClickListener{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_emotymeter);
-        intent = Parent.roundNo(this);
+        intent = Parent.setRoundNo_and_generateNextIntent(this);
         roundNo = getIntent().getStringExtra("roundNo");
         final ConstraintLayout layout = findViewById(R.id.layout);
         for (int i = 13; i <= 20; i++)

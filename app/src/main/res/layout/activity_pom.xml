@@ -367,14 +367,4 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/answers" />
 
-    <Button
-        android:id="@+id/hack"
-        android:layout_width="77dp"
-        android:layout_height="36dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginTop="8dp"
-        android:text="Button"
-        app:layout_constraintEnd_toStartOf="@+id/roundNo"
-        app:layout_constraintTop_toBottomOf="@+id/answers" />
-
 </android.support.constraint.ConstraintLayout>

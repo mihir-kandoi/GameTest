@@ -1,12 +1,16 @@
 package com.example.mihirkandoi.GameTest.Pyctures;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.LayerDrawable;
+import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.StateListDrawable;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.view.WindowManager;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
@@ -21,6 +25,7 @@ import java.util.ArrayList;
 public class Main extends AppCompatActivity implements CompoundButton.OnCheckedChangeListener{
 
     int result = 1;
+    public static int count = 1;
     ArrayList<ToggleButton> toggleButtons;
     Intent intent;
     String roundNo;
@@ -29,6 +34,7 @@ public class Main extends AppCompatActivity implements CompoundButton.OnCheckedC
     @Override
     public void onBackPressed() {
         result = 0;
+        count--;
         super.onBackPressed();
     }
 
@@ -49,22 +55,17 @@ public class Main extends AppCompatActivity implements CompoundButton.OnCheckedC
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pyctures);
-        intent = Parent.roundNo(this);
+
+        // set navigation/status bar black
+        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
+        getWindow().getDecorView().setSystemUiVisibility(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS | View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR);
+        getWindow().getDecorView().setSystemUiVisibility(getWindow().getDecorView().getSystemUiVisibility() | View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+
+        ((GradientDrawable) findViewById(R.id.scrollView).getBackground()).setColor(Color.WHITE); //set scrollview bg white
+
+        intent = Parent.setRoundNo_and_generateNextIntent(this);
         roundNo = getIntent().getStringExtra("roundNo");
-        int drawables[] = {R.drawable.story1, R.drawable.story2, R.drawable.story3};
-        int drawable;
-        switch (roundNo) {
-            case "1/3":
-                drawable = drawables[0];
-                break;
-            case "2/3":
-                drawable = drawables[1];
-                break;
-            default:
-                drawable = drawables[2];
-                break;
-        }
-        ((ImageView) findViewById(R.id.story)).setImageResource(drawable);
+        ((ImageView) findViewById(R.id.story)).setImageResource(getResources().getIdentifier("pyctures_q" + Integer.toString(count++), "drawable", getPackageName()));
         int options[] = {R.id.option4, R.id.option1, R.id.option5, R.id.option3, R.id.option2};
         for(int i : options)
         {

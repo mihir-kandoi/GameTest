@@ -26,9 +26,10 @@ public class Main extends AppCompatActivity implements View.OnTouchListener, Vie
 
     int successCounter = 0;
     public static int count = 1;
-    static ArrayList<Integer> drawables = new ArrayList<>(15);
+    static ArrayList<Integer> drawables = new ArrayList<>(5);
     int result = 1;
     public String roundNo;
+    ImageView question;
 
     @Override
     public void onBackPressed() {
@@ -54,6 +55,12 @@ public class Main extends AppCompatActivity implements View.OnTouchListener, Vie
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pom);
+
+        // set navigation/status bar black
+        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
+        getWindow().getDecorView().setSystemUiVisibility(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS | View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR);
+        getWindow().getDecorView().setSystemUiVisibility(getWindow().getDecorView().getSystemUiVisibility() | View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+
         findViewById(R.id.next).setEnabled(false);
         final View view = findViewById(R.id.a1);
         view.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
@@ -66,7 +73,7 @@ public class Main extends AppCompatActivity implements View.OnTouchListener, Vie
                 temp.setLayoutParams(layoutParams);
             }
         });
-        final Intent intent = Parent.roundNo(this);
+        final Intent intent = Parent.setRoundNo_and_generateNextIntent(this);
         final String roundNo = getIntent().getStringExtra("roundNo");
         this.roundNo = roundNo;
         int drawable = getResources().getIdentifier("pom_q" + Integer.toString(count++), "drawable", getPackageName());
@@ -108,7 +115,7 @@ public class Main extends AppCompatActivity implements View.OnTouchListener, Vie
                 }
             }
         });
-        findViewById(R.id.hack).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.roundNo ).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 findViewById(R.id.next).setEnabled(true);
@@ -122,6 +129,7 @@ public class Main extends AppCompatActivity implements View.OnTouchListener, Vie
             v.startDrag(null , new View.DragShadowBuilder(v), v, 0);
         else
             v.startDragAndDrop(null, new View.DragShadowBuilder(v), v, 0);
+        question = ((ImageView) v);
         return true;
     }
 
@@ -142,7 +150,7 @@ public class Main extends AppCompatActivity implements View.OnTouchListener, Vie
             }
             case DragEvent.ACTION_DROP:
             {
-                ImageView question = (ImageView) event.getLocalState();
+                ImageView question = this.question;
                 ImageView answer = (ImageView) v;
                 if(question.getTag().toString().equals(answer.getTag())) //if piece is fitted correctly
                 {

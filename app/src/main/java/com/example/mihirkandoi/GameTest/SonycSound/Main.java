@@ -8,7 +8,6 @@ import android.media.SoundPool;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.CompoundButton;
@@ -57,8 +56,14 @@ public class Main extends AppCompatActivity implements CompoundButton.OnCheckedC
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ss);
+
+        // set navigation/status bar black
+        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
+        getWindow().getDecorView().setSystemUiVisibility(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS | View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR);
+        getWindow().getDecorView().setSystemUiVisibility(getWindow().getDecorView().getSystemUiVisibility() | View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+
         findViewById(R.id.sound).setVisibility(View.INVISIBLE);
-        intent = Parent.roundNo(this);
+        intent = Parent.setRoundNo_and_generateNextIntent(this);
         roundNo = getIntent().getStringExtra("roundNo");
         sound = soundPool.load(this, getResources().getIdentifier("ss_q" + Integer.toString(count++), "raw", getPackageName()), 1);
         findViewById(R.id.sound).setOnClickListener(new View.OnClickListener() {

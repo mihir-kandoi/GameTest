@@ -26,10 +26,7 @@ import com.example.mihirkandoi.gametest.R;
 
 import org.json.JSONArray;
 import org.json.JSONException;
-import org.json.JSONObject;
 
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 
 public class Main extends AppCompatActivity implements View.OnTouchListener{
@@ -69,7 +66,7 @@ public class Main extends AppCompatActivity implements View.OnTouchListener{
         setContentView(R.layout.activity_sot);
         final String roundNo = getIntent().getStringExtra("roundNo");
         this.roundNo = roundNo;
-        final Intent intent = Parent.roundNo(this);
+        final Intent intent = Parent.setRoundNo_and_generateNextIntent(this);
 
         if(jsonArray == null) {
             try {
@@ -128,10 +125,14 @@ public class Main extends AppCompatActivity implements View.OnTouchListener{
                     {
                         if(!currentView.getText().equals(""))
                         {
-                            old.setText(currentView.getText().toString());
+                            String text = currentView.getText().toString();
+                            text = text.replaceFirst(Character.toString(text.charAt(0)), Character.toString(Character.toUpperCase(text.charAt(0))));
+                            old.setText(text);
                             old.setOnTouchListener(Main.this);
                         }
-                        SpannableString spannableString = new SpannableString(event.getClipData().getItemAt(0).getText());
+                        String text = event.getClipData().getItemAt(0).getText().toString();
+                        text = text.replaceFirst(Character.toString(text.charAt(0)), Character.toString(Character.toLowerCase(text.charAt(0))));
+                        SpannableString spannableString = new SpannableString(text);
                         spannableString.setSpan(us, 0, spannableString.length(), 0);
                         currentView.setText(spannableString);
                         currentView.setTextColor(Color.WHITE);

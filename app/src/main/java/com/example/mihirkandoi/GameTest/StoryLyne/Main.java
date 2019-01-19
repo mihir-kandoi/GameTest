@@ -17,6 +17,8 @@ import android.support.annotation.Nullable;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.util.TypedValue;
+import android.view.View;
 import android.view.WindowManager;
 import android.widget.CompoundButton;
 import android.widget.TextView;
@@ -28,11 +30,7 @@ import com.example.mihirkandoi.gametest.R;
 
 import org.json.JSONArray;
 import org.json.JSONException;
-import org.json.JSONObject;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -70,25 +68,26 @@ public class Main extends AppCompatActivity implements CompoundButton.OnCheckedC
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sl);
-        intent = Parent.roundNo(this);
+
+        // set navigation/status bar black
+        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
+        getWindow().getDecorView().setSystemUiVisibility(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS | View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR);
+
+        intent = Parent.setRoundNo_and_generateNextIntent(this);
         roundNo = getIntent().getStringExtra("roundNo");
         toggleButtons = Parent.setToggleButtons(this, 5);
 
-        if (jsonArray == null) {
-            try {
-                jsonArray = new JSONArray(getIntent().getStringExtra("JSONarray"));
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-        }
-
         TextView inner = findViewById(R.id.inner);
 
+        //set info icon and get json array from intent
         try {
+            if (jsonArray == null)
+                jsonArray = new JSONArray(getIntent().getStringExtra("JSONarray"));
             inner.setText(jsonArray.getJSONObject(count).getString("question"));
         } catch (JSONException e) {
             e.printStackTrace();
         }
+
         ArrayList<String> options = new ArrayList<>(5);
         for(int i=1;i<=5;i++) {
             ToggleButton toggleButton = findViewById(getResources().getIdentifier("option" + Integer.toString(i), "id", getPackageName()));
@@ -101,7 +100,7 @@ public class Main extends AppCompatActivity implements CompoundButton.OnCheckedC
             toggleButton.setPadding(Parent.convertToPixel(this, 75), Parent.convertToPixel(this, 24), Parent.convertToPixel(this, 75), Parent.convertToPixel(this, 24));
             toggleButton.requestLayout();
             try {
-                inner.setTextSize(Parent.convertToPixel(this, 5.5f));
+                inner.setTextSize(TypedValue.COMPLEX_UNIT_SP,20);
                 String option = jsonArray.getJSONObject(count).getString("option" + Integer.toString(i));
                 toggleButton.setText(option);
                 toggleButton.setTextOn(option);
@@ -113,6 +112,7 @@ public class Main extends AppCompatActivity implements CompoundButton.OnCheckedC
             }
         }
         count++;
+
         try {
             Parent.infoIcon(this, R.color.storyLyne, options);
         } catch (JSONException e) {

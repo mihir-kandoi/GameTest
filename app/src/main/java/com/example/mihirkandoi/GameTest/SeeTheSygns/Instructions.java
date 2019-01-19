@@ -13,7 +13,7 @@ public class Instructions extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_instructions);
-        Parent.instructions(this, R.layout.activity_sts, R.color.seeTheSygns, "Observe the symbol...", "…and choose the closest emotion you experience after viewing it.", "Play Game", Main.class);
+        Parent.instructions(this, R.layout.activity_sts, R.color.colorPrimaryDark, "Observe the symbol...", "…and choose the closest emotion you experience after viewing it.", "Play Game", Main.class);
     }
 
     @Override

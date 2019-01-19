@@ -221,12 +221,87 @@
         }
     ],
 
+    "SeeTheSygns":
+    [
+      {
+        "option1": "Dismay",
+        "option2": "Perturbed",
+        "option3": "Courage",
+        "option4": "Disgust",
+        "option5": "Empathy"
+      },
+
+      {
+        "option1": "Serene",
+        "option2": "Anxious",
+        "option3": "Hopeful",
+        "option4": "Hostile",
+        "option5": "Downcast"
+      },
+
+      {
+        "option1": "Despairing",
+        "option2": "Remorseful",
+        "option3": "Edgy",
+        "option4": "Agitated",
+        "option5": "Tolerant"
+      },
+
+      {
+        "option1": "Morose",
+        "option2": "Grit",
+        "option3": "Vigor",
+        "option4": "Apprehension",
+        "option5": "Irate"
+      },
+
+      {
+        "option1": "Nonchalant",
+        "option2": "Apathetic",
+        "option3": "Bitter",
+        "option4": "Gloomy",
+        "option5": "Cheerful"
+      },
+
+      {
+        "option1": "Anxious",
+        "option2": "Passionate",
+        "option3": "Contempt",
+        "option4": "Dispirited",
+        "option5": "Bored"
+      },
+
+      {
+        "option1": "Dismay",
+        "option2": "Anguish",
+        "option3": "Fretful",
+        "option4": "Resolute",
+        "option5": "Determined"
+      },
+
+      {
+        "option1": "Tenderness",
+        "option2": "Sheltered",
+        "option3": "Desolate",
+        "option4": "Assured",
+        "option5": "Strife"
+      },
+
+      {
+        "option1": "Delight",
+        "option2": "Weary",
+        "option3": "Terrified",
+        "option4": "Tolerable",
+        "option5": "Unenthusiastic"
+      }
+    ],
+
   "definitions":
             {
               "Anger": "It is the intense emotion that you feel when you think that someone has behaved in an unfair, cruel, or unacceptable way",
               "Pity": "If you pity someone, you feel very sorry for them",
               "Disgust": "It is a feeling of very strong dislike or disapproval",
-              "Surprise": "is the feeling that you have when something unexpected happens",
+              "Surprise": "Is the feeling that you have when something unexpected happens",
               "Anxiety": "A state of intense apprehension or worry often accompanied by physical symptoms such as shaking, intense feelings in the gut, etc, after a very distressing experience",
               "Despair": "The feeling that everything is wrong and that nothing will improve",
               "Embarrassed": "Having or showing awareness of one's own existence, actions, etc.; conscious of oneself",

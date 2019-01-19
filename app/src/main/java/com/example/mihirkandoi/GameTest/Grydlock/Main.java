@@ -131,7 +131,7 @@ public class Main extends AppCompatActivity implements View.OnTouchListener{
         switch (action)
         {
             case MotionEvent.ACTION_DOWN:
-                color = Color.argb(127, random.nextInt(255), random.nextInt(255), random.nextInt(255));
+                color = Color.argb(175, random.nextInt(255), random.nextInt(255), random.nextInt(255));
                 if(!found.contains(v))
                     v.setBackgroundColor(color);
                 else {

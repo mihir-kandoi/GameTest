@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.CompoundButton;
@@ -47,12 +48,14 @@ public class SelectWords extends AppCompatActivity implements CompoundButton.OnC
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sel_words);
+
+        // set navigation/status bar black
+        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
+        getWindow().getDecorView().setSystemUiVisibility(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS | View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR);
+        getWindow().getDecorView().setSystemUiVisibility(getWindow().getDecorView().getSystemUiVisibility() | View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+
         findViewById(R.id.submit).setEnabled(false);
-        try {
-            Parent.infoIcon(this, getIntent().getIntExtra("color", 0), null);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+        final int color = getIntent().getIntExtra("color", 0);
         findViewById(R.id.submit).setBackground(getDrawable(getIntent().getIntExtra("color", 0)));
 
         for(int i=1;i<=16;i++) {
@@ -65,6 +68,15 @@ public class SelectWords extends AppCompatActivity implements CompoundButton.OnC
         ArrayList<String> allWords = getIntent().getStringArrayListExtra("all");
         ArrayList<String> found = getIntent().getStringArrayListExtra("found");
         int i,j;
+
+        ArrayList<String> allWordsPC = new ArrayList<>();
+
+        for(String temp : allWords)
+        {
+            temp = temp.toLowerCase();
+            temp = temp.replaceFirst(Character.toString(temp.charAt(0)), Character.toString(Character.toUpperCase(temp.charAt(0))));
+            allWordsPC.add(temp);
+        }
 
         for(i=0;i<found.size();i++) {
             ToggleButton temp = allButtons.get(i);
@@ -83,9 +95,7 @@ public class SelectWords extends AppCompatActivity implements CompoundButton.OnC
         for(i=8,j=0;j<allWords.size();j++) {
             if(found.contains(allWords.get(j)))
                 continue;
-            String word = allWords.get(j);
-            word = word.toLowerCase();
-            word = word.replaceFirst(Character.toString(word.charAt(0)), Character.toString(Character.toUpperCase(word.charAt(0))));
+            String word = allWordsPC.get(j);
             allButtons.get(i).setText(word);
             allButtons.get(i).setTextOff(word);
             allButtons.get(i).setTextOn(word);
@@ -99,11 +109,17 @@ public class SelectWords extends AppCompatActivity implements CompoundButton.OnC
         else if(i%2!=0)
             allButtons.get(i).setVisibility(View.INVISIBLE);
 
+        try {
+            Parent.infoIcon(this, color, allWordsPC);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
         findViewById(R.id.submit).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE, WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
-                alertDialog = Parent.moduleEnd(SelectWords.this, R.color.grydlock, Main.class, Start.class);
+                alertDialog = Parent.moduleEnd(SelectWords.this, color, Main.class, Start.class);
                 alertDialog.show();
             }
         });
