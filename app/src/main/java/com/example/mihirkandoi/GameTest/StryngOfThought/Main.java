@@ -79,7 +79,7 @@ public class Main extends AppCompatActivity implements View.OnTouchListener{
         ArrayList<TextView> textViews = new ArrayList<>(5);
         ArrayList<String> options = new ArrayList<>(5);
         try {
-            ((TextView) findViewById(R.id.question)).setText(jsonArray.getJSONObject(count).getString("question"));
+            ((TextView) findViewById(R.id.questions)).setText(jsonArray.getJSONObject(count).getString("question"));
         } catch (JSONException e) {
             e.printStackTrace();
         }

@@ -8,7 +8,7 @@
     tools:context="com.example.mihirkandoi.GameTest.StryngOfThought.Main">
 
     <TextView
-        android:id="@+id/question"
+        android:id="@+id/questions"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
@@ -132,8 +132,8 @@
         android:text="I feel"
         android:textColor="#ffffff"
         android:textSize="36sp"
-        app:layout_constraintStart_toStartOf="@+id/question"
-        app:layout_constraintTop_toBottomOf="@+id/question" />
+        app:layout_constraintStart_toStartOf="@+id/questions"
+        app:layout_constraintTop_toBottomOf="@+id/questions" />
 
     <com.example.mihirkandoi.GameTest.StryngOfThought.UnderlinedTextView
         android:id="@+id/answer"
@@ -143,7 +143,7 @@
         android:gravity="center_vertical"
         android:textSize="36sp"
         app:layout_constraintBottom_toBottomOf="@+id/iFeel"
-        app:layout_constraintEnd_toEndOf="@+id/question"
+        app:layout_constraintEnd_toEndOf="@+id/questions"
         app:layout_constraintStart_toEndOf="@+id/iFeel"
         app:layout_constraintTop_toTopOf="@+id/iFeel" />
 

@@ -2,15 +2,18 @@ package com.example.mihirkandoi.GameTest.Twysted;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Point;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -29,8 +32,8 @@ import java.util.Set;
 
 public class Main extends AppCompatActivity implements View.OnClickListener{
 
-    TableLayout tableLayout;
-    TableRow tableRow;
+    TableLayout answers, questions;
+    TableRow tableRowA, tableRowQ;
     ArrayList<TextView> arrayList = new ArrayList<>();
     ArrayList<String> words = new ArrayList<>(Arrays.asList("Fear", "Mad", "Gay", "Sad", "Dreams", "Frayed", "Rage"));
     ArrayList<String> wordsClone = new ArrayList<>();
@@ -40,11 +43,11 @@ public class Main extends AppCompatActivity implements View.OnClickListener{
         @Override
         public void run() {
             for (int i = 0; i < word.length(); i++) {
-                tableRow.removeView(arrayList.get(arrayList.size() - 1));
+                tableRowA.removeView(arrayList.get(arrayList.size() - 1));
                 arrayList.remove(arrayList.size() - 1);
-                if (tableRow.getChildCount() == 0) {
-                    tableLayout.removeViewAt(tableLayout.getChildCount() - 1);
-                    tableRow = (TableRow) tableLayout.getChildAt(tableLayout.getChildCount() - 1);
+                if (tableRowA.getChildCount() == 0) {
+                    answers.removeViewAt(answers.getChildCount() - 1);
+                    tableRowA = (TableRow) answers.getChildAt(answers.getChildCount() - 1);
                 }
             }
             word="";
@@ -52,8 +55,7 @@ public class Main extends AppCompatActivity implements View.OnClickListener{
         }
     };
     Intent intent;
-    final int[] x = new int[1];
-    final int[] y = new int[1];
+    int x1, y1;
     int count=0;
     int ogCount = words.size();
     int result = 1;
@@ -81,20 +83,38 @@ public class Main extends AppCompatActivity implements View.OnClickListener{
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_twysted);
+        setContentView(R.layout.activity_twysted_actual);
 
         wordsClone.addAll(words);
 
+        Point size = new Point();
+        getWindowManager().getDefaultDisplay().getSize(size);
+        ConstraintLayout cs = new ConstraintLayout(getBaseContext());
+        getLayoutInflater().inflate(R.layout.activity_twysted, cs, true);
+        cs.measure(View.MeasureSpec. makeMeasureSpec(size.x, View.MeasureSpec.EXACTLY), View.MeasureSpec.makeMeasureSpec(size.y, View.MeasureSpec.EXACTLY));
+        cs.layout(0, 0, cs.getMeasuredWidth(), cs.getMeasuredHeight());
+
         findViewById(R.id.submit).setEnabled(false);
-        tableLayout = findViewById(R.id.tableLayout);
+        final Button refButton = cs.findViewById(R.id.button1);
+        ImageButton backspace = findViewById(R.id.backspace);
+        answers = findViewById(R.id.answers);
+        questions = findViewById(R.id.questions);
         intent = new Intent(Main.this, SelectWords.class);
         intent.putStringArrayListExtra("all", words);
         intent.putExtra("color", R.color.sonycSound);
 
+        answers.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
+                answers.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+                y1 = answers.getHeight() / (refButton.getHeight() + Parent.convertToPixel(Main.this, 8));
+            }
+        });
+        x1 = cs.findViewById(R.id.tableLayout).getWidth() / (refButton.getWidth() + Parent.convertToPixel(Main.this, 8));
+
         StringBuilder sb = new StringBuilder();
         for(String string : words)
             sb.append(string);
-
         char[] chars = sb.toString().toLowerCase().toCharArray();
         Set<Character> present = new HashSet<>();
         int len = 0;
@@ -104,50 +124,80 @@ public class Main extends AppCompatActivity implements View.OnClickListener{
         sb = new StringBuilder(new String(chars,0, len));
 
         Random random = new Random();
-        for(int i=1;i<=9;i++) {
-            Button button = findViewById(getResources().getIdentifier("button" + Integer.toString(i), "id", getPackageName()));
-            button.setOnClickListener(this);
+        int temp = sb.length();
+        TableRow.LayoutParams layoutParams = new TableRow.LayoutParams(refButton.getWidth(), refButton.getHeight());
+        layoutParams.rightMargin = Parent.convertToPixel(this, 8);
+        layoutParams.bottomMargin = Parent.convertToPixel(this, 8);
+        for(int i=0;i<temp;i++) {
+            if(tableRowQ == null || tableRowQ.getChildCount() == x1) {
+                questions.addView((tableRowQ = new TableRow(getApplicationContext())));
+                setTableRow(tableRowQ);
+            }
+            TextView textView = new TextView(getApplicationContext());
+            textView.setLayoutParams(layoutParams);
             int index = random.nextInt(sb.length());
-            button.setText(Character.toString(sb.charAt(index)));
+            textView.setText(Character.toString(sb.charAt(index)));
+            textView.setTextSize(refButton.getTextSize() / getResources().getDisplayMetrics().scaledDensity);
+            textView.setBackground(refButton.getBackground());
+            textView.setGravity(Gravity.CENTER);
+            textView.setTextColor(Color.BLACK);
+            textView.setTypeface(Typeface.DEFAULT_BOLD);
+            textView.setAllCaps(true);
+            tableRowQ.addView(textView);
+            textView.setOnClickListener(this);
             sb.deleteCharAt(index);
         }
-
-        tableLayout.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
-            @Override
-            public void onGlobalLayout() {
-                tableLayout.getViewTreeObserver().removeOnGlobalLayoutListener(this);
-                x[0] = tableLayout.getWidth() / (findViewById(R.id.button1).getWidth() + Parent.convertToPixel(Main.this, 8));
-                y[0] = tableLayout.getHeight() / (findViewById(R.id.button1).getHeight() + Parent.convertToPixel(Main.this, 8));
+        ((ConstraintLayout) findViewById(R.id.mainCS)).removeView(backspace);
+        backspace.setLayoutParams(layoutParams);
+        if(tableRowQ.getChildCount() <= x1)
+        {
+            if(tableRowQ.getChildCount() == x1)
+            {
+                questions.addView((tableRowQ = new TableRow(getApplicationContext())));
+                setTableRow(tableRowQ);
             }
-        });
+            layoutParams.rightMargin = Parent.convertToPixel(this, 8);
+            temp = (x1 - tableRowQ.getChildCount()) - 1;
+            for(int i=0;i<temp;i++) {
+                TextView textView = new TextView(getApplicationContext());
+                textView.setLayoutParams(layoutParams);
+                textView.setVisibility(View.INVISIBLE);
+                textView.setEnabled(false);
+                textView.setClickable(false);
+                tableRowQ.addView(textView);
+            }
+        }
+        tableRowQ.addView(backspace);
+        answers.getLayoutParams().height = ConstraintLayout.LayoutParams.MATCH_CONSTRAINT;
+        answers.requestLayout();
 
-        findViewById(R.id.backspace).setOnClickListener(new View.OnClickListener() {
+        backspace.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(arrayList.isEmpty())
                     return;
-                tableRow.removeView(arrayList.get(arrayList.size() - 1));
+                tableRowA.removeView(arrayList.get(arrayList.size() - 1));
                 arrayList.remove(arrayList.size() - 1);
                 word = new StringBuilder(word).deleteCharAt(word.length() - 1).toString();
-                if(tableRow.getChildCount() == 0) {
-                    tableLayout.removeView(tableRow);
-                    tableRow = (TableRow) tableLayout.getChildAt(tableLayout.getChildCount() -1);
+                if(tableRowA.getChildCount() == 0) {
+                    answers.removeView(tableRowA);
+                    tableRowA = (TableRow) answers.getChildAt(answers.getChildCount() -1);
                 }
             }
         });
 
-        findViewById(R.id.backspace).setOnLongClickListener(new View.OnLongClickListener() {
+        backspace.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
                 if(arrayList.isEmpty())
                     return true;
                 int size = arrayList.size();
                 for(int i=0;i<size;i++) {
-                    tableRow.removeView(arrayList.get(arrayList.size() - 1));
+                    tableRowA.removeView(arrayList.get(arrayList.size() - 1));
                     arrayList.remove(arrayList.size() - 1);
-                    if (tableRow.getChildCount() == 0) {
-                        tableLayout.removeView(tableRow);
-                        tableRow = (TableRow) tableLayout.getChildAt(tableLayout.getChildCount() - 1);
+                    if (tableRowA.getChildCount() == 0) {
+                        answers.removeView(tableRowA);
+                        tableRowA = (TableRow) answers.getChildAt(answers.getChildCount() - 1);
                     }
                 }
                 word = "";
@@ -168,23 +218,23 @@ public class Main extends AppCompatActivity implements View.OnClickListener{
 
     @Override
     public void onClick(View v) {
-        if(tableRow == null) {
-            tableLayout.addView((tableRow = new TableRow(getApplicationContext())));
-            setTableRow(tableRow);
+        if(tableRowA == null) {
+            answers.addView((tableRowA = new TableRow(getApplicationContext())));
+            setTableRow(tableRowA);
         }
-        else if(tableLayout.getChildCount() == y[0] && tableRow.getChildCount() == x[0]) {
+        else if(answers.getChildCount() == y1 && tableRowA.getChildCount() == x1) {
             Toast.makeText(getApplicationContext(), "Out of space!", Toast.LENGTH_LONG).show();
             return;
         }
-        else if(tableRow.getChildCount() == x[0]) {
-            tableLayout.addView((tableRow = new TableRow(getApplicationContext())));
-            setTableRow(tableRow);
+        else if(tableRowA.getChildCount() == x1) {
+            answers.addView((tableRowA = new TableRow(getApplicationContext())));
+            setTableRow(tableRowA);
         }
         TextView textView = new TextView(getApplicationContext());
         TableRow.LayoutParams layoutParams = new TableRow.LayoutParams(v.getWidth(), v.getHeight());
-        if(tableRow.getChildCount() != (x[0] - 1))
+        if(tableRowA.getChildCount() != (x1 - 1))
             layoutParams.rightMargin = Parent.convertToPixel(this, 8);
-        if(tableLayout.getChildCount() != y[0])
+        if(answers.getChildCount() != y1)
             layoutParams.bottomMargin = Parent.convertToPixel(this, 8);
         textView.setLayoutParams(layoutParams);
         TextView og = (TextView) v;
@@ -195,7 +245,7 @@ public class Main extends AppCompatActivity implements View.OnClickListener{
         textView.setTextColor(Color.BLACK);
         textView.setTypeface(Typeface.DEFAULT_BOLD);
         textView.setAllCaps(true);
-        tableRow.addView(textView);
+        tableRowA.addView(textView);
         arrayList.add(textView);
         word += textView.getText();
         String string="";

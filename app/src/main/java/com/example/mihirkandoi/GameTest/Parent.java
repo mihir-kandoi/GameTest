@@ -22,7 +22,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.WindowManager;
@@ -78,29 +77,7 @@ public class Parent {
     public static void infoIcon(final AppCompatActivity obj, final int color, ArrayList<String> options) throws JSONException { // used to set info icon dialog
 
         // set all texts using JSON file
-
-        /*final View view = obj.getLayoutInflater().inflate(R.layout.info, null);
-        if(options != null) {
-            JSONObject definitions = jsonObject.getJSONObject("definitions");
-            for (int i = 1; i <= 5; i++) {
-                TextView word =  view.findViewById(view.getResources().getIdentifier("def" + Integer.toString(i), "id", view.getContext().getPackageName()));
-                TextView def =  view.findViewById(view.getResources().getIdentifier("def" + Integer.toString(i) + "des", "id", view.getContext().getPackageName()));
-                if(i == 5 && (options.get(4).equals("None of the above") || options.get(4).equals("None of these") || options.get(4).equals("Nothing"))) {
-                    word.setVisibility(View.GONE);
-                    def.setVisibility(View.GONE);
-                }
-                else {
-                    word.setText(options.get(i - 1));
-                    try {
-                        def.setText(definitions.getString(options.get(i - 1)));
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-        }*/
-
-        final View view = obj.getLayoutInflater().inflate(R.layout.info2, null);
+        final View view = obj.getLayoutInflater().inflate(R.layout.info, null);
         LinearLayout parent = view.findViewById(R.id.parent);
         LinearLayout.LayoutParams wordLP = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         LinearLayout.LayoutParams defLP = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);

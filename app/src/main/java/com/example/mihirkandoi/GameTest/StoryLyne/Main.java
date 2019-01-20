@@ -272,7 +272,7 @@ public class Main extends AppCompatActivity implements CompoundButton.OnCheckedC
     protected void onResume() {
         super.onResume();
         getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
-        if(roundNo.equals("3/3") && alertDialog != null)
+        if(roundNo.equals("4/4") && alertDialog != null)
             alertDialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
     }
 

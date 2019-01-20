@@ -1335,9 +1335,14 @@
     </android.support.constraint.ConstraintLayout>
 
     <Button
-        style="@style/BottomButton"
-        android:background="@color/storyLyne"
         android:id="@+id/submit"
-        android:text="Button" />
+        style="@style/BottomButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/storyLyne"
+        android:text="Next"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </android.support.constraint.ConstraintLayout>
