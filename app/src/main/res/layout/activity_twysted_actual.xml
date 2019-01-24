@@ -79,7 +79,7 @@
     <Button
         android:id="@+id/submit"
         style="@style/BottomButton"
-        android:layout_width="411dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="@color/sonycSound"
         android:text="Submit"

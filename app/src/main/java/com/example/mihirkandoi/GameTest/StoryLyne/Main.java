@@ -93,11 +93,7 @@ public class Main extends AppCompatActivity implements CompoundButton.OnCheckedC
             ToggleButton toggleButton = findViewById(getResources().getIdentifier("option" + Integer.toString(i), "id", getPackageName()));
             toggleButton.setBackground(null);
             ConstraintLayout.LayoutParams layoutParams = ((ConstraintLayout.LayoutParams) toggleButton.getLayoutParams());
-            layoutParams.width = ConstraintLayout.LayoutParams.WRAP_CONTENT;
-            layoutParams.height = ConstraintLayout.LayoutParams.WRAP_CONTENT;
-            layoutParams.setMargins(0,0,0,0);
             layoutParams.horizontalChainStyle = ConstraintLayout.LayoutParams.CHAIN_SPREAD;
-            toggleButton.setPadding(Parent.convertToPixel(this, 75), Parent.convertToPixel(this, 24), Parent.convertToPixel(this, 75), Parent.convertToPixel(this, 24));
             toggleButton.requestLayout();
             try {
                 inner.setTextSize(TypedValue.COMPLEX_UNIT_SP,20);

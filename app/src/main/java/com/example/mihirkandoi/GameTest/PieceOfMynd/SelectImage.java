@@ -16,7 +16,6 @@ import com.example.mihirkandoi.GameTest.Parent;
 import com.example.mihirkandoi.GameTest.Pyctures.Start;
 import com.example.mihirkandoi.gametest.R;
 
-import java.lang.reflect.Field;
 import java.util.ArrayList;
 
 public class SelectImage extends AppCompatActivity implements CompoundButton.OnCheckedChangeListener{

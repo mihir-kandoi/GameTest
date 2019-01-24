@@ -85,8 +85,9 @@ public class Main extends AppCompatActivity implements View.OnClickListener{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_twysted_actual);
 
-        wordsClone.addAll(words);
+        wordsClone.addAll(words); //clone all words ArrayList for definitions
 
+        //inflate/create a reference view
         Point size = new Point();
         getWindowManager().getDefaultDisplay().getSize(size);
         ConstraintLayout cs = new ConstraintLayout(getBaseContext());
@@ -99,10 +100,13 @@ public class Main extends AppCompatActivity implements View.OnClickListener{
         ImageButton backspace = findViewById(R.id.backspace);
         answers = findViewById(R.id.answers);
         questions = findViewById(R.id.questions);
+
+        //intent for selectwords screen
         intent = new Intent(Main.this, SelectWords.class);
         intent.putStringArrayListExtra("all", words);
         intent.putExtra("color", R.color.sonycSound);
 
+        //calculate how many buttons can be stored the table layouts
         answers.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
             public void onGlobalLayout() {
@@ -112,6 +116,7 @@ public class Main extends AppCompatActivity implements View.OnClickListener{
         });
         x1 = cs.findViewById(R.id.tableLayout).getWidth() / (refButton.getWidth() + Parent.convertToPixel(Main.this, 8));
 
+        //concat all words and remove duplicate alphabets
         StringBuilder sb = new StringBuilder();
         for(String string : words)
             sb.append(string);
@@ -123,6 +128,7 @@ public class Main extends AppCompatActivity implements View.OnClickListener{
                 chars[len++] = c;
         sb = new StringBuilder(new String(chars,0, len));
 
+        //fill the "questions" TableLayout
         Random random = new Random();
         int temp = sb.length();
         TableRow.LayoutParams layoutParams = new TableRow.LayoutParams(refButton.getWidth(), refButton.getHeight());
@@ -147,6 +153,8 @@ public class Main extends AppCompatActivity implements View.OnClickListener{
             textView.setOnClickListener(this);
             sb.deleteCharAt(index);
         }
+
+        //add backspace button at end of TableRow after all adding all filler buttons necessary
         ((ConstraintLayout) findViewById(R.id.mainCS)).removeView(backspace);
         backspace.setLayoutParams(layoutParams);
         if(tableRowQ.getChildCount() <= x1)
@@ -168,9 +176,11 @@ public class Main extends AppCompatActivity implements View.OnClickListener{
             }
         }
         tableRowQ.addView(backspace);
+
         answers.getLayoutParams().height = ConstraintLayout.LayoutParams.MATCH_CONSTRAINT;
         answers.requestLayout();
 
+        //delete one button at the end
         backspace.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -185,7 +195,7 @@ public class Main extends AppCompatActivity implements View.OnClickListener{
                 }
             }
         });
-
+        //delete all buttons in "answer" TableLayout
         backspace.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
@@ -218,24 +228,27 @@ public class Main extends AppCompatActivity implements View.OnClickListener{
 
     @Override
     public void onClick(View v) {
-        if(tableRowA == null) {
+        if(tableRowA == null) { ///add TableRow if none present
             answers.addView((tableRowA = new TableRow(getApplicationContext())));
             setTableRow(tableRowA);
         }
-        else if(answers.getChildCount() == y1 && tableRowA.getChildCount() == x1) {
+        else if(answers.getChildCount() == y1 && tableRowA.getChildCount() == x1) { //check if space is left to add buttons in answers TableLayout
             Toast.makeText(getApplicationContext(), "Out of space!", Toast.LENGTH_LONG).show();
             return;
         }
-        else if(tableRowA.getChildCount() == x1) {
+        else if(tableRowA.getChildCount() == x1) { //add new TableRow if current one is full
             answers.addView((tableRowA = new TableRow(getApplicationContext())));
             setTableRow(tableRowA);
         }
-        TextView textView = new TextView(getApplicationContext());
+        //create LayoutParams for buttons
         TableRow.LayoutParams layoutParams = new TableRow.LayoutParams(v.getWidth(), v.getHeight());
         if(tableRowA.getChildCount() != (x1 - 1))
             layoutParams.rightMargin = Parent.convertToPixel(this, 8);
         if(answers.getChildCount() != y1)
             layoutParams.bottomMargin = Parent.convertToPixel(this, 8);
+
+        //create button and add to TableRow
+        TextView textView = new TextView(getApplicationContext());
         textView.setLayoutParams(layoutParams);
         TextView og = (TextView) v;
         textView.setText(og.getText());
@@ -248,6 +261,8 @@ public class Main extends AppCompatActivity implements View.OnClickListener{
         tableRowA.addView(textView);
         arrayList.add(textView);
         word += textView.getText();
+
+        //check if word found and update all fields as necessary
         String string="";
         for(String str : wordsClone)
         {
