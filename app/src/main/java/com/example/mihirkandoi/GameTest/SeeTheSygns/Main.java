@@ -63,7 +63,7 @@ public class Main extends AppCompatActivity implements  CompoundButton.OnChecked
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sts);
 
-        // set navigation/status bar black
+        // set status bar black
         getWindow().getDecorView().setSystemUiVisibility(getWindow().getDecorView().getSystemUiVisibility() | View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
 
         // make and set custom background

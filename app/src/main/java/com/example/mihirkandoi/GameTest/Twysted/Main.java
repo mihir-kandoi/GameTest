@@ -154,7 +154,7 @@ public class Main extends AppCompatActivity implements View.OnClickListener{
             sb.deleteCharAt(index);
         }
 
-        //add backspace button at end of TableRow after all adding all filler buttons necessary
+        //add backspace button at end of TableRow after adding all filler buttons necessary
         ((ConstraintLayout) findViewById(R.id.mainCS)).removeView(backspace);
         backspace.setLayoutParams(layoutParams);
         if(tableRowQ.getChildCount() <= x1)

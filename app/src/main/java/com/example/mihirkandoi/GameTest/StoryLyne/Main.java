@@ -69,10 +69,6 @@ public class Main extends AppCompatActivity implements CompoundButton.OnCheckedC
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sl);
 
-        // set navigation/status bar black
-        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
-        getWindow().getDecorView().setSystemUiVisibility(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS | View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR);
-
         intent = Parent.setRoundNo_and_generateNextIntent(this);
         roundNo = getIntent().getStringExtra("roundNo");
         toggleButtons = Parent.setToggleButtons(this, 5);
@@ -96,7 +92,7 @@ public class Main extends AppCompatActivity implements CompoundButton.OnCheckedC
             layoutParams.horizontalChainStyle = ConstraintLayout.LayoutParams.CHAIN_SPREAD;
             toggleButton.requestLayout();
             try {
-                inner.setTextSize(TypedValue.COMPLEX_UNIT_SP,20);
+                inner.setTextSize(TypedValue.COMPLEX_UNIT_PX,getResources().getDimensionPixelSize(R.dimen._15ssp));
                 String option = jsonArray.getJSONObject(count).getString("option" + Integer.toString(i));
                 toggleButton.setText(option);
                 toggleButton.setTextOn(option);

@@ -295,9 +295,7 @@ public class Parent {
 
         final Intent intent = new Intent(obj, start);
 
-        // set navigation/status bar black
-        obj.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
-        obj.getWindow().getDecorView().setSystemUiVisibility(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS | View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR);
+        // set status bar black
         obj.getWindow().getDecorView().setSystemUiVisibility(obj.getWindow().getDecorView().getSystemUiVisibility() | View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
 
         // put proper roundNos
