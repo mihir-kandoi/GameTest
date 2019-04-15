@@ -3,8 +3,8 @@ package com.example.mihirkandoi.GameTest;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.CompoundButton;
@@ -21,8 +21,9 @@ import java.util.ArrayList;
 public class SelectWords extends AppCompatActivity implements CompoundButton.OnCheckedChangeListener{
 
     AlertDialog alertDialog;
-    ArrayList<ToggleButton> allButtons = new ArrayList<>();
     int result = 1;
+
+    ArrayList<ToggleButton> allButtons = new ArrayList<>();
 
     @Override
     public void onBackPressed() {
@@ -48,7 +49,6 @@ public class SelectWords extends AppCompatActivity implements CompoundButton.OnC
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sel_words);
 
-        // set status bar black
         getWindow().getDecorView().setSystemUiVisibility(getWindow().getDecorView().getSystemUiVisibility() | View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
 
         findViewById(R.id.submit).setEnabled(false);
@@ -67,7 +67,6 @@ public class SelectWords extends AppCompatActivity implements CompoundButton.OnC
         int i,j;
 
         ArrayList<String> allWordsPC = new ArrayList<>();
-
         for(String temp : allWords)
         {
             temp = temp.toLowerCase();

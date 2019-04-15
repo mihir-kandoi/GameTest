@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/layout"
@@ -24,17 +24,17 @@
         android:layout_marginTop="16dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/angry_emoji" />
+        app:srcCompat="@drawable/emoji_agreeable" />
 
     <ImageView
         android:id="@+id/imageView14"
         android:layout_width="75dp"
         android:layout_height="75dp"
-        android:layout_marginEnd="140dp"
         android:layout_marginTop="88dp"
+        android:layout_marginEnd="140dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView13"
-        app:srcCompat="@drawable/fear_emoji" />
+        app:srcCompat="@drawable/emoji_anxious" />
 
     <ImageView
         android:id="@+id/imageView15"
@@ -44,7 +44,7 @@
         android:layout_marginBottom="60dp"
         app:layout_constraintBottom_toTopOf="@+id/imageView14"
         app:layout_constraintStart_toEndOf="@+id/imageView13"
-        app:srcCompat="@drawable/laughing_emoji" />
+        app:srcCompat="@drawable/emoji_anger" />
 
     <ImageView
         android:id="@+id/imageView16"
@@ -53,27 +53,27 @@
         android:layout_marginTop="112dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/imageView14"
-        app:srcCompat="@drawable/happy_emoji" />
+        app:srcCompat="@drawable/emoji_cheerful" />
 
     <ImageView
         android:id="@+id/imageView17"
         android:layout_width="75dp"
         android:layout_height="75dp"
-        android:layout_marginEnd="48dp"
         android:layout_marginTop="36dp"
+        android:layout_marginEnd="48dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView18"
-        app:srcCompat="@drawable/sad_emoji" />
+        app:srcCompat="@drawable/emoji_depressed" />
 
     <ImageView
         android:id="@+id/imageView18"
         android:layout_width="75dp"
         android:layout_height="75dp"
-        android:layout_marginEnd="108dp"
         android:layout_marginTop="56dp"
+        android:layout_marginEnd="108dp"
         app:layout_constraintEnd_toStartOf="@+id/imageView17"
         app:layout_constraintTop_toBottomOf="@+id/imageView16"
-        app:srcCompat="@drawable/angry_emoji" />
+        app:srcCompat="@drawable/emoji_confident" />
 
     <ImageView
         android:id="@+id/imageView19"
@@ -83,7 +83,7 @@
         android:layout_marginTop="68dp"
         app:layout_constraintStart_toEndOf="@+id/imageView16"
         app:layout_constraintTop_toBottomOf="@+id/imageView14"
-        app:srcCompat="@drawable/happy_emoji" />
+        app:srcCompat="@drawable/emoji_composed" />
 
     <ImageView
         android:id="@+id/imageView20"
@@ -93,5 +93,5 @@
         android:layout_marginEnd="116dp"
         app:layout_constraintEnd_toStartOf="@+id/imageView17"
         app:layout_constraintTop_toBottomOf="@+id/imageView18"
-        app:srcCompat="@drawable/fear_emoji" />
-</android.support.constraint.ConstraintLayout>
+        app:srcCompat="@drawable/emoji_diffident" />
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@android:color/white"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/questionMark"
+        android:layout_width="@dimen/_105sdp"
+        android:layout_height="@dimen/_105sdp"
+        android:layout_marginStart="32dp"
+        app:layout_constraintBottom_toTopOf="@+id/thinking"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.39"
+        android:src="@drawable/ic_question_mark" />
+
+    <TextView
+        android:id="@+id/Phase01"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:fontFamily="@font/kirvy_bold"
+        android:text="Phase 01"
+        android:textColor="@android:color/black"
+        app:layout_constraintBottom_toTopOf="@+id/phase01desc"
+        app:layout_constraintStart_toEndOf="@+id/questionMark"
+        app:layout_constraintTop_toTopOf="@+id/questionMark"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/phase01desc"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="32dp"
+        android:fontFamily="@font/kirvy_regular"
+        android:text="Unravel your emotions. How you feel can be discovered as you play."
+        android:textSize="@dimen/_11ssp"
+        app:layout_constraintBottom_toBottomOf="@+id/questionMark"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/Phase01"
+        app:layout_constraintTop_toBottomOf="@+id/Phase01"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <ImageView
+        android:id="@+id/tickmark"
+        android:layout_width="@dimen/_105sdp"
+        android:layout_height="@dimen/_105sdp"
+        android:layout_marginStart="32dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/thinking"
+        android:src="@drawable/ic_tick_mark" />
+
+    <TextView
+        android:id="@+id/Phase02"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:fontFamily="@font/kirvy_bold"
+        android:text="Phase 02"
+        android:textColor="@android:color/black"
+        app:layout_constraintBottom_toTopOf="@+id/phase02desc"
+        app:layout_constraintStart_toEndOf="@+id/questionMark"
+        app:layout_constraintTop_toTopOf="@+id/thinking"
+        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintVertical_chainStyle="spread" />
+
+    <TextView
+        android:id="@+id/phase02desc"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:fontFamily="@font/kirvy_regular"
+        android:text="Know why you feel the way you feel. The games will teach you cause &amp; effect."
+        android:textSize="@dimen/_11ssp"
+        app:layout_constraintBottom_toBottomOf="@+id/thinking"
+        app:layout_constraintEnd_toEndOf="@+id/phase01desc"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/Phase02"
+        app:layout_constraintTop_toBottomOf="@+id/Phase02" />
+
+    <ImageView
+        android:id="@+id/thinking"
+        android:layout_width="@dimen/_60sdp"
+        android:layout_height="@dimen/_105sdp"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toTopOf="@+id/tickmark"
+        app:layout_constraintEnd_toEndOf="@+id/questionMark"
+        app:layout_constraintStart_toStartOf="@+id/questionMark"
+        app:layout_constraintTop_toBottomOf="@+id/questionMark"
+        android:src="@drawable/ic_thinking" />
+
+    <TextView
+        android:id="@+id/Phase03"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/kirvy_bold"
+        android:text="Phase 03"
+        android:textColor="@android:color/black"
+        app:layout_constraintBottom_toTopOf="@+id/phase03desc"
+        app:layout_constraintStart_toStartOf="@+id/phase02desc"
+        app:layout_constraintTop_toTopOf="@+id/tickmark"
+        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintVertical_chainStyle="spread" />
+
+    <TextView
+        android:id="@+id/phase03desc"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/kirvy_regular"
+        android:text="Do what it takes to alter mindset. Intriguing and uncomplicated ways to spur your productive to healthier living."
+        android:textSize="@dimen/_11ssp"
+        app:layout_constraintBottom_toBottomOf="@+id/tickmark"
+        app:layout_constraintEnd_toEndOf="@+id/phase02desc"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/Phase03"
+        app:layout_constraintTop_toBottomOf="@+id/Phase03" />
+</androidx.constraintlayout.widget.ConstraintLayout>

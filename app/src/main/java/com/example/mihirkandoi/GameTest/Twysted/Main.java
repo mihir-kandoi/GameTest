@@ -6,8 +6,8 @@ import android.graphics.Point;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.constraint.ConstraintLayout;
-import android.support.v7.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.appcompat.app.AppCompatActivity;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewTreeObserver;
@@ -31,6 +31,9 @@ import java.util.Set;
 
 
 public class Main extends AppCompatActivity implements View.OnClickListener{
+
+    public static int count = 1;
+    int result = 1;
 
     TableLayout answers, questions;
     TableRow tableRowA, tableRowQ;
@@ -56,14 +59,14 @@ public class Main extends AppCompatActivity implements View.OnClickListener{
     };
     Intent intent;
     int x1, y1;
-    int count=0;
+    int countWords=0;
     int ogCount = words.size();
-    int result = 1;
     String word="";
 
     @Override
     public void onBackPressed() {
         result = 0;
+        count--;
         super.onBackPressed();
     }
 
@@ -101,7 +104,7 @@ public class Main extends AppCompatActivity implements View.OnClickListener{
         answers = findViewById(R.id.answers);
         questions = findViewById(R.id.questions);
 
-        //intent for selectwords screen
+        //intent for SelectWords screen
         intent = new Intent(Main.this, SelectWords.class);
         intent.putStringArrayListExtra("all", words);
         intent.putExtra("color", R.color.sonycSound);
@@ -273,8 +276,8 @@ public class Main extends AppCompatActivity implements View.OnClickListener{
                 wordsFound.add(str);
                 findViewById(R.id.submit).setEnabled(true);
                 string = str;
-                ((TextView) findViewById(R.id.wordCounter)).setText(Integer.toString(++count)+"\nwords");
-                if(count == ogCount) {
+                ((TextView) findViewById(R.id.wordCounter)).setText(Integer.toString(++countWords)+"\nwords");
+                if(countWords == ogCount) {
                     Toast.makeText(getApplicationContext(), "All words found!", Toast.LENGTH_SHORT).show();
                     findViewById(R.id.submit).performClick();
                 }
@@ -287,7 +290,7 @@ public class Main extends AppCompatActivity implements View.OnClickListener{
             wordsClone.remove(string);
     }
 
-    void setTableRow(TableRow tableRow)
+    void setTableRow(TableRow tableRow) //set TableRow LayoutParams
     {
         tableRow.getLayoutParams().width = TableRow.LayoutParams.MATCH_PARENT;
         tableRow.getLayoutParams().height = TableRow.LayoutParams.WRAP_CONTENT;

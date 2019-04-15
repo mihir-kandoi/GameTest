@@ -14,11 +14,11 @@ import android.graphics.Point;
 import android.graphics.Rect;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.constraint.ConstraintLayout;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
@@ -41,12 +41,13 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.Field;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Random;
 
 public class Parent {
 
-    static JSONObject jsonObject;
+    private static JSONObject jsonObject;
 
     public static void start(final AppCompatActivity obj, String moduleName, String word, String wordDef, int color, final Class nextClass) { // used for module start acitivity logic
 
@@ -74,10 +75,10 @@ public class Parent {
         });
     }
 
-    public static void infoIcon(final AppCompatActivity obj, final int color, ArrayList<String> options) throws JSONException { // used to set info icon dialog
+    public static void infoIcon(final AppCompatActivity obj, final int color, ArrayList<String> options) throws JSONException { // used to set alert_dialog_info icon dialog
 
         // set all texts using JSON file
-        final View view = obj.getLayoutInflater().inflate(R.layout.info, null);
+        final View view = obj.getLayoutInflater().inflate(R.layout.alert_dialog_info, null);
         LinearLayout parent = view.findViewById(R.id.parent);
         LinearLayout.LayoutParams wordLP = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         LinearLayout.LayoutParams defLP = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
@@ -192,7 +193,7 @@ public class Parent {
     {
 
         // create and setup dialog
-        View view = obj.getLayoutInflater().inflate(R.layout.complete, null);
+        View view = obj.getLayoutInflater().inflate(R.layout.alert_dialog_complete, null);
         final AlertDialog alertDialog = new AlertDialog.Builder(obj).setView(view).create();
         alertDialog.setCancelable(false);
         alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
@@ -259,7 +260,7 @@ public class Parent {
             byte[] buffer = new byte[is.available()];
             is.read(buffer);
             is.close();
-            jsonObject = new JSONObject(new String(buffer, "UTF-8"));
+            jsonObject = new JSONObject(new String(buffer, StandardCharsets.UTF_8));
         }
         catch (JSONException | IOException ex) {
             ex.printStackTrace();
@@ -325,21 +326,10 @@ public class Parent {
         });
     }
 
-    public static ArrayList<ToggleButton> setToggleButtons(AppCompatActivity obj, int size) // set listener and return arraylist of togglebuttons
+    public static void toggleButtons(ArrayList<ToggleButton> toggleButtons, CompoundButton compoundButton) // makes ToggleButtons behave like radio buttons
     {
-        ArrayList<ToggleButton> toggleButtons = new ArrayList<>(size);
-        for(int i = 1; i <= size; i++)
-        {
-            toggleButtons.add((ToggleButton) obj.findViewById(obj.getResources().getIdentifier("option" + Integer.toString(i), "id", obj.getPackageName())));
-            toggleButtons.get(i - 1).setOnCheckedChangeListener((CompoundButton.OnCheckedChangeListener) obj);
-        }
-        return toggleButtons;
-    }
-
-    public static void toggleButtons(ArrayList<ToggleButton> toggleButtons, View view) // makes togglebuttons behave like radio buttons
-    {
-        for(ToggleButton toggleButton : toggleButtons)
-            if(view.getId() != toggleButton.getId())
+        for (ToggleButton toggleButton : toggleButtons)
+            if(compoundButton.getId() != toggleButton.getId())
                 toggleButton.setChecked(false);
     }
 

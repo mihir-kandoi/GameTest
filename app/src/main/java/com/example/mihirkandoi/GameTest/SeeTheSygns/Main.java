@@ -9,10 +9,10 @@ import android.graphics.PixelFormat;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.CompoundButton;
@@ -27,6 +27,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Main extends AppCompatActivity implements  CompoundButton.OnCheckedChangeListener{
 
@@ -34,9 +35,10 @@ public class Main extends AppCompatActivity implements  CompoundButton.OnChecked
     static int count = 0;
     Intent intent;
     String roundNo;
-    ArrayList<ToggleButton> toggleButtons;
     AlertDialog alertDialog;
     static JSONArray jsonArray = null;
+
+    ArrayList<ToggleButton> toggleButtons = new ArrayList<>(5);
 
     @Override
     public void onBackPressed() {
@@ -63,13 +65,14 @@ public class Main extends AppCompatActivity implements  CompoundButton.OnChecked
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sts);
 
-        // set status bar black
+        intent = Parent.setRoundNo_and_generateNextIntent(this);
+        roundNo = getIntent().getStringExtra("roundNo");
+
         getWindow().getDecorView().setSystemUiVisibility(getWindow().getDecorView().getSystemUiVisibility() | View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
 
-        // make and set custom background
         findViewById(R.id.cs).setBackground(new Drawable() {
-
             Paint paint = new Paint();
+
             @Override
             public void draw(@NonNull Canvas canvas) {
                 Rect rect = getBounds();
@@ -95,7 +98,7 @@ public class Main extends AppCompatActivity implements  CompoundButton.OnChecked
             }
         });
 
-        //set info icon and get json array from intent
+        //set alert_dialog_info icon and get json array from intent
         try {
             if (jsonArray == null)
                 jsonArray = new JSONArray(getIntent().getStringExtra("JSONarray"));
@@ -104,11 +107,13 @@ public class Main extends AppCompatActivity implements  CompoundButton.OnChecked
         }
 
         ((ImageView) findViewById(R.id.symbol)).setImageResource(getResources().getIdentifier("sts_q" + Integer.toString((count + 1)), "drawable", getPackageName()));
+        toggleButtons.addAll(Arrays.asList(new ToggleButton[]{findViewById(R.id.option1), findViewById(R.id.option2), findViewById(R.id.option3), findViewById(R.id.option4), findViewById(R.id.option5)}));
 
         //set option data
         ArrayList<String> options = new ArrayList<>(5);
         for(int i=1;i<=5;i++) {
-            ToggleButton toggleButton = findViewById(getResources().getIdentifier("option" + Integer.toString(i), "id", getPackageName()));
+            ToggleButton toggleButton = toggleButtons.get(i - 1);
+            toggleButton.setOnCheckedChangeListener(this);
             try {
                 String option = jsonArray.getJSONObject(count).getString("option" + Integer.toString(i));
                 toggleButton.setText(option);
@@ -127,10 +132,6 @@ public class Main extends AppCompatActivity implements  CompoundButton.OnChecked
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
-        intent = Parent.setRoundNo_and_generateNextIntent(this);
-        roundNo = getIntent().getStringExtra("roundNo");
-        toggleButtons = Parent.setToggleButtons(this, 5);
     }
 
     @Override
@@ -142,8 +143,7 @@ public class Main extends AppCompatActivity implements  CompoundButton.OnChecked
             Parent.toggleButtons(toggleButtons, buttonView);
             if (!roundNo.equals("3/3"))
                 startActivityForResult(intent, 1);
-            else
-            {
+            else {
                 alertDialog = Parent.moduleEnd(Main.this, R.color.colorPrimaryDark, Main.class, Start.class);
                 alertDialog.show();
             }

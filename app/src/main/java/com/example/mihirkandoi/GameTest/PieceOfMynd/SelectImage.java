@@ -1,11 +1,12 @@
 package com.example.mihirkandoi.GameTest.PieceOfMynd;
 
 import android.content.Intent;
+import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.LayerDrawable;
 import android.graphics.drawable.StateListDrawable;
 import android.os.Bundle;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -17,12 +18,14 @@ import com.example.mihirkandoi.GameTest.Pyctures.Start;
 import com.example.mihirkandoi.gametest.R;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class SelectImage extends AppCompatActivity implements CompoundButton.OnCheckedChangeListener{
 
     int result = 1;
     AlertDialog alertDialog;
-    ArrayList<ToggleButton> toggleButtons;
+
+    ArrayList<ToggleButton> toggleButtons = new ArrayList<>(5);
 
     @Override
     public void onBackPressed() {
@@ -48,23 +51,26 @@ public class SelectImage extends AppCompatActivity implements CompoundButton.OnC
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pom_sel_image);
 
-        // set status bar black
         getWindow().getDecorView().setSystemUiVisibility(getWindow().getDecorView().getSystemUiVisibility() | View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
 
         Button done = findViewById(R.id.done);
         done.setEnabled(false);
+
         final ArrayList<Integer> images = getIntent().getIntegerArrayListExtra("drawables");
-        int options[] = {R.id.option1, R.id.option2, R.id.option3, R.id.option4, R.id.option5};
+        toggleButtons.addAll(Arrays.asList(new ToggleButton[]{findViewById(R.id.option1), findViewById(R.id.option2), findViewById(R.id.option3), findViewById(R.id.option4), findViewById(R.id.option5)}));
         for(int i = 0; i < 5; i++)
         {
             StateListDrawable stateListDrawable = new StateListDrawable();
             LayerDrawable layerDrawable = (LayerDrawable) getDrawable(R.drawable.image_selected);
             layerDrawable.mutate();
             layerDrawable.setDrawable(0, getDrawable(images.get(i)));
+            ((GradientDrawable) layerDrawable.getDrawable(1)).setStroke(Parent.convertToPixel(this, 4), getResources().getColor(R.color.pieceOfMynd, getTheme()));
             stateListDrawable.addState(new int[] {android.R.attr.state_checked}, layerDrawable);
             stateListDrawable.addState(new int[] {-android.R.attr.state_checked}, getDrawable(images.get(i)));
-            findViewById(options[i]).setBackground(stateListDrawable);
+            toggleButtons.get(i).setBackground(stateListDrawable);
+            toggleButtons.get(i).setOnCheckedChangeListener(this);
         }
+
         done.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -75,7 +81,6 @@ public class SelectImage extends AppCompatActivity implements CompoundButton.OnC
                 images.clear();
             }
         });
-        toggleButtons = Parent.setToggleButtons(this, 5);
     }
 
     @Override

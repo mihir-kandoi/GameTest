@@ -9,8 +9,8 @@ import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 import android.text.SpannableString;
 import android.text.style.UnderlineSpan;
 import android.util.AttributeSet;
@@ -31,13 +31,14 @@ import java.util.ArrayList;
 
 public class Main extends AppCompatActivity implements View.OnTouchListener{
 
-    String text;
-    TextView old;
     String roundNo;
     AlertDialog alertDialog;
     int result = 1;
     static int count = 0;
     static JSONArray jsonArray = null;
+
+    String text;
+    TextView old;
 
     @Override
     public void onBackPressed() {
@@ -64,25 +65,26 @@ public class Main extends AppCompatActivity implements View.OnTouchListener{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sot);
+
         final String roundNo = getIntent().getStringExtra("roundNo");
         this.roundNo = roundNo;
         final Intent intent = Parent.setRoundNo_and_generateNextIntent(this);
 
-        if(jsonArray == null) {
+        if(jsonArray == null)
             try {
                 jsonArray = new JSONArray(getIntent().getStringExtra("JSONarray"));
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-        }
 
-        ArrayList<TextView> textViews = new ArrayList<>(5);
-        ArrayList<String> options = new ArrayList<>(5);
         try {
             ((TextView) findViewById(R.id.questions)).setText(jsonArray.getJSONObject(count).getString("question"));
         } catch (JSONException e) {
             e.printStackTrace();
         }
+
+        ArrayList<TextView> textViews = new ArrayList<>(5);
+        ArrayList<String> options = new ArrayList<>(5);
         for(int i = 1; i <= 5; i++)
         {
             textViews.add((TextView) findViewById(getResources().getIdentifier("option" + Integer.toString(i), "id", getPackageName())));
@@ -96,6 +98,7 @@ public class Main extends AppCompatActivity implements View.OnTouchListener{
             }
         }
         count++;
+
         try {
             Parent.infoIcon(this, R.color.stryngOfThought, options);
         } catch (JSONException e) {
@@ -103,12 +106,12 @@ public class Main extends AppCompatActivity implements View.OnTouchListener{
         }
 
         TextView utv = findViewById(R.id.answer);
+        final UnderlineSpan us = new UnderlineSpan();
         utv.setOnDragListener(new View.OnDragListener() {
             @Override
             public boolean onDrag(View v, DragEvent event) {
                 int action = event.getAction();
                 TextView currentView = (TextView) v;
-                UnderlineSpan us = new UnderlineSpan();
                 switch (action)
                 {
                     case DragEvent.ACTION_DRAG_ENTERED:
@@ -130,9 +133,9 @@ public class Main extends AppCompatActivity implements View.OnTouchListener{
                             old.setText(text);
                             old.setOnTouchListener(Main.this);
                         }
-                        String text = event.getClipData().getItemAt(0).getText().toString();
-                        text = text.replaceFirst(Character.toString(text.charAt(0)), Character.toString(Character.toLowerCase(text.charAt(0))));
-                        SpannableString spannableString = new SpannableString(text);
+                        String oldText = event.getClipData().getItemAt(0).getText().toString();
+                        oldText = oldText.replaceFirst(Character.toString(oldText.charAt(0)), Character.toString(Character.toLowerCase(oldText.charAt(0))));
+                        SpannableString spannableString = new SpannableString(oldText);
                         spannableString.setSpan(us, 0, spannableString.length(), 0);
                         currentView.setText(spannableString);
                         currentView.setTextColor(Color.WHITE);
@@ -140,11 +143,11 @@ public class Main extends AppCompatActivity implements View.OnTouchListener{
                         v.setBackgroundColor(Color.TRANSPARENT);
                         old = (TextView) event.getLocalState();
                         old.setOnTouchListener(null);
+
                         getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE, WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
                         if(!roundNo.equals("3/3"))
                             startActivityForResult(intent, 1);
-                        else
-                        {
+                        else {
                             alertDialog = Parent.moduleEnd(Main.this, R.color.stryngOfThought, Main.class, Start.class);
                             alertDialog.show();
                         }
@@ -199,7 +202,7 @@ public class Main extends AppCompatActivity implements View.OnTouchListener{
     }
 }
 
-class UnderlinedTextView extends android.support.v7.widget.AppCompatTextView {
+class UnderlinedTextView extends androidx.appcompat.widget.AppCompatTextView {
     Paint paint = new Paint();
 
     public UnderlinedTextView(Context context) {

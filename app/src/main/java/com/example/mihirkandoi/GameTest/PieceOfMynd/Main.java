@@ -7,7 +7,7 @@ import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.view.DragEvent;
 import android.view.MotionEvent;
 import android.view.View;
@@ -24,11 +24,12 @@ import java.util.Random;
 
 public class Main extends AppCompatActivity implements View.OnTouchListener, View.OnDragListener{
 
-    int successCounter = 0;
     public static int count = 1;
-    static ArrayList<Integer> drawables = new ArrayList<>(5);
     int result = 1;
     public String roundNo;
+
+    int successCounter = 0;
+    static ArrayList<Integer> drawables = new ArrayList<>(5);
     ImageView question;
 
     @Override
@@ -56,12 +57,16 @@ public class Main extends AppCompatActivity implements View.OnTouchListener, Vie
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pom);
 
-        // set status bar black
-        getWindow().getDecorView().setSystemUiVisibility(getWindow().getDecorView().getSystemUiVisibility() | View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+        final Intent intent = Parent.setRoundNo_and_generateNextIntent(this);
+        final String roundNo = getIntent().getStringExtra("roundNo");
+        this.roundNo = roundNo;
 
         findViewById(R.id.next).setEnabled(false);
+
+        getWindow().getDecorView().setSystemUiVisibility(getWindow().getDecorView().getSystemUiVisibility() | View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+
         final View view = findViewById(R.id.a1);
-        view.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+        view.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() { // properly set "answers" width
             @Override
             public void onGlobalLayout() {
                 view.getViewTreeObserver().removeOnGlobalLayoutListener(this);
@@ -71,15 +76,12 @@ public class Main extends AppCompatActivity implements View.OnTouchListener, Vie
                 temp.setLayoutParams(layoutParams);
             }
         });
-        final Intent intent = Parent.setRoundNo_and_generateNextIntent(this);
-        final String roundNo = getIntent().getStringExtra("roundNo");
-        this.roundNo = roundNo;
+
         int drawable = getResources().getIdentifier("pom_q" + Integer.toString(count++), "drawable", getPackageName());
         drawables.add(drawable);
         Bitmap image = BitmapFactory.decodeResource(getResources(), drawable);
         ArrayList<ImageView> imageViews = new ArrayList<>(12);
-        for(int i = 1; i <= 12 ; i++ )
-        {
+        for(int i = 1; i <= 12 ; i++ ) {
             imageViews.add((ImageView) findViewById(getResources().getIdentifier("imageView" + Integer.toString(i), "id", getPackageName())));
             findViewById(getResources().getIdentifier("a" + Integer.toString(i), "id", getPackageName())).setOnDragListener(this);
         }
@@ -113,9 +115,10 @@ public class Main extends AppCompatActivity implements View.OnTouchListener, Vie
                 }
             }
         });
+
         findViewById(R.id.roundNo ).setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v) { // temporary hack
                 findViewById(R.id.next).setEnabled(true);
             }
         });

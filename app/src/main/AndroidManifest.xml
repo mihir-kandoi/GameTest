@@ -3,49 +3,119 @@
     package="com.example.mihirkandoi.gametest">
 
     <application
+        android:name="com.example.mihirkandoi.GameTest.ApplicationClass"
         android:allowBackup="true"
         android:icon="@drawable/logo"
         android:label="@string/app_name"
+        android:largeHeap="true"
         android:roundIcon="@drawable/logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.example.mihirkandoi.GameTest.StoryLyne.Start" android:screenOrientation="portrait">
+        <activity android:name="com.example.mihirkandoi.GameTest.SplashAndIntro.SplashEntry">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.example.mihirkandoi.GameTest.StoryLyne.Main" android:screenOrientation="portrait"/>
-        <activity android:name="com.example.mihirkandoi.GameTest.StoryLyne.Instructions" android:screenOrientation="portrait"/>
-        <activity android:name="com.example.mihirkandoi.GameTest.StryngOfThought.Start" android:screenOrientation="portrait"/>
-        <activity android:name="com.example.mihirkandoi.GameTest.StryngOfThought.Main" android:screenOrientation="portrait"/>
-        <activity android:name="com.example.mihirkandoi.GameTest.StryngOfThought.Instructions" android:screenOrientation="portrait"/>
-        <activity android:name="com.example.mihirkandoi.GameTest.PieceOfMynd.Start" android:screenOrientation="portrait"/>
-        <activity android:name="com.example.mihirkandoi.GameTest.PieceOfMynd.Main" android:screenOrientation="portrait"/>
-        <activity android:name="com.example.mihirkandoi.GameTest.PieceOfMynd.Instructions" android:screenOrientation="portrait"/>
-        <activity android:name="com.example.mihirkandoi.GameTest.PieceOfMynd.SelectImage" android:screenOrientation="portrait"/>
-        <activity android:name="com.example.mihirkandoi.GameTest.PieceOfMynd.Instructions2" android:screenOrientation="portrait"/>
-        <activity android:name="com.example.mihirkandoi.GameTest.Pyctures.Start" android:screenOrientation="portrait"/>
-        <activity android:name="com.example.mihirkandoi.GameTest.Pyctures.Instructions" android:screenOrientation="portrait"/>
-        <activity android:name="com.example.mihirkandoi.GameTest.Pyctures.Main" android:screenOrientation="portrait"/>
-        <activity android:name="com.example.mihirkandoi.GameTest.Emotymeter.Start" android:screenOrientation="portrait"/>
-        <activity android:name="com.example.mihirkandoi.GameTest.Emotymeter.Instructions" android:screenOrientation="portrait"/>
-        <activity android:name="com.example.mihirkandoi.GameTest.Emotymeter.Main" android:screenOrientation="portrait"/>
-        <activity android:name="com.example.mihirkandoi.GameTest.SonycSound.Start" android:screenOrientation="portrait"/>
-        <activity android:name="com.example.mihirkandoi.GameTest.SonycSound.Instructions" android:screenOrientation="portrait"/>
-        <activity android:name="com.example.mihirkandoi.GameTest.SonycSound.Main" android:screenOrientation="portrait"/>
-        <activity android:name="com.example.mihirkandoi.GameTest.SeeTheSygns.Start" android:screenOrientation="portrait"/>
-        <activity android:name="com.example.mihirkandoi.GameTest.SeeTheSygns.Instructions" android:screenOrientation="portrait"/>
-        <activity android:name="com.example.mihirkandoi.GameTest.SeeTheSygns.Main" android:screenOrientation="portrait"/>
-        <activity android:name="com.example.mihirkandoi.GameTest.Grydlock.Start" android:screenOrientation="portrait"/>
-        <activity android:name="com.example.mihirkandoi.GameTest.Grydlock.Instructions" android:screenOrientation="portrait"/>
-        <activity android:name="com.example.mihirkandoi.GameTest.Grydlock.Instructions2" android:screenOrientation="portrait"/>
-        <activity android:name="com.example.mihirkandoi.GameTest.Grydlock.Main" android:screenOrientation="portrait"/>
-        <activity android:name="com.example.mihirkandoi.GameTest.Twysted.Start" android:screenOrientation="portrait"/>
-        <activity android:name="com.example.mihirkandoi.GameTest.Twysted.Instructions" android:screenOrientation="portrait"/>
-        <activity android:name="com.example.mihirkandoi.GameTest.Twysted.Instructions2" android:screenOrientation="portrait"/>
-        <activity android:name="com.example.mihirkandoi.GameTest.Twysted.Main" android:screenOrientation="portrait"/>
-        <activity android:name="com.example.mihirkandoi.GameTest.SelectWords" android:screenOrientation="portrait"/>
+        <activity android:name="com.example.mihirkandoi.GameTest.SplashAndIntro.AppIntroSlider"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.example.mihirkandoi.GameTest.StoryLyne.Start"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.example.mihirkandoi.GameTest.StoryLyne.Main"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.example.mihirkandoi.GameTest.StoryLyne.Instructions"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.example.mihirkandoi.GameTest.StryngOfThought.Start"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.example.mihirkandoi.GameTest.StryngOfThought.Main"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.example.mihirkandoi.GameTest.StryngOfThought.Instructions"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.example.mihirkandoi.GameTest.PieceOfMynd.Start"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.example.mihirkandoi.GameTest.PieceOfMynd.Main"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.example.mihirkandoi.GameTest.PieceOfMynd.Instructions"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.example.mihirkandoi.GameTest.PieceOfMynd.SelectImage"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.example.mihirkandoi.GameTest.PieceOfMynd.Instructions2"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.example.mihirkandoi.GameTest.Pyctures.Start"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.example.mihirkandoi.GameTest.Pyctures.Instructions"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.example.mihirkandoi.GameTest.Pyctures.Main"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.example.mihirkandoi.GameTest.Emotymeter.Start"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.example.mihirkandoi.GameTest.Emotymeter.Instructions"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.example.mihirkandoi.GameTest.Emotymeter.Main"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.example.mihirkandoi.GameTest.SonycSound.Start"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.example.mihirkandoi.GameTest.SonycSound.Instructions"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.example.mihirkandoi.GameTest.SonycSound.Main"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.example.mihirkandoi.GameTest.SeeTheSygns.Start"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.example.mihirkandoi.GameTest.SeeTheSygns.Instructions"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.example.mihirkandoi.GameTest.SeeTheSygns.Main"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.example.mihirkandoi.GameTest.Grydlock.Start"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.example.mihirkandoi.GameTest.Grydlock.Instructions"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.example.mihirkandoi.GameTest.Grydlock.Instructions2"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.example.mihirkandoi.GameTest.Grydlock.Main"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.example.mihirkandoi.GameTest.Twysted.Start"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.example.mihirkandoi.GameTest.Twysted.Instructions"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.example.mihirkandoi.GameTest.Twysted.Instructions2"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.example.mihirkandoi.GameTest.Twysted.Main"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.example.mihirkandoi.GameTest.SelectWords"
+            android:screenOrientation="portrait" />
     </application>
+
 </manifest>

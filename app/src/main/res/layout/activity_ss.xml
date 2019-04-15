@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/parent"
@@ -8,11 +8,13 @@
     android:background="@android:color/white"
     tools:context="com.example.mihirkandoi.GameTest.SonycSound.Main">
 
-    <android.support.constraint.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/emojis"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="@android:color/white"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
@@ -23,7 +25,7 @@
             android:id="@+id/option1"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:background="@drawable/happy_emoji"
+            android:layout_margin="4dp"
             android:textOff="@null"
             android:textOn="@null"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -31,13 +33,14 @@
             app:layout_constraintEnd_toStartOf="@+id/option2"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
 
         <ToggleButton
             android:id="@+id/option2"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:background="@drawable/laughing_emoji"
+            android:layout_margin="4dp"
             android:textOff="@null"
             android:textOn="@null"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -51,7 +54,7 @@
             android:id="@+id/option3"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:background="@drawable/fear_emoji"
+            android:layout_margin="4dp"
             android:textOff="@null"
             android:textOn="@null"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -65,33 +68,19 @@
             android:id="@+id/option4"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:background="@drawable/sad_emoji"
-            android:textOff="@null"
-            android:textOn="@null"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintDimensionRatio="1:1"
-            app:layout_constraintEnd_toStartOf="@+id/option5"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/option3"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ToggleButton
-            android:id="@+id/option5"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:background="@drawable/angry_emoji"
+            android:layout_margin="4dp"
             android:textOff="@null"
             android:textOn="@null"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintDimensionRatio="1:1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/option4"
+            app:layout_constraintStart_toEndOf="@+id/option3"
             app:layout_constraintTop_toTopOf="parent" />
 
-    </android.support.constraint.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <android.support.constraint.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/restOfTheLayout"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -135,6 +124,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-    </android.support.constraint.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-</android.support.constraint.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

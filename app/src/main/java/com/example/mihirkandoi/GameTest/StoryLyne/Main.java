@@ -12,13 +12,12 @@ import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.StateListDrawable;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.constraint.ConstraintLayout;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 import android.util.TypedValue;
-import android.view.View;
 import android.view.WindowManager;
 import android.widget.CompoundButton;
 import android.widget.TextView;
@@ -32,6 +31,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Random;
 
 public class Main extends AppCompatActivity implements CompoundButton.OnCheckedChangeListener {
@@ -40,9 +40,10 @@ public class Main extends AppCompatActivity implements CompoundButton.OnCheckedC
     Intent intent;
     AlertDialog alertDialog;
     String roundNo;
-    ArrayList<ToggleButton> toggleButtons;
     static int count = 0;
     static JSONArray jsonArray = null;
+
+    ArrayList<ToggleButton> toggleButtons = new ArrayList<>(5);
 
     @Override
     public void onBackPressed() {
@@ -71,11 +72,10 @@ public class Main extends AppCompatActivity implements CompoundButton.OnCheckedC
 
         intent = Parent.setRoundNo_and_generateNextIntent(this);
         roundNo = getIntent().getStringExtra("roundNo");
-        toggleButtons = Parent.setToggleButtons(this, 5);
 
         TextView inner = findViewById(R.id.inner);
 
-        //set info icon and get json array from intent
+        //set alert_dialog_info icon and get json array from intent
         try {
             if (jsonArray == null)
                 jsonArray = new JSONArray(getIntent().getStringExtra("JSONarray"));
@@ -84,15 +84,17 @@ public class Main extends AppCompatActivity implements CompoundButton.OnCheckedC
             e.printStackTrace();
         }
 
+        toggleButtons.addAll(Arrays.asList(new ToggleButton[]{findViewById(R.id.option1), findViewById(R.id.option2), findViewById(R.id.option3), findViewById(R.id.option4), findViewById(R.id.option5)}));
         ArrayList<String> options = new ArrayList<>(5);
         for(int i=1;i<=5;i++) {
-            ToggleButton toggleButton = findViewById(getResources().getIdentifier("option" + Integer.toString(i), "id", getPackageName()));
+            ToggleButton toggleButton = toggleButtons.get(i - 1);
             toggleButton.setBackground(null);
             ConstraintLayout.LayoutParams layoutParams = ((ConstraintLayout.LayoutParams) toggleButton.getLayoutParams());
             layoutParams.horizontalChainStyle = ConstraintLayout.LayoutParams.CHAIN_SPREAD;
+            toggleButton.setOnCheckedChangeListener(this);
             toggleButton.requestLayout();
             try {
-                inner.setTextSize(TypedValue.COMPLEX_UNIT_PX,getResources().getDimensionPixelSize(R.dimen._15ssp));
+                inner.setTextSize(TypedValue.COMPLEX_UNIT_PX, getResources().getDimensionPixelSize(R.dimen._15ssp));
                 String option = jsonArray.getJSONObject(count).getString("option" + Integer.toString(i));
                 toggleButton.setText(option);
                 toggleButton.setTextOn(option);
@@ -143,8 +145,8 @@ public class Main extends AppCompatActivity implements CompoundButton.OnCheckedC
             StateListDrawable stateListDrawable = new StateListDrawable();
             SLEmotion slEmotionObj = new SLEmotion();
             stateListDrawable.addState(new int[]{-android.R.attr.state_checked}, slEmotionObj);
-            stateListDrawable.addState(new int[]{android.R.attr.state_checked}, new SLEmotion(slEmotionObj.path));
-            findViewById(getResources().getIdentifier("option" + Integer.toString(i), "id", getPackageName())).setBackground(stateListDrawable);
+            stateListDrawable.addState(new int[]{android.R.attr.state_checked}, new SLEmotion(slEmotionObj.path)); // for FILL_AND_STROKE for the same ToggleButton
+            toggleButtons.get(i - 1).setBackground(stateListDrawable);
         }
 
         final int[] y = new int[2];
@@ -250,8 +252,7 @@ public class Main extends AppCompatActivity implements CompoundButton.OnCheckedC
             Parent.toggleButtons(toggleButtons, buttonView);
             if (!roundNo.equals("4/4"))
                 startActivityForResult(intent, 1);
-            else
-            {
+            else {
                 alertDialog = Parent.moduleEnd(Main.this, R.color.storyLyne, Main.class, Start.class);
                 alertDialog.show();
             }

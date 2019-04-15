@@ -1,13 +1,11 @@
 package com.example.mihirkandoi.GameTest.SonycSound;
 
 import android.content.Intent;
-import android.graphics.drawable.GradientDrawable;
-import android.graphics.drawable.LayerDrawable;
-import android.graphics.drawable.StateListDrawable;
+import android.graphics.drawable.Drawable;
 import android.media.SoundPool;
 import android.os.Bundle;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.CompoundButton;
@@ -17,20 +15,25 @@ import com.example.mihirkandoi.GameTest.Parent;
 import com.example.mihirkandoi.GameTest.SeeTheSygns.Start;
 import com.example.mihirkandoi.gametest.R;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Main extends AppCompatActivity implements CompoundButton.OnCheckedChangeListener
 {
 
+    static int count = 1;
     int result = 1;
-    int sound;
-    ArrayList<ToggleButton> toggleButtons;
+    static JSONArray jsonArray = null;
     Intent intent;
     String roundNo;
     AlertDialog alertDialog;
+
+    ArrayList<ToggleButton> toggleButtons = new ArrayList<>(4);
     static SoundPool soundPool = new SoundPool.Builder().setMaxStreams(1).build();
-    static int count = 1;
-    int streamID;
+    int streamID, sound;
 
     @Override
     public void onBackPressed() {
@@ -57,19 +60,14 @@ public class Main extends AppCompatActivity implements CompoundButton.OnCheckedC
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ss);
 
-        // set status bar black
+        intent = Parent.setRoundNo_and_generateNextIntent(this);
+        roundNo = getIntent().getStringExtra("roundNo");
+
         getWindow().getDecorView().setSystemUiVisibility(getWindow().getDecorView().getSystemUiVisibility() | View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
 
         findViewById(R.id.sound).setVisibility(View.INVISIBLE);
-        intent = Parent.setRoundNo_and_generateNextIntent(this);
-        roundNo = getIntent().getStringExtra("roundNo");
-        sound = soundPool.load(this, getResources().getIdentifier("ss_q" + Integer.toString(count++), "raw", getPackageName()), 1);
-        findViewById(R.id.sound).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                streamID = soundPool.play(sound, 1,1,1,0,1);
-            }
-        });
+        sound = soundPool.load(this, getResources().getIdentifier("ss_q" + Integer.toString(count), "raw", getPackageName()), 1);
+
         soundPool.setOnLoadCompleteListener(new SoundPool.OnLoadCompleteListener() {
             @Override
             public void onLoadComplete(SoundPool soundPool, int sampleId, int status) {
@@ -77,20 +75,35 @@ public class Main extends AppCompatActivity implements CompoundButton.OnCheckedC
                 findViewById(R.id.progressBar).setVisibility(View.GONE);
             }
         });
-        int options[] = {R.id.option4, R.id.option1, R.id.option5, R.id.option3, R.id.option2};
-        for(int i : options)
+
+        findViewById(R.id.sound).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                streamID = soundPool.play(sound, 1,1,1,0,1);
+            }
+        });
+
+        toggleButtons.addAll(Arrays.asList(new ToggleButton[]{findViewById(R.id.option1), findViewById(R.id.option2), findViewById(R.id.option3), findViewById(R.id.option4)}));
+
+        if (jsonArray == null)
+            try {
+                jsonArray = new JSONArray(getIntent().getStringExtra("JSONarray"));
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+        for(int i = 0; i < 4; i++)
         {
-            StateListDrawable stateListDrawable = new StateListDrawable();
-            LayerDrawable layerDrawable = (LayerDrawable) getDrawable(R.drawable.image_selected);
-            layerDrawable.mutate();
-            layerDrawable.setDrawable(0, findViewById(i).getBackground());
-            ((GradientDrawable) layerDrawable.getDrawable(1)).setStroke(Parent.convertToPixel(this, 4), getResources().getColor(R.color.sonycSound, getTheme()));
-            ((GradientDrawable) layerDrawable.getDrawable(1)).setCornerRadius(Parent.convertToPixel(this, 10));
-            stateListDrawable.addState(new int[] {android.R.attr.state_checked}, layerDrawable);
-            stateListDrawable.addState(new int[] {-android.R.attr.state_checked}, findViewById(i).getBackground());
-            findViewById(i).setBackground(stateListDrawable);
+            Drawable emoji = null;
+            try {
+                emoji = getDrawable(getResources().getIdentifier("emoji_" + jsonArray.getJSONObject(count - 1).getString("option" + Integer.toString(i + 1)), "drawable", getPackageName()));
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            toggleButtons.get(i).setBackground(emoji);
+            toggleButtons.get(i).setOnCheckedChangeListener(this);
         }
-        toggleButtons = Parent.setToggleButtons(this, 5);
+        count++;
     }
 
     @Override
@@ -103,16 +116,25 @@ public class Main extends AppCompatActivity implements CompoundButton.OnCheckedC
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
         if(isChecked)
         {
-            getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE, WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
-            Parent.toggleButtons(toggleButtons, buttonView);
-            if (!roundNo.equals("3/3"))
+            buttonView.setAlpha(1f);
+            for (ToggleButton toggleButton : toggleButtons)
+                if(buttonView.getId() != toggleButton.getId()) {
+                    toggleButton.setChecked(false);
+                    toggleButton.setAlpha(0.4f);
+                }
+
+            if (!roundNo.equals("3/3")) {
+                getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE, WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
                 startActivityForResult(intent, 1);
-            else
-            {
+            }
+            else {
+                getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE, WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
                 alertDialog = Parent.moduleEnd(this, R.color.sonycSound, Main.class, Start.class);
                 alertDialog.show();
             }
         }
+        else
+            buttonView.setAlpha(0.4f);
     }
 
     @Override

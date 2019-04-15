@@ -3,9 +3,9 @@ package com.example.mihirkandoi.GameTest.Emotymeter;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.constraint.ConstraintLayout;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.WindowManager;
@@ -21,10 +21,11 @@ public class Main extends AppCompatActivity implements View.OnClickListener{
 
     Intent intent;
     String roundNo;
+    AlertDialog alertDialog;
     int result = 1;
+
     final Handler handler = new Handler();
     Runnable runnable;
-    AlertDialog alertDialog;
 
     @Override
     public void onBackPressed() {
@@ -49,25 +50,30 @@ public class Main extends AppCompatActivity implements View.OnClickListener{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_emotymeter);
+
         intent = Parent.setRoundNo_and_generateNextIntent(this);
         roundNo = getIntent().getStringExtra("roundNo");
+
+        //remove all existing Buttons
         final ConstraintLayout layout = findViewById(R.id.layout);
         for (int i = 13; i <= 20; i++)
             layout.removeView(findViewById(getResources().getIdentifier("imageView" + Integer.toString(i), "id", getPackageName())));
+
+        //"set" all the falling Buttons - thread
         final DisplayMetrics displayMetrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
         final int param = Parent.convertToPixel(this, 75);
-        final int drawables[] = {R.drawable.angry_emoji, R.drawable.fear_emoji, R.drawable.happy_emoji, R.drawable.laughing_emoji, R.drawable.sad_emoji};
+        final int drawables[] = {R.drawable.emoji_agreeable, R.drawable.emoji_anger, R.drawable.emoji_anxious, R.drawable.emoji_cheerful, R.drawable.emoji_composed, R.drawable.emoji_confident, R.drawable.emoji_depressed, R.drawable.emoji_diffident, R.drawable.emoji_frustrated, R.drawable.emoji_intolerant, R.drawable.emoji_resilient};
         runnable = new Runnable() {
             @Override
             public void run() {
                 final Button fallingEmoji = new Button(getApplicationContext());
                 fallingEmoji.setOnClickListener(Main.this);
-                fallingEmoji.setBackground(getDrawable(drawables[new Random().nextInt(5)]));
+                fallingEmoji.setBackground(getDrawable(drawables[new Random().nextInt(drawables.length)]));
                 layout.addView(fallingEmoji);
                 fallingEmoji.setLayoutParams(new ConstraintLayout.LayoutParams(Parent.convertToPixel(Main.this, 75), Parent.convertToPixel(Main.this, 75)));
                 fallingEmoji.setX(new Random().nextInt(displayMetrics.widthPixels + 1) - (param / 2));
-                fallingEmoji.setY(-fallingEmoji.getLayoutParams().height );
+                fallingEmoji.setY(-fallingEmoji.getLayoutParams().height);
                 fallingEmoji.animate().translationY(displayMetrics.heightPixels + fallingEmoji.getLayoutParams().height).setDuration(3000).withEndAction(new Runnable() {
                     @Override
                     public void run() {
@@ -89,7 +95,7 @@ public class Main extends AppCompatActivity implements View.OnClickListener{
             alertDialog = Parent.moduleEnd(this, R.color.storyLyne, Main.class, Start.class);
             alertDialog.show();
         }
-        handler.removeCallbacks(runnable);
+        handler.removeCallbacks(runnable); //stop the recursive thread
     }
 
     @Override
@@ -98,7 +104,7 @@ public class Main extends AppCompatActivity implements View.OnClickListener{
         getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
         if(roundNo.equals("3/3") && alertDialog != null)
             alertDialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
-        if(!handler.hasMessages(0))
-            handler.post(runnable);
+        if(!handler.hasMessages(0)) //if the thread is stopped...
+            handler.post(runnable); //restart it!
     }
 }

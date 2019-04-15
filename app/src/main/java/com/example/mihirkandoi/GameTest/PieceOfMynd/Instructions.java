@@ -1,7 +1,7 @@
 package com.example.mihirkandoi.GameTest.PieceOfMynd;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.view.WindowManager;
 
 import com.example.mihirkandoi.GameTest.Parent;
@@ -13,7 +13,7 @@ public class Instructions extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_instructions);
-        Parent.instructions(this, R.layout.activity_pom, R.color.pieceOfMynd, "Drag the pieces above to complete the picture.", "3 puzzles will be shown one after the other.", "Next", Instructions2.class);
+        Parent.instructions(this, R.layout.activity_pom, R.color.pieceOfMynd, "Drag the pieces above to alert_dialog_complete the picture.", "3 puzzles will be shown one after the other.", "Next", Instructions2.class);
     }
 
     @Override
