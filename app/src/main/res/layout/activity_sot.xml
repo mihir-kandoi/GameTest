@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/stryngOfThought"
-    tools:context="com.example.mihirkandoi.GameTest.StryngOfThought.Main">
+    tools:context="com.example.mihirkandoi.Rethynk.StryngOfThought.Main">
 
     <TextView
         android:id="@+id/questions"
@@ -139,7 +139,7 @@
         app:layout_constraintStart_toStartOf="@+id/questions"
         app:layout_constraintTop_toBottomOf="@+id/questions" />
 
-    <com.example.mihirkandoi.GameTest.StryngOfThought.UnderlinedTextView
+    <com.example.mihirkandoi.Rethynk.StryngOfThought.UnderlinedTextView
         android:id="@+id/answer"
         android:layout_width="0dp"
         android:layout_height="0dp"

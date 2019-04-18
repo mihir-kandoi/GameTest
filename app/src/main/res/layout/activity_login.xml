@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.mihirkandoi.Rethynk.LoginSignUp.Login">
+
+    <TextView
+        android:id="@+id/login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/kirvy_regular"
+        android:text="L O G I N"
+        android:textSize="@dimen/_13ssp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/fb_login_button"
+        style="@style/FirebaseUI.Button.AccountChooser.GoogleButton"
+        android:background="@drawable/complete_rounded_corner"
+        android:backgroundTint="@color/com_facebook_blue"
+        android:textColor="@android:color/white"
+        android:elevation="@dimen/_16sdp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="48dp"
+        android:drawableStart="@drawable/ic_facebook_logo"
+        android:drawablePadding="22.25px"
+        android:text="Login with Facebook"
+        android:fontFamily="@font/kirvy_regular"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/login" />
+
+    <Button
+        android:id="@+id/google_login_button"
+        style="@style/FirebaseUI.Button.AccountChooser.GoogleButton"
+        android:background="@drawable/complete_rounded_corner"
+        android:elevation="@dimen/_16sdp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:drawableStart="@drawable/ic_google_logo"
+        android:text="Login with Google"
+        android:fontFamily="@font/kirvy_regular"
+        app:layout_constraintEnd_toEndOf="@+id/fb_login_button"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/fb_login_button"
+        app:layout_constraintTop_toBottomOf="@+id/fb_login_button" />
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.mihirkandoi.gametest">
+    package="com.example.mihirkandoi.rethynk">
+
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-        android:name="com.example.mihirkandoi.GameTest.ApplicationClass"
+        android:name="com.example.mihirkandoi.Rethynk.ApplicationClass"
         android:allowBackup="true"
         android:icon="@drawable/logo"
         android:label="@string/app_name"
@@ -11,111 +13,134 @@
         android:roundIcon="@drawable/logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.example.mihirkandoi.GameTest.SplashAndIntro.SplashEntry">
+        <activity android:name="com.example.mihirkandoi.Rethynk.LoginSignUp.Login"></activity>
+        <activity android:name="com.example.mihirkandoi.Rethynk.SplashAndIntro.SplashEntry">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.example.mihirkandoi.GameTest.SplashAndIntro.AppIntroSlider"
+        <activity
+            android:name="com.example.mihirkandoi.Rethynk.SplashAndIntro.AppIntroSlider"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.example.mihirkandoi.GameTest.StoryLyne.Start"
+            android:name="com.example.mihirkandoi.Rethynk.StoryLyne.Start"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.example.mihirkandoi.GameTest.StoryLyne.Main"
+            android:name="com.example.mihirkandoi.Rethynk.StoryLyne.Main"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.example.mihirkandoi.GameTest.StoryLyne.Instructions"
+            android:name="com.example.mihirkandoi.Rethynk.StoryLyne.Instructions"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.example.mihirkandoi.GameTest.StryngOfThought.Start"
+            android:name="com.example.mihirkandoi.Rethynk.StryngOfThought.Start"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.example.mihirkandoi.GameTest.StryngOfThought.Main"
+            android:name="com.example.mihirkandoi.Rethynk.StryngOfThought.Main"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.example.mihirkandoi.GameTest.StryngOfThought.Instructions"
+            android:name="com.example.mihirkandoi.Rethynk.StryngOfThought.Instructions"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.example.mihirkandoi.GameTest.PieceOfMynd.Start"
+            android:name="com.example.mihirkandoi.Rethynk.PieceOfMynd.Start"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.example.mihirkandoi.GameTest.PieceOfMynd.Main"
+            android:name="com.example.mihirkandoi.Rethynk.PieceOfMynd.Main"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.example.mihirkandoi.GameTest.PieceOfMynd.Instructions"
+            android:name="com.example.mihirkandoi.Rethynk.PieceOfMynd.Instructions"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.example.mihirkandoi.GameTest.PieceOfMynd.SelectImage"
+            android:name="com.example.mihirkandoi.Rethynk.PieceOfMynd.SelectImage"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.example.mihirkandoi.GameTest.PieceOfMynd.Instructions2"
+            android:name="com.example.mihirkandoi.Rethynk.PieceOfMynd.Instructions2"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.example.mihirkandoi.GameTest.Pyctures.Start"
+            android:name="com.example.mihirkandoi.Rethynk.Pyctures.Start"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.example.mihirkandoi.GameTest.Pyctures.Instructions"
+            android:name="com.example.mihirkandoi.Rethynk.Pyctures.Instructions"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.example.mihirkandoi.GameTest.Pyctures.Main"
+            android:name="com.example.mihirkandoi.Rethynk.Pyctures.Main"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.example.mihirkandoi.GameTest.Emotymeter.Start"
+            android:name="com.example.mihirkandoi.Rethynk.Emotymeter.Start"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.example.mihirkandoi.GameTest.Emotymeter.Instructions"
+            android:name="com.example.mihirkandoi.Rethynk.Emotymeter.Instructions"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.example.mihirkandoi.GameTest.Emotymeter.Main"
+            android:name="com.example.mihirkandoi.Rethynk.Emotymeter.Main"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.example.mihirkandoi.GameTest.SonycSound.Start"
+            android:name="com.example.mihirkandoi.Rethynk.SonycSound.Start"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.example.mihirkandoi.GameTest.SonycSound.Instructions"
+            android:name="com.example.mihirkandoi.Rethynk.SonycSound.Instructions"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.example.mihirkandoi.GameTest.SonycSound.Main"
+            android:name="com.example.mihirkandoi.Rethynk.SonycSound.Main"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.example.mihirkandoi.GameTest.SeeTheSygns.Start"
+            android:name="com.example.mihirkandoi.Rethynk.SeeTheSygns.Start"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.example.mihirkandoi.GameTest.SeeTheSygns.Instructions"
+            android:name="com.example.mihirkandoi.Rethynk.SeeTheSygns.Instructions"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.example.mihirkandoi.GameTest.SeeTheSygns.Main"
+            android:name="com.example.mihirkandoi.Rethynk.SeeTheSygns.Main"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.example.mihirkandoi.GameTest.Grydlock.Start"
+            android:name="com.example.mihirkandoi.Rethynk.Grydlock.Start"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.example.mihirkandoi.GameTest.Grydlock.Instructions"
+            android:name="com.example.mihirkandoi.Rethynk.Grydlock.Instructions"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.example.mihirkandoi.GameTest.Grydlock.Instructions2"
+            android:name="com.example.mihirkandoi.Rethynk.Grydlock.Instructions2"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.example.mihirkandoi.GameTest.Grydlock.Main"
+            android:name="com.example.mihirkandoi.Rethynk.Grydlock.Main"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.example.mihirkandoi.GameTest.Twysted.Start"
+            android:name="com.example.mihirkandoi.Rethynk.Twysted.Start"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.example.mihirkandoi.GameTest.Twysted.Instructions"
+            android:name="com.example.mihirkandoi.Rethynk.Twysted.Instructions"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.example.mihirkandoi.GameTest.Twysted.Instructions2"
+            android:name="com.example.mihirkandoi.Rethynk.Twysted.Instructions2"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.example.mihirkandoi.GameTest.Twysted.Main"
+            android:name="com.example.mihirkandoi.Rethynk.Twysted.Main"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.example.mihirkandoi.GameTest.SelectWords"
+            android:name="com.example.mihirkandoi.Rethynk.SelectWords"
             android:screenOrientation="portrait" />
+
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id" />
+
+        <activity
+            android:name="com.facebook.FacebookActivity"
+            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+            android:label="@string/app_name" />
+        <activity
+            android:name="com.facebook.CustomTabActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="@string/fb_login_protocol_scheme" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

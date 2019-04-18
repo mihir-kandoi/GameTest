@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:background="@color/storyLyne"
     android:layout_height="match_parent"
-    tools:context="com.example.mihirkandoi.GameTest.Emotymeter.Main">
+    tools:context="com.example.mihirkandoi.Rethynk.Emotymeter.Main">
 
     <TextView
         style="@style/RoundNo"

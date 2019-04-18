@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/holo_blue_bright"
-    tools:context="com.example.mihirkandoi.GameTest.Twysted.Main">
+    tools:context="com.example.mihirkandoi.Rethynk.Twysted.Main">
 
     <TextView
         android:id="@+id/step"

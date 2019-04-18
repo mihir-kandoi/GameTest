@@ -5,7 +5,7 @@
     android:id="@+id/cs"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.mihirkandoi.GameTest.StoryLyne.Main">
+    tools:context="com.example.mihirkandoi.Rethynk.StoryLyne.Main">
 
     <View
         android:id="@+id/view"

@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/GameTest.iml" filepath="$PROJECT_DIR$/GameTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Rethynk.iml" filepath="$PROJECT_DIR$/Rethynk.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

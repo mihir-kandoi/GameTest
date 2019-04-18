@@ -8,7 +8,7 @@
     android:background="@android:color/white"
     app:layout_constraintBottom_toBottomOf="@+id/constraintLayout"
     app:layout_constraintHorizontal_bias="0.5"
-    tools:context="com.example.mihirkandoi.GameTest.PieceOfMynd.Main">
+    tools:context="com.example.mihirkandoi.Rethynk.PieceOfMynd.Main">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/answers"
