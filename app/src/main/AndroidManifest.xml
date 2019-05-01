@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.mihirkandoi.rethynk">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -13,6 +14,8 @@
         android:roundIcon="@drawable/logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name="com.example.mihirkandoi.Rethynk.LoginSignUp.DataCapture"></activity>
+        <activity android:name="com.example.mihirkandoi.Rethynk.LoginSignUp.SignUp" />
         <activity android:name="com.example.mihirkandoi.Rethynk.LoginSignUp.Login"></activity>
         <activity android:name="com.example.mihirkandoi.Rethynk.SplashAndIntro.SplashEntry">
             <intent-filter>
@@ -123,7 +126,8 @@
 
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
-            android:value="@string/facebook_app_id" />
+            android:value="@string/facebook_application_id"
+            tools:replace="android:value" />
 
         <activity
             android:name="com.facebook.FacebookActivity"

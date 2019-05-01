@@ -14,6 +14,13 @@ import androidx.fragment.app.Fragment;
 public class AppIntroSlider extends AppIntro {
 
     @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        if(requestCode == 1 && resultCode == 1)
+            finish();
+        super.onActivityResult(requestCode, resultCode, data);
+    }
+
+    @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
@@ -31,13 +38,13 @@ public class AppIntroSlider extends AppIntro {
     @Override
     public void onSkipPressed(Fragment currentFragment) {
         super.onSkipPressed(currentFragment);
-        startActivity(new Intent(this, Login.class));
+        startActivityForResult(new Intent(this, Login.class), 1);
     }
 
     @Override
     public void onDonePressed(Fragment currentFragment) {
         super.onDonePressed(currentFragment);
-        startActivity(new Intent(this, Login.class));
+        startActivityForResult(new Intent(this, Login.class), 1);
     }
 }
 

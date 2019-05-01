@@ -29,6 +29,8 @@ import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
 
+import es.dmoral.toasty.Toasty;
+
 public class Main extends AppCompatActivity implements View.OnClickListener{
 
     public static int count = 1;
@@ -138,10 +140,10 @@ public class Main extends AppCompatActivity implements View.OnClickListener{
         layoutParams.bottomMargin = Parent.convertToPixel(this, 8);
         for(int i=0;i<temp;i++) {
             if(tableRowQ == null || tableRowQ.getChildCount() == x1) {
-                questions.addView((tableRowQ = new TableRow(getApplicationContext())));
+                questions.addView((tableRowQ = new TableRow(this)));
                 setTableRow(tableRowQ);
             }
-            TextView textView = new TextView(getApplicationContext());
+            TextView textView = new TextView(this);
             textView.setLayoutParams(layoutParams);
             int index = random.nextInt(sb.length());
             textView.setText(Character.toString(sb.charAt(index)));
@@ -163,13 +165,13 @@ public class Main extends AppCompatActivity implements View.OnClickListener{
         {
             if(tableRowQ.getChildCount() == x1)
             {
-                questions.addView((tableRowQ = new TableRow(getApplicationContext())));
+                questions.addView((tableRowQ = new TableRow(this)));
                 setTableRow(tableRowQ);
             }
             layoutParams.rightMargin = Parent.convertToPixel(this, 8);
             temp = (x1 - tableRowQ.getChildCount()) - 1;
             for(int i=0;i<temp;i++) {
-                TextView textView = new TextView(getApplicationContext());
+                TextView textView = new TextView(this);
                 textView.setLayoutParams(layoutParams);
                 textView.setVisibility(View.INVISIBLE);
                 textView.setEnabled(false);
@@ -231,15 +233,15 @@ public class Main extends AppCompatActivity implements View.OnClickListener{
     @Override
     public void onClick(View v) {
         if(tableRowA == null) { ///add TableRow if none present
-            answers.addView((tableRowA = new TableRow(getApplicationContext())));
+            answers.addView((tableRowA = new TableRow(this)));
             setTableRow(tableRowA);
         }
         else if(answers.getChildCount() == y1 && tableRowA.getChildCount() == x1) { //check if space is left to add buttons in answers TableLayout
-            Toast.makeText(getApplicationContext(), "Out of space!", Toast.LENGTH_LONG).show();
+            Toasty.error(Main.this, "Out of space!", Toast.LENGTH_LONG, true).show();
             return;
         }
         else if(tableRowA.getChildCount() == x1) { //add new TableRow if current one is full
-            answers.addView((tableRowA = new TableRow(getApplicationContext())));
+            answers.addView((tableRowA = new TableRow(this)));
             setTableRow(tableRowA);
         }
         //create LayoutParams for buttons
@@ -250,7 +252,7 @@ public class Main extends AppCompatActivity implements View.OnClickListener{
             layoutParams.bottomMargin = Parent.convertToPixel(this, 8);
 
         //create button and add to TableRow
-        TextView textView = new TextView(getApplicationContext());
+        TextView textView = new TextView(this);
         textView.setLayoutParams(layoutParams);
         TextView og = (TextView) v;
         textView.setText(og.getText());
@@ -277,11 +279,11 @@ public class Main extends AppCompatActivity implements View.OnClickListener{
                 string = str;
                 ((TextView) findViewById(R.id.wordCounter)).setText(Integer.toString(++countWords)+"\nwords");
                 if(countWords == ogCount) {
-                    Toast.makeText(getApplicationContext(), "All words found!", Toast.LENGTH_SHORT).show();
+                    Toasty.success(Main.this, "All words found!", Toast.LENGTH_SHORT, true).show();
                     findViewById(R.id.submit).performClick();
                 }
                 else
-                    Toast.makeText(getApplicationContext(), "Word found!", Toast.LENGTH_SHORT).show();
+                    Toasty.success(Main.this, "Word found!", Toast.LENGTH_SHORT, true).show();
                 break;
             }
         }

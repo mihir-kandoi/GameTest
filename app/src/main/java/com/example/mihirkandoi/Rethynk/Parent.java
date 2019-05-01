@@ -90,10 +90,10 @@ public class Parent {
             for (int i = 1; i <= size; i++) {
                 if(i == size && (options.get((size - 1)).equals("None of the above") || options.get((size - 1)).equals("None of these") || options.get((size - 1)).equals("Nothing")))
                     break;
-                TextView word = new TextView(obj.getApplicationContext());
+                TextView word = new TextView(obj);
                 word.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 17.5f);
                 word.setLayoutParams(wordLP);
-                TextView def = new TextView(obj.getApplicationContext());
+                TextView def = new TextView(obj);
                 def.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 13.5f);
                 def.setLayoutParams(defLP);
                 word.setText(options.get(i - 1));
@@ -256,7 +256,7 @@ public class Parent {
     public static void json(Context context) // read and store json array
     {
         try {
-            InputStream is = context.getAssets().open("test.json");
+            InputStream is = context.getAssets().open("local_database.json");
             byte[] buffer = new byte[is.available()];
             is.read(buffer);
             is.close();

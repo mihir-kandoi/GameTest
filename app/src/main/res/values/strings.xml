@@ -1,5 +1,5 @@
 <resources>
     <string name="app_name">Rethynk</string>
-    <string name="facebook_app_id">820455908306423</string>
+    <string name="facebook_application_id">820455908306423</string>
     <string name="fb_login_protocol_scheme">fb820455908306423</string>
 </resources>

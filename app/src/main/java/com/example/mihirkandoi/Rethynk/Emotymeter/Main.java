@@ -63,11 +63,11 @@ public class Main extends AppCompatActivity implements View.OnClickListener{
         final DisplayMetrics displayMetrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
         final int param = Parent.convertToPixel(this, 75);
-        final int drawables[] = {R.drawable.emoji_agreeable, R.drawable.emoji_anger, R.drawable.emoji_anxious, R.drawable.emoji_cheerful, R.drawable.emoji_composed, R.drawable.emoji_confident, R.drawable.emoji_depressed, R.drawable.emoji_diffident, R.drawable.emoji_frustrated, R.drawable.emoji_intolerant, R.drawable.emoji_resilient};
+        final int[] drawables = {R.drawable.emoji_agreeable, R.drawable.emoji_anger, R.drawable.emoji_anxious, R.drawable.emoji_cheerful, R.drawable.emoji_composed, R.drawable.emoji_confident, R.drawable.emoji_depressed, R.drawable.emoji_diffident, R.drawable.emoji_frustrated, R.drawable.emoji_intolerant, R.drawable.emoji_resilient};
         runnable = new Runnable() {
             @Override
             public void run() {
-                final Button fallingEmoji = new Button(getApplicationContext());
+                final Button fallingEmoji = new Button(Main.this);
                 fallingEmoji.setOnClickListener(Main.this);
                 fallingEmoji.setBackground(getDrawable(drawables[new Random().nextInt(drawables.length)]));
                 layout.addView(fallingEmoji);

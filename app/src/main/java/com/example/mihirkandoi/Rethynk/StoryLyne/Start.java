@@ -13,7 +13,7 @@ public class Start extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
-        Parent.json(getApplicationContext());
+        Parent.json(this);
         Parent.start(this, "Story Lyne", "Perception", "The ability to recognise and interpret certain stimuli.", R.color.storyLyne, Instructions.class);
     }
 
