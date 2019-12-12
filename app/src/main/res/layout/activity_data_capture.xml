@@ -83,8 +83,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:clickable="true"
-        android:editable="false"
-        android:focusable="false"
+        android:focusable="true"
         android:hint="Tap here to enter your birthdate"
         android:inputType="none"
         app:layout_constraintEnd_toEndOf="@+id/radioGroup"
@@ -110,7 +109,7 @@
         android:hint="Write your answer here"
         android:inputType="text"
         app:layout_constraintEnd_toEndOf="@+id/birthdate"
-        app:layout_constraintStart_toStartOf="@+id/textView4"
+        app:layout_constraintStart_toStartOf="@+id/textView3"
         app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
     <TextView

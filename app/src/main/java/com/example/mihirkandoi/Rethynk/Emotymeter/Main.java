@@ -12,7 +12,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 
 import com.example.mihirkandoi.Rethynk.Parent;
-import com.example.mihirkandoi.Rethynk.SonycSound.Start;
+import com.example.mihirkandoi.Rethynk.StryngOfThought.Start;
 import com.example.mihirkandoi.rethynk.R;
 
 import java.util.Random;

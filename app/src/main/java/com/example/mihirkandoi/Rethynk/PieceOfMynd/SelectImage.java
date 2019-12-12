@@ -14,7 +14,7 @@ import android.widget.CompoundButton;
 import android.widget.ToggleButton;
 
 import com.example.mihirkandoi.Rethynk.Parent;
-import com.example.mihirkandoi.Rethynk.Pyctures.Start;
+import com.example.mihirkandoi.Rethynk.SonycSound.Start;
 import com.example.mihirkandoi.rethynk.R;
 
 import java.util.ArrayList;

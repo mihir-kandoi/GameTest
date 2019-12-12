@@ -15,32 +15,40 @@ import android.widget.TextView;
 import com.example.mihirkandoi.Rethynk.SelectWords;
 import com.example.mihirkandoi.rethynk.R;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Iterator;
 import java.util.Random;
 
 public class Main extends AppCompatActivity implements View.OnTouchListener {
 
     int result = 1;
+    static int count = 0;
 
-    TextView allTextViews[][] = new TextView[10][10];
+    TextView[][] allTextViews = new TextView[10][10];
     ArrayList<TextView> occupied = new ArrayList<>();
     ArrayList<TextView> right = new ArrayList<>();
     ArrayList<TextView> down = new ArrayList<>();
     ArrayList<TextView> finale = new ArrayList<>();
     ArrayList<TextView> found = new ArrayList<>();
-    ArrayList<String> words = new ArrayList<>(Arrays.asList("CALM", "VAGUE", "IRE", "CARE", "GUTS", "GLAD", "SHAME", "GLEE"));
+    static JSONArray jsonArray = null;
+    ArrayList<String> words = new ArrayList<>();
     ArrayList<String> wordsFound = new ArrayList<>();
     ArrayList<TextView> overlappingViews = new ArrayList<>();
     ArrayList<Integer> overlappingColors = new ArrayList<>();
     Random random = new Random();
     boolean isRight = true;
     int color = 0;
-    int temp[] = new int[2];
+    int[] temp = new int[2];
+    Intent intent;
 
     @Override
     public void onBackPressed() {
         result = 0;
+        count--;
         super.onBackPressed();
     }
 
@@ -64,11 +72,26 @@ public class Main extends AppCompatActivity implements View.OnTouchListener {
 
         findViewById(R.id.submit).setEnabled(false); //disable forward navigation until a word is found
 
+        intent = new Intent(Main.this, SelectWords.class);
+        intent.putStringArrayListExtra("all", words);
+        intent.putExtra("color", R.color.storyLyne);
+
+        try {
+            if (jsonArray == null)
+                jsonArray = new JSONArray(getIntent().getStringExtra("JSONarray"));
+            JSONObject jsonObject = jsonArray.getJSONObject(count++);
+            Iterator<String> keys = jsonObject.keys();
+            while (keys.hasNext())
+                words.add(jsonObject.getString(keys.next()).toUpperCase());
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
         //fill grid with random letters
         String alphabets = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         for (int i = 0, c = 1; i < 10; i++) {
             for (int j = 0; j < 10; j++, c++) {
-                allTextViews[i][j] = findViewById(getResources().getIdentifier("textView" + Integer.toString(c), "id", getPackageName()));
+                allTextViews[i][j] = findViewById(getResources().getIdentifier("textView" + c, "id", getPackageName()));
                 allTextViews[i][j].setText(Character.toString(alphabets.charAt(random.nextInt(26))));
                 allTextViews[i][j].setOnTouchListener(this);
             }
@@ -78,7 +101,7 @@ public class Main extends AppCompatActivity implements View.OnTouchListener {
         ArrayList<TextView> wordTextViews = new ArrayList<>(); // stores the TextViews which will hold the word
 
         restart:
-        for (int i = 0; i < 8; i++) {
+        for (int i = 0; i < words.size(); i++) {
             boolean isVertical = random.nextBoolean();
 
             // assuming isVertical is true
@@ -122,10 +145,7 @@ public class Main extends AppCompatActivity implements View.OnTouchListener {
             @Override
             public void onClick(View v) {
                 getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE, WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
-                Intent intent = new Intent(Main.this, SelectWords.class);
-                intent.putStringArrayListExtra("all", words);
                 intent.putStringArrayListExtra("found", wordsFound);
-                intent.putExtra("color", R.color.storyLyne);
                 startActivityForResult(intent, 1);
             }
         });

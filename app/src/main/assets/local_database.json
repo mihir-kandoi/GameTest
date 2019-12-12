@@ -199,67 +199,67 @@
 
   "SeeTheSygns": [
     {
-      "option1": "Dismay",
-      "option2": "Perturbed",
-      "option3": "Courage",
-      "option4": "Disgust",
-      "option5": "Empathy"
-    },
-    {
-      "option1": "Serene",
-      "option2": "Anxious",
-      "option3": "Hopeful",
-      "option4": "Hostile",
-      "option5": "Downcast"
-    },
-    {
-      "option1": "Despairing",
-      "option2": "Remorseful",
-      "option3": "Edgy",
-      "option4": "Agitated",
-      "option5": "Tolerant"
-    },
-    {
-      "option1": "Morose",
-      "option2": "Grit",
-      "option3": "Vigor",
-      "option4": "Apprehension",
-      "option5": "Irate"
-    },
-    {
-      "option1": "Nonchalant",
-      "option2": "Apathetic",
-      "option3": "Bitter",
-      "option4": "Gloomy",
-      "option5": "Cheerful"
-    },
-    {
       "option1": "Anxious",
-      "option2": "Passionate",
-      "option3": "Contempt",
-      "option4": "Dispirited",
-      "option5": "Bored"
+      "option2": "Depressed",
+      "option3": "Sad",
+      "option4": "Cheerful",
+      "option5": "Annoyed"
     },
     {
-      "option1": "Dismay",
-      "option2": "Anguish",
-      "option3": "Fretful",
-      "option4": "Resolute",
-      "option5": "Determined"
+      "option1": "Frustrated",
+      "option2": "Angry",
+      "option3": "Despair",
+      "option4": "Surprised",
+      "option5": "Edgy"
     },
     {
-      "option1": "Tenderness",
-      "option2": "Sheltered",
-      "option3": "Desolate",
-      "option4": "Assured",
-      "option5": "Strife"
+      "option1": "Relief",
+      "option2": "Anxiety",
+      "option3": "Depressed",
+      "option4": "Indifferent",
+      "option5": "Calm"
     },
     {
-      "option1": "Delight",
-      "option2": "Weary",
-      "option3": "Terrified",
-      "option4": "Tolerable",
-      "option5": "Unenthusiastic"
+      "option1": "Pity",
+      "option2": "Disgust",
+      "option3": "Surprise",
+      "option4": "Happy",
+      "option5": "Relief"
+    },
+    {
+      "option1": "Hurt",
+      "option2": "Angry",
+      "option3": "Indifferent",
+      "option4": "Morose",
+      "option5": "Nervous"
+    },
+    {
+      "option1": "Hope",
+      "option2": "Love",
+      "option3": "Anxiety",
+      "option4": "Depressed",
+      "option5": "Energised"
+    },
+    {
+      "option1": "Relief",
+      "option2": "Happy",
+      "option3": "Resolute",
+      "option4": "Depressed",
+      "option5": "Calm"
+    },
+    {
+      "option1": "Hopeless",
+      "option2": "Edgy",
+      "option3": "Morose",
+      "option4": "Sad",
+      "option5": "Love"
+    },
+    {
+      "option1": "Cheerful",
+      "option2": "Disgust",
+      "option3": "Annoyed",
+      "option4": "Surprised",
+      "option5": "Resolute"
     }
   ],
 
@@ -377,6 +377,141 @@
     }
   ],
 
+  "Grydlock": [
+
+    {
+      "option1": "Sad",
+      "option2": "Glum",
+      "option3": "Poise",
+      "option4": "Bold",
+      "option5": "Bleak",
+      "option6": "Lazy",
+      "option7": "Tired",
+      "option8": "Spunky",
+      "option9": "Shy",
+      "option10": "Meek",
+      "option11": "Worry",
+      "option12": "Fear",
+      "option13": "Fury",
+      "option14": "Fun"
+    },
+
+    {
+      "option1": "Sloth",
+      "option2": "Scare",
+      "option3": "Shy",
+      "option4": "Grim",
+      "option5": "Bold",
+      "option6": "Dull",
+      "option7": "Tired",
+      "option8": "Panic",
+      "option9": "Rage",
+      "option10": "Worry",
+      "option11": "Glad",
+      "option12": "Lazy",
+      "option13": "Glee",
+      "option14": "Shame"
+    },
+
+    {
+      "option1": "Glad",
+      "option2": "Miff",
+      "option3": "Calm",
+      "option4": "Glee",
+      "option5": "Shame",
+      "option6": "Scare",
+      "option7": "Shy",
+      "option8": "Grim",
+      "option9": "Vague",
+      "option10": "Fun",
+      "option11": "Tough",
+      "option12": "Rage",
+      "option13": "Lazy",
+      "option14": "Sloth",
+      "option15": "Dull",
+      "option16": "Grace",
+      "option17": "Panic"
+    }
+
+  ],
+
+  "Twysted": [
+
+    {
+      "option1": "Angry",
+      "option2": "Fear",
+      "option3": "Rage",
+      "option4": "Wary",
+      "option5": "Weary",
+      "option6": "Grey",
+      "option7": "Yearn"
+    },
+
+    {
+      "option1": "Kind",
+      "option2": "Ire",
+      "option3": "Driven",
+      "option4": "Kinder",
+      "option5": "Irked",
+      "option6": "Wired",
+      "option7": "Weird"
+    },
+
+    {
+      "option1": "Grace",
+      "option2": "Caged",
+      "option3": "Raged",
+      "option4": "Great",
+      "option5": "Sad",
+      "option6": "Scared",
+      "option7": "Dare"
+    },
+
+    {
+      "option1": "Tired",
+      "option2": "Great",
+      "option3": "Dare",
+      "option4": "Fear",
+      "option5": "Fat",
+      "option6": "Fried",
+      "option7": "Care"
+    },
+
+    {
+      "option1": "Bored",
+      "option2": "Bold",
+      "option3": "Sober",
+      "option4": "Loser",
+      "option5": "Low",
+      "option6": "Woe"
+    },
+
+    {
+      "option1": "Shy",
+      "option2": "Lazy",
+      "option3": "Zeal",
+      "option4": "Hazy",
+      "option5": "Easy"
+    },
+
+    {
+      "option1": "Fear",
+      "option2": "Sad",
+      "option3": "Drag",
+      "option4": "Safe",
+      "option5": "Rage"
+    },
+
+    {
+      "option1": "Awe",
+      "option2": "Rage",
+      "option3": "Sage",
+      "option4": "Raw",
+      "option5": "Wise"
+    }
+
+  ],
+
   "definitions": {
     "Anger": "It is the intense emotion that you feel when you think that someone has behaved in an unfair, cruel, or unacceptable way",
     "Pity": "If you pity someone, you feel very sorry for them",
@@ -421,7 +556,7 @@
     "Calm": "Not disturbed, agitated, or excited; under control",
     "Concerned": "Involved or interested",
     "Miserable": "If you describe a place or situation as miserable, you mean that it makes you feel depressed.",
-    "Excited": "If you are excited, you are so happy that you cannot relax, especially because you are thinkingabout something pleasant that is going to happen to you",
+    "Excited": "If you are excited, you are so happy that you cannot relax, especially because you are thinking about something pleasant that is going to happen to you",
     "Worried": "Feeling uneasy about a situation or thing; anxious",
     "Energetic": "Having or showing much energy or force; vigorous",
     "Bored": "If you are bored, you feel tired and impatient because you have lost interest in something or because it is too difficult to do",
@@ -432,5 +567,161 @@
     "Self-Pity": "Self-pity is a feeling of unhappiness that you have about yourself and your problems, especially when this is unnecessary or greatly exaggerated",
     "Disgusted": "It is a feeling of very strong dislike or disapproval",
     "Desolate": "If someone is desolate, they feel very depressed, alone, and without hope"
+  },
+
+  "baskets": {
+    "Resilience": [
+      "Frustrated",
+      "Indifferent",
+      "Resolute",
+      "Resilient",
+      "Surprise",
+      "Bored",
+      "Fun",
+      "Tough",
+      "Lazy",
+      "Sloth",
+      "Tired",
+      "Spunky",
+      "Driven",
+      "Yearn",
+      "Dare",
+      "Easy",
+      "Fat",
+      "Zeal",
+      "Drag"
+    ],
+
+    "Cheerfulness": [
+      "Depressed",
+      "Sad",
+      "Despair",
+      "Pity",
+      "Morose",
+      "Hope",
+      "Hopeless",
+      "Sympathetic",
+      "Joyous",
+      "Dejected",
+      "Discontent",
+      "Remorseful",
+      "Miserable",
+      "Energetic",
+      "Motivated",
+      "Regretful",
+      "Self-pity",
+      "Desolate",
+      "Cheerful",
+      "Meek",
+      "Bleak",
+      "Glum",
+      "Dull",
+      "Drag",
+      "Sober",
+      "Woe",
+      "Dreamy",
+      "Grey",
+      "Weary",
+      "Low",
+      "Woe",
+      "Loser"
+    ],
+
+    "Composure": [
+      "Anxious",
+      "Edgy",
+      "Anxiety",
+      "Relief",
+      "Nervous",
+      "Calm",
+      "Diffident",
+      "Composed",
+      "Confident",
+      "Embarrassed",
+      "Relief",
+      "Confused",
+      "Nervous",
+      "Panicky",
+      "Tense",
+      "Apprehensive",
+      "Concerned",
+      "Excited",
+      "Panicky",
+      "Motivated",
+      "Shame",
+      "Scare",
+      "Shy",
+      "Poise",
+      "Worry",
+      "Bold",
+      "Spunky",
+      "Fear",
+      "Worry",
+      "Panic",
+      "Cool",
+      "Vague",
+      "Safe",
+      "Hazy",
+      "Easy",
+      "Wise",
+      "Awe",
+      "Frayed",
+      "Caged",
+      "Scared",
+      "Wired",
+      "Weird",
+      "Wary",
+      "Great",
+      "Grace"
+    ],
+
+    "Pleasantness": [
+      "Annoyed",
+      "Angry",
+      "Calm",
+      "Happy",
+      "Energised",
+      "Relief",
+      "Cheerful",
+      "Disgust",
+      "Love",
+      "Surprised",
+      "Agreeable",
+      "Intolerant",
+      "Anger",
+      "Disgust",
+      "Furious",
+      "Resentful",
+      "Enraged",
+      "Joyous",
+      "Thrilled",
+      "Happy",
+      "Content",
+      "Frustrated",
+      "Exasperated",
+      "Calm",
+      "Rage",
+      "Disgusted",
+      "Glad",
+      "Miff",
+      "Curt",
+      "Grim",
+      "Cool",
+      "Glee",
+      "Fury",
+      "Raw",
+      "Mad",
+      "Frayed",
+      "Raged",
+      "Dare",
+      "Ire",
+      "Irked",
+      "Wired",
+      "Irk",
+      "Sage",
+      "Gay",
+      "Kind",
+      "Kinder"
+    ]
   }
 }

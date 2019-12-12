@@ -6,13 +6,15 @@ import android.media.SoundPool;
 import android.os.Bundle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.CompoundButton;
 import android.widget.ToggleButton;
 
 import com.example.mihirkandoi.Rethynk.Parent;
-import com.example.mihirkandoi.Rethynk.SeeTheSygns.Start;
+import com.example.mihirkandoi.Rethynk.Twysted.Start;
 import com.example.mihirkandoi.rethynk.R;
 
 import org.json.JSONArray;
@@ -66,7 +68,7 @@ public class Main extends AppCompatActivity implements CompoundButton.OnCheckedC
         getWindow().getDecorView().setSystemUiVisibility(getWindow().getDecorView().getSystemUiVisibility() | View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
 
         findViewById(R.id.sound).setVisibility(View.INVISIBLE);
-        sound = soundPool.load(this, getResources().getIdentifier("ss_q" + Integer.toString(count), "raw", getPackageName()), 1);
+        sound = soundPool.load(this, getResources().getIdentifier("ss_q" + count, "raw", getPackageName()), 1);
 
         soundPool.setOnLoadCompleteListener(new SoundPool.OnLoadCompleteListener() {
             @Override

@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.os.Handler;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewTreeObserver;
@@ -23,9 +25,14 @@ import com.example.mihirkandoi.Rethynk.Parent;
 import com.example.mihirkandoi.Rethynk.SelectWords;
 import com.example.mihirkandoi.rethynk.R;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Random;
 import java.util.Set;
 
@@ -33,13 +40,13 @@ import es.dmoral.toasty.Toasty;
 
 public class Main extends AppCompatActivity implements View.OnClickListener{
 
-    public static int count = 1;
+    public static int count = 0;
     int result = 1;
 
     TableLayout answers, questions;
     TableRow tableRowA, tableRowQ;
     ArrayList<TextView> arrayList = new ArrayList<>();
-    ArrayList<String> words = new ArrayList<>(Arrays.asList("Fear", "Mad", "Gay", "Sad", "Dreams", "Frayed", "Rage"));
+    ArrayList<String> words = new ArrayList<>();
     ArrayList<String> wordsClone = new ArrayList<>();
     ArrayList<String> wordsFound = new ArrayList<>();
     Handler handler = new Handler();
@@ -63,6 +70,8 @@ public class Main extends AppCompatActivity implements View.OnClickListener{
     int countWords=0;
     int ogCount = words.size();
     String word="";
+    String roundNo;
+    static JSONArray jsonArray;
 
     @Override
     public void onBackPressed() {
@@ -89,8 +98,6 @@ public class Main extends AppCompatActivity implements View.OnClickListener{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_twysted_actual);
 
-        wordsClone.addAll(words); //clone all words ArrayList for definitions
-
         //inflate/create a reference view
         Point size = new Point();
         getWindowManager().getDefaultDisplay().getSize(size);
@@ -105,10 +112,30 @@ public class Main extends AppCompatActivity implements View.OnClickListener{
         answers = findViewById(R.id.answers);
         questions = findViewById(R.id.questions);
 
+        // set current activity's roundNo
+        roundNo = getIntent().getStringExtra("roundNo");
+        TextView tv = findViewById(R.id.roundNo);
+        tv.setText(roundNo);
+
+        //get json object from intent
+        try {
+            if (jsonArray == null)
+                jsonArray = new JSONArray(getIntent().getStringExtra("JSONarray"));
+            JSONObject jsonObject = jsonArray.getJSONObject(count++);
+            Iterator<String> keys = jsonObject.keys();
+            while (keys.hasNext())
+                words.add(jsonObject.getString(keys.next()).toUpperCase());
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        wordsClone.addAll(words); //clone all words ArrayList for definitions
+
         //intent for SelectWords screen
         intent = new Intent(Main.this, SelectWords.class);
         intent.putStringArrayListExtra("all", words);
         intent.putExtra("color", R.color.sonycSound);
+        intent.putExtra("roundNo", roundNo);
 
         //calculate how many buttons can be stored the table layouts
         answers.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
@@ -163,8 +190,7 @@ public class Main extends AppCompatActivity implements View.OnClickListener{
         backspace.setLayoutParams(layoutParams);
         if(tableRowQ.getChildCount() <= x1)
         {
-            if(tableRowQ.getChildCount() == x1)
-            {
+            if(tableRowQ.getChildCount() == x1) {
                 questions.addView((tableRowQ = new TableRow(this)));
                 setTableRow(tableRowQ);
             }
@@ -224,7 +250,6 @@ public class Main extends AppCompatActivity implements View.OnClickListener{
             public void onClick(View v) {
                 getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE, WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
                 intent.putStringArrayListExtra("found", wordsFound);
-                intent.putExtra("color", R.color.sonycSound);
                 startActivityForResult(intent, 1);
             }
         });
@@ -277,7 +302,7 @@ public class Main extends AppCompatActivity implements View.OnClickListener{
                 wordsFound.add(str);
                 findViewById(R.id.submit).setEnabled(true);
                 string = str;
-                ((TextView) findViewById(R.id.wordCounter)).setText(Integer.toString(++countWords)+"\nwords");
+                ((TextView) findViewById(R.id.wordCounter)).setText(++countWords +"\nwords");
                 if(countWords == ogCount) {
                     Toasty.success(Main.this, "All words found!", Toast.LENGTH_SHORT, true).show();
                     findViewById(R.id.submit).performClick();

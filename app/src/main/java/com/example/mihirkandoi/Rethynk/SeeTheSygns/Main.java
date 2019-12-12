@@ -98,7 +98,7 @@ public class Main extends AppCompatActivity implements  CompoundButton.OnChecked
             }
         });
 
-        //set alert_dialog_info icon and get json array from intent
+        //get json array from intent
         try {
             if (jsonArray == null)
                 jsonArray = new JSONArray(getIntent().getStringExtra("JSONarray"));
@@ -106,7 +106,7 @@ public class Main extends AppCompatActivity implements  CompoundButton.OnChecked
             e.printStackTrace();
         }
 
-        ((ImageView) findViewById(R.id.symbol)).setImageResource(getResources().getIdentifier("sts_q" + Integer.toString((count + 1)), "drawable", getPackageName()));
+        ((ImageView) findViewById(R.id.symbol)).setImageResource(getResources().getIdentifier("sts_q" + (count + 1), "drawable", getPackageName()));
         toggleButtons.addAll(Arrays.asList(new ToggleButton[]{findViewById(R.id.option1), findViewById(R.id.option2), findViewById(R.id.option3), findViewById(R.id.option4), findViewById(R.id.option5)}));
 
         //set option data
@@ -115,7 +115,7 @@ public class Main extends AppCompatActivity implements  CompoundButton.OnChecked
             ToggleButton toggleButton = toggleButtons.get(i - 1);
             toggleButton.setOnCheckedChangeListener(this);
             try {
-                String option = jsonArray.getJSONObject(count).getString("option" + Integer.toString(i));
+                String option = jsonArray.getJSONObject(count).getString("option" + i);
                 toggleButton.setText(option);
                 toggleButton.setTextOn(option);
                 toggleButton.setTextOff(option);

@@ -8,188 +8,207 @@
     tools:context="com.example.mihirkandoi.Rethynk.SelectWords">
 
     <Button
-        style="@style/BottomButton"
         android:id="@+id/submit"
+        style="@style/BottomButton"
         android:text="Done" />
 
     <TextView
         android:id="@+id/stepCounter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
         android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
         android:text="Step 2 of 2"
         android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TableLayout
-        android:id="@+id/tableLayout1"
+    <TextView
+        android:id="@+id/roundNo"
+        style="@style/RoundNo"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ScrollView
+        android:id="@+id/scrollView1"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="12dp"
         android:layout_marginEnd="8dp"
-        android:stretchColumns="*"
+        android:layout_marginBottom="10dp"
+        app:layout_constrainedHeight="true"
+        app:layout_constraintBottom_toTopOf="@+id/submit"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_max="0dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView">
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintVertical_bias="0.0">
 
-        <TableRow
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+        <TableLayout
+            android:id="@+id/tableLayout1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:stretchColumns="*">
 
-            <ToggleButton
-                android:id="@+id/toggleButton9"
-                android:layout_width="75dp"
-                android:layout_height="35dp"
-                android:layout_marginLeft="12dp"
-                android:layout_marginTop="12dp"
-                android:layout_marginRight="12dp"
-                android:layout_marginBottom="2dp"
-                android:background="@drawable/sel_words_emotion"
-                android:gravity="center"
-                android:text="Guts"
-                android:textAllCaps="false"
-                android:textOff="Guts"
-                android:textOn="Guts"
-                android:textSize="20sp" />
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
 
-            <ToggleButton
-                android:id="@+id/toggleButton10"
-                android:layout_width="75dp"
-                android:layout_height="35dp"
-                android:layout_marginTop="12dp"
-                android:layout_marginRight="12dp"
-                android:layout_marginBottom="2dp"
-                android:background="@drawable/sel_words_emotion"
-                android:gravity="center"
-                android:text="Glad"
-                android:textAllCaps="false"
-                android:textOff="Glad"
-                android:textOn="Glad"
-                android:textSize="20sp" />
+                <ToggleButton
+                    android:id="@+id/toggleButtonOther1"
+                    android:layout_width="75dp"
+                    android:layout_height="35dp"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginRight="12dp"
+                    android:layout_marginBottom="2dp"
+                    android:background="@drawable/sel_words_emotion"
+                    android:gravity="center"
+                    android:text="Guts"
+                    android:textAllCaps="false"
+                    android:textOff="Guts"
+                    android:textOn="Guts"
+                    android:textSize="20sp" />
 
-        </TableRow>
+                <ToggleButton
+                    android:id="@+id/toggleButtonOther2"
+                    android:layout_width="75dp"
+                    android:layout_height="35dp"
+                    android:layout_marginEnd="12dp"
+                    android:layout_marginBottom="2dp"
+                    android:background="@drawable/sel_words_emotion"
+                    android:gravity="center"
+                    android:text="Glad"
+                    android:textAllCaps="false"
+                    android:textOff="Glad"
+                    android:textOn="Glad"
+                    android:textSize="20sp" />
 
-        <TableRow
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            </TableRow>
 
-            <ToggleButton
-                android:id="@+id/toggleButton11"
-                android:layout_width="75dp"
-                android:layout_height="35dp"
-                android:layout_marginLeft="12dp"
-                android:layout_marginTop="12dp"
-                android:layout_marginRight="12dp"
-                android:layout_marginBottom="2dp"
-                android:background="@drawable/sel_words_emotion"
-                android:gravity="center"
-                android:text="Shame"
-                android:textAllCaps="false"
-                android:textOff="Shame"
-                android:textOn="Shame"
-                android:textSize="20sp" />
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
 
-            <ToggleButton
-                android:id="@+id/toggleButton12"
-                android:layout_width="75dp"
-                android:layout_height="35dp"
-                android:layout_marginTop="12dp"
-                android:layout_marginRight="12dp"
-                android:layout_marginBottom="2dp"
-                android:background="@drawable/sel_words_emotion"
-                android:gravity="center"
-                android:text="Glee"
-                android:textAllCaps="false"
-                android:textOff="Glee"
-                android:textOn="Glee"
-                android:textSize="20sp" />
+                <ToggleButton
+                    android:id="@+id/toggleButtonOther3"
+                    android:layout_width="75dp"
+                    android:layout_height="35dp"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginRight="12dp"
+                    android:layout_marginBottom="2dp"
+                    android:background="@drawable/sel_words_emotion"
+                    android:gravity="center"
+                    android:text="Shame"
+                    android:textAllCaps="false"
+                    android:textOff="Shame"
+                    android:textOn="Shame"
+                    android:textSize="20sp" />
 
-        </TableRow>
+                <ToggleButton
+                    android:id="@+id/toggleButtonOther4"
+                    android:layout_width="75dp"
+                    android:layout_height="35dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginEnd="12dp"
+                    android:layout_marginBottom="2dp"
+                    android:background="@drawable/sel_words_emotion"
+                    android:gravity="center"
+                    android:text="Glee"
+                    android:textAllCaps="false"
+                    android:textOff="Glee"
+                    android:textOn="Glee"
+                    android:textSize="20sp" />
 
-        <TableRow
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            </TableRow>
 
-            <ToggleButton
-                android:id="@+id/toggleButton13"
-                android:layout_width="75dp"
-                android:layout_height="35dp"
-                android:layout_marginLeft="12dp"
-                android:layout_marginTop="12dp"
-                android:layout_marginRight="12dp"
-                android:layout_marginBottom="2dp"
-                android:background="@drawable/sel_words_emotion"
-                android:gravity="center"
-                android:text="Glee"
-                android:textAllCaps="false"
-                android:textOff="Glee"
-                android:textOn="Glee"
-                android:textSize="20sp"
-                android:visibility="gone" />
+            <!-- <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
 
-            <ToggleButton
-                android:id="@+id/toggleButton14"
-                android:layout_width="75dp"
-                android:layout_height="35dp"
-                android:layout_marginTop="12dp"
-                android:layout_marginRight="12dp"
-                android:layout_marginBottom="2dp"
-                android:background="@drawable/sel_words_emotion"
-                android:gravity="center"
-                android:text="Glee"
-                android:textAllCaps="false"
-                android:textOff="Glee"
-                android:textOn="Glee"
-                android:textSize="20sp"
-                android:visibility="gone" />
+                <ToggleButton
+                    android:id="@+id/toggleButton13"
+                    android:layout_width="75dp"
+                    android:layout_height="35dp"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginRight="12dp"
+                    android:layout_marginBottom="2dp"
+                    android:background="@drawable/sel_words_emotion"
+                    android:gravity="center"
+                    android:text="Glee"
+                    android:textAllCaps="false"
+                    android:textOff="Glee"
+                    android:textOn="Glee"
+                    android:textSize="20sp"
+                    android:visibility="gone" />
 
-        </TableRow>
+                <ToggleButton
+                    android:id="@+id/toggleButton14"
+                    android:layout_width="75dp"
+                    android:layout_height="35dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginRight="12dp"
+                    android:layout_marginBottom="2dp"
+                    android:background="@drawable/sel_words_emotion"
+                    android:gravity="center"
+                    android:text="Glee"
+                    android:textAllCaps="false"
+                    android:textOff="Glee"
+                    android:textOn="Glee"
+                    android:textSize="20sp"
+                    android:visibility="gone" />
 
-        <TableRow
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            </TableRow>
 
-            <ToggleButton
-                android:id="@+id/toggleButton15"
-                android:layout_width="75dp"
-                android:layout_height="35dp"
-                android:layout_marginLeft="12dp"
-                android:layout_marginTop="12dp"
-                android:layout_marginRight="12dp"
-                android:layout_marginBottom="2dp"
-                android:background="@drawable/sel_words_emotion"
-                android:gravity="center"
-                android:text="Glee"
-                android:textAllCaps="false"
-                android:textOff="Glee"
-                android:textOn="Glee"
-                android:textSize="20sp"
-                android:visibility="gone" />
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
 
-            <ToggleButton
-                android:id="@+id/toggleButton16"
-                android:layout_width="75dp"
-                android:layout_height="35dp"
-                android:layout_marginTop="12dp"
-                android:layout_marginRight="12dp"
-                android:layout_marginBottom="2dp"
-                android:background="@drawable/sel_words_emotion"
-                android:gravity="center"
-                android:text="Glee"
-                android:textAllCaps="false"
-                android:textOff="Glee"
-                android:textOn="Glee"
-                android:textSize="20sp"
-                android:visibility="gone" />
+                <ToggleButton
+                    android:id="@+id/toggleButton15"
+                    android:layout_width="75dp"
+                    android:layout_height="35dp"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginRight="12dp"
+                    android:layout_marginBottom="2dp"
+                    android:background="@drawable/sel_words_emotion"
+                    android:gravity="center"
+                    android:text="Glee"
+                    android:textAllCaps="false"
+                    android:textOff="Glee"
+                    android:textOn="Glee"
+                    android:textSize="20sp"
+                    android:visibility="gone" />
 
-        </TableRow>
+                <ToggleButton
+                    android:id="@+id/toggleButton16"
+                    android:layout_width="75dp"
+                    android:layout_height="35dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginRight="12dp"
+                    android:layout_marginBottom="2dp"
+                    android:background="@drawable/sel_words_emotion"
+                    android:gravity="center"
+                    android:text="Glee"
+                    android:textAllCaps="false"
+                    android:textOff="Glee"
+                    android:textOn="Glee"
+                    android:textSize="20sp"
+                    android:visibility="gone" />
 
-    </TableLayout>
+            </TableRow> -->
+
+        </TableLayout>
+
+    </ScrollView>
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -204,208 +223,223 @@
         android:id="@+id/textView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="64dp"
+        android:layout_marginEnd="8dp"
         android:text="OTHER POSSIBLE FEELING WORDS"
         android:textColor="@android:color/holo_blue_light"
         android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/scrollView1"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tableLayout2" />
+        app:layout_constraintTop_toBottomOf="@+id/scrollView2" />
 
-    <TableLayout
-        android:id="@+id/tableLayout2"
+    <ScrollView
+        android:id="@+id/scrollView2"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:stretchColumns="*"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="10dp"
+        app:layout_constrainedHeight="true"
+        app:layout_constraintBottom_toTopOf="@+id/textView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHeight_max="0dp"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4">
+        app:layout_constraintTop_toBottomOf="@+id/textView3"
+        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintVertical_chainStyle="packed">
 
-        <TableRow
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+        <TableLayout
+            android:id="@+id/tableLayout2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:stretchColumns="*"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView3">
 
-            <ToggleButton
-                android:id="@+id/toggleButton1"
-                android:layout_width="75dp"
-                android:layout_height="35dp"
-                android:layout_marginLeft="12dp"
-                android:layout_marginTop="12dp"
-                android:layout_marginRight="12dp"
-                android:layout_marginBottom="2dp"
-                android:background="@drawable/sel_words_emotion"
-                android:gravity="center"
-                android:paddingTop="4dp"
-                android:paddingBottom="4dp"
-                android:text="Calm"
-                android:textAllCaps="false"
-                android:textOff="Calm"
-                android:textSize="20sp" />
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
 
-            <ToggleButton
-                android:id="@+id/toggleButton2"
-                android:layout_width="75dp"
-                android:layout_height="35dp"
-                android:layout_marginLeft="12dp"
-                android:layout_marginTop="12dp"
-                android:layout_marginRight="12dp"
-                android:layout_marginBottom="2dp"
-                android:background="@drawable/sel_words_emotion"
-                android:gravity="center"
-                android:paddingTop="4dp"
-                android:paddingBottom="4dp"
-                android:text="Vague"
-                android:textAllCaps="false"
-                android:textOff="Vague"
-                android:textOn="Vague"
-                android:textSize="20sp" />
+                <ToggleButton
+                    android:id="@+id/toggleButtonFound1"
+                    android:layout_width="75dp"
+                    android:layout_height="35dp"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginRight="12dp"
+                    android:layout_marginBottom="2dp"
+                    android:background="@drawable/sel_words_emotion"
+                    android:gravity="center"
+                    android:paddingTop="4dp"
+                    android:paddingBottom="4dp"
+                    android:text="Calm"
+                    android:textAllCaps="false"
+                    android:textOff="Calm"
+                    android:textSize="20sp" />
 
-        </TableRow>
+                <ToggleButton
+                    android:id="@+id/toggleButtonFound2"
+                    android:layout_width="75dp"
+                    android:layout_height="35dp"
+                    android:layout_marginRight="12dp"
+                    android:layout_marginBottom="2dp"
+                    android:background="@drawable/sel_words_emotion"
+                    android:gravity="center"
+                    android:paddingTop="4dp"
+                    android:paddingBottom="4dp"
+                    android:text="Vague"
+                    android:textAllCaps="false"
+                    android:textOff="Vague"
+                    android:textOn="Vague"
+                    android:textSize="20sp" />
 
-        <TableRow
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            </TableRow>
 
-            <ToggleButton
-                android:id="@+id/toggleButton3"
-                android:layout_width="75dp"
-                android:layout_height="35dp"
-                android:layout_marginLeft="12dp"
-                android:layout_marginTop="12dp"
-                android:layout_marginRight="12dp"
-                android:layout_marginBottom="2dp"
-                android:background="@drawable/sel_words_emotion"
-                android:gravity="center"
-                android:paddingTop="4dp"
-                android:paddingBottom="4dp"
-                android:text="Care"
-                android:textAllCaps="false"
-                android:textOff="Care"
-                android:textOn="Care"
-                android:textSize="20sp" />
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
 
-            <ToggleButton
-                android:id="@+id/toggleButton4"
-                android:layout_width="75dp"
-                android:layout_height="35dp"
-                android:layout_marginLeft="12dp"
-                android:layout_marginTop="12dp"
-                android:layout_marginRight="12dp"
-                android:layout_marginBottom="2dp"
-                android:background="@drawable/sel_words_emotion"
-                android:gravity="center"
-                android:paddingTop="4dp"
-                android:paddingBottom="4dp"
-                android:text="Ire"
-                android:textAllCaps="false"
-                android:textOff="Ire"
-                android:textOn="Ire"
-                android:textSize="20sp" />
+                <ToggleButton
+                    android:id="@+id/toggleButtonFound3"
+                    android:layout_width="75dp"
+                    android:layout_height="35dp"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginRight="12dp"
+                    android:layout_marginBottom="2dp"
+                    android:background="@drawable/sel_words_emotion"
+                    android:gravity="center"
+                    android:paddingTop="4dp"
+                    android:paddingBottom="4dp"
+                    android:text="Care"
+                    android:textAllCaps="false"
+                    android:textOff="Care"
+                    android:textOn="Care"
+                    android:textSize="20sp" />
 
-        </TableRow>
+                <ToggleButton
+                    android:id="@+id/toggleButtonFound4"
+                    android:layout_width="75dp"
+                    android:layout_height="35dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginRight="12dp"
+                    android:layout_marginBottom="2dp"
+                    android:background="@drawable/sel_words_emotion"
+                    android:gravity="center"
+                    android:paddingTop="4dp"
+                    android:paddingBottom="4dp"
+                    android:text="Ire"
+                    android:textAllCaps="false"
+                    android:textOff="Ire"
+                    android:textOn="Ire"
+                    android:textSize="20sp" />
 
-        <TableRow
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent">
+            </TableRow>
 
-            <ToggleButton
-                android:id="@+id/toggleButton5"
-                android:layout_width="75dp"
-                android:layout_height="35dp"
-                android:layout_marginLeft="12dp"
-                android:layout_marginTop="12dp"
-                android:layout_marginRight="12dp"
-                android:layout_marginBottom="2dp"
-                android:background="@drawable/sel_words_emotion"
-                android:gravity="center"
-                android:paddingTop="4dp"
-                android:paddingBottom="4dp"
-                android:text="Calm"
-                android:textAllCaps="false"
-                android:textOff="Calm"
-                android:textOn="Calm"
-                android:textSize="20sp"
-                android:visibility="gone" />
+            <!-- <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent">
 
-            <ToggleButton
-                android:id="@+id/toggleButton6"
-                android:layout_width="75dp"
-                android:layout_height="35dp"
-                android:layout_marginLeft="12dp"
-                android:layout_marginTop="12dp"
-                android:layout_marginRight="12dp"
-                android:layout_marginBottom="2dp"
-                android:background="@drawable/sel_words_emotion"
-                android:gravity="center"
-                android:paddingTop="4dp"
-                android:paddingBottom="4dp"
-                android:text="Calm"
-                android:textAllCaps="false"
-                android:textOff="Calm"
-                android:textOn="Calm"
-                android:textSize="20sp"
-                android:visibility="gone" />
-        </TableRow>
+                <ToggleButton
+                    android:id="@+id/toggleButton5"
+                    android:layout_width="75dp"
+                    android:layout_height="35dp"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginRight="12dp"
+                    android:layout_marginBottom="2dp"
+                    android:background="@drawable/sel_words_emotion"
+                    android:gravity="center"
+                    android:paddingTop="4dp"
+                    android:paddingBottom="4dp"
+                    android:text="Calm"
+                    android:textAllCaps="false"
+                    android:textOff="Calm"
+                    android:textOn="Calm"
+                    android:textSize="20sp"
+                    android:visibility="gone" />
 
-        <TableRow
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent">
+                <ToggleButton
+                    android:id="@+id/toggleButton6"
+                    android:layout_width="75dp"
+                    android:layout_height="35dp"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginRight="12dp"
+                    android:layout_marginBottom="2dp"
+                    android:background="@drawable/sel_words_emotion"
+                    android:gravity="center"
+                    android:paddingTop="4dp"
+                    android:paddingBottom="4dp"
+                    android:text="Calm"
+                    android:textAllCaps="false"
+                    android:textOff="Calm"
+                    android:textOn="Calm"
+                    android:textSize="20sp"
+                    android:visibility="gone" />
+            </TableRow>
 
-            <ToggleButton
-                android:id="@+id/toggleButton7"
-                android:layout_width="75dp"
-                android:layout_height="35dp"
-                android:layout_marginLeft="12dp"
-                android:layout_marginTop="12dp"
-                android:layout_marginRight="12dp"
-                android:layout_marginBottom="2dp"
-                android:background="@drawable/sel_words_emotion"
-                android:gravity="center"
-                android:paddingTop="4dp"
-                android:paddingBottom="4dp"
-                android:text="Care"
-                android:textAllCaps="false"
-                android:textOff="Care"
-                android:textOn="Care"
-                android:textSize="20sp"
-                android:visibility="gone" />
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent">
 
-            <ToggleButton
-                android:id="@+id/toggleButton8"
-                android:layout_width="75dp"
-                android:layout_height="35dp"
-                android:layout_marginLeft="12dp"
-                android:layout_marginTop="12dp"
-                android:layout_marginRight="12dp"
-                android:layout_marginBottom="2dp"
-                android:background="@drawable/sel_words_emotion"
-                android:gravity="center"
-                android:paddingTop="4dp"
-                android:paddingBottom="4dp"
-                android:text="Calm"
-                android:textAllCaps="false"
-                android:textOff="Calm"
-                android:textOn="Calm"
-                android:textSize="20sp"
-                android:visibility="gone" />
+                <ToggleButton
+                    android:id="@+id/toggleButton7"
+                    android:layout_width="75dp"
+                    android:layout_height="35dp"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginRight="12dp"
+                    android:layout_marginBottom="2dp"
+                    android:background="@drawable/sel_words_emotion"
+                    android:gravity="center"
+                    android:paddingTop="4dp"
+                    android:paddingBottom="4dp"
+                    android:text="Care"
+                    android:textAllCaps="false"
+                    android:textOff="Care"
+                    android:textOn="Care"
+                    android:textSize="20sp"
+                    android:visibility="gone" />
 
-        </TableRow>
+                <ToggleButton
+                    android:id="@+id/toggleButton8"
+                    android:layout_width="75dp"
+                    android:layout_height="35dp"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginRight="12dp"
+                    android:layout_marginBottom="2dp"
+                    android:background="@drawable/sel_words_emotion"
+                    android:gravity="center"
+                    android:paddingTop="4dp"
+                    android:paddingBottom="4dp"
+                    android:text="Calm"
+                    android:textAllCaps="false"
+                    android:textOff="Calm"
+                    android:textOn="Calm"
+                    android:textSize="20sp"
+                    android:visibility="gone" />
 
-    </TableLayout>
+            </TableRow> -->
+
+        </TableLayout>
+
+    </ScrollView>
 
     <TextView
         android:id="@+id/textView5"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
         android:gravity="center"
         android:text="Tap on as many words as you feel describes how you’ve been feeling in the recent past."
         android:textSize="16sp"
@@ -415,16 +449,16 @@
         app:layout_constraintTop_toBottomOf="@+id/view" />
 
     <ImageButton
-        style="@style/InfoIcon"
         android:id="@+id/info_icon"
-        android:layout_marginEnd="8dp"
+        style="@style/InfoIcon"
         android:layout_marginStart="8dp"
-        app:layout_constraintBottom_toBottomOf="@+id/textView4"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/textView3"
         app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/textView4"
-        app:layout_constraintTop_toTopOf="@+id/textView4" />
+        app:layout_constraintStart_toEndOf="@+id/textView3"
+        app:layout_constraintTop_toTopOf="@+id/textView3" />
 
     <View
         android:id="@+id/view"

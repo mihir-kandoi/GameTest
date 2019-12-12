@@ -12,11 +12,13 @@ import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.StateListDrawable;
 import android.os.Bundle;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.util.TypedValue;
 import android.view.WindowManager;
 import android.widget.CompoundButton;
@@ -24,7 +26,7 @@ import android.widget.TextView;
 import android.widget.ToggleButton;
 
 import com.example.mihirkandoi.Rethynk.Parent;
-import com.example.mihirkandoi.Rethynk.StryngOfThought.Start;
+import com.example.mihirkandoi.Rethynk.Grydlock.Start;
 import com.example.mihirkandoi.rethynk.R;
 
 import org.json.JSONArray;
@@ -54,7 +56,7 @@ public class Main extends AppCompatActivity implements CompoundButton.OnCheckedC
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if(resultCode == 1)
+        if (resultCode == 1)
             finish();
         super.onActivityResult(requestCode, resultCode, data);
     }
@@ -75,7 +77,7 @@ public class Main extends AppCompatActivity implements CompoundButton.OnCheckedC
 
         TextView inner = findViewById(R.id.inner);
 
-        //set alert_dialog_info icon and get json array from intent
+        //get json array from intent
         try {
             if (jsonArray == null)
                 jsonArray = new JSONArray(getIntent().getStringExtra("JSONarray"));
@@ -86,7 +88,7 @@ public class Main extends AppCompatActivity implements CompoundButton.OnCheckedC
 
         toggleButtons.addAll(Arrays.asList(new ToggleButton[]{findViewById(R.id.option1), findViewById(R.id.option2), findViewById(R.id.option3), findViewById(R.id.option4), findViewById(R.id.option5)}));
         ArrayList<String> options = new ArrayList<>(5);
-        for(int i=1;i<=5;i++) {
+        for (int i = 1; i <= 5; i++) {
             ToggleButton toggleButton = toggleButtons.get(i - 1);
             toggleButton.setBackground(null);
             ConstraintLayout.LayoutParams layoutParams = ((ConstraintLayout.LayoutParams) toggleButton.getLayoutParams());
@@ -95,13 +97,12 @@ public class Main extends AppCompatActivity implements CompoundButton.OnCheckedC
             toggleButton.requestLayout();
             try {
                 inner.setTextSize(TypedValue.COMPLEX_UNIT_PX, getResources().getDimensionPixelSize(R.dimen._15ssp));
-                String option = jsonArray.getJSONObject(count).getString("option" + Integer.toString(i));
+                String option = jsonArray.getJSONObject(count).getString("option" + i);
                 toggleButton.setText(option);
                 toggleButton.setTextOn(option);
                 toggleButton.setTextOff(option);
                 options.add(option);
-            }
-            catch (JSONException ex) {
+            } catch (JSONException ex) {
                 ex.printStackTrace();
             }
         }
@@ -116,13 +117,14 @@ public class Main extends AppCompatActivity implements CompoundButton.OnCheckedC
         findViewById(R.id.cs).setBackground(new Drawable() {
 
             Paint paint = new Paint();
+
             @Override
             public void draw(@NonNull Canvas canvas) {
                 Rect rect = getBounds();
                 paint.setColor(Color.parseColor("#a8e124"));
-                canvas.drawRect(0,0, rect.width(),rect.height() / 2, paint);
+                canvas.drawRect(0, 0, rect.width(), rect.height() / 2, paint);
                 paint.setColor(Color.WHITE);
-                canvas.drawRect(0,rect.height() / 2, rect.width(), rect.height(), paint);
+                canvas.drawRect(0, rect.height() / 2, rect.width(), rect.height(), paint);
             }
 
             @Override
@@ -141,7 +143,7 @@ public class Main extends AppCompatActivity implements CompoundButton.OnCheckedC
             }
         });
 
-        for(int i=1;i<=5;i++) {
+        for (int i = 1; i <= 5; i++) {
             StateListDrawable stateListDrawable = new StateListDrawable();
             SLEmotion slEmotionObj = new SLEmotion();
             stateListDrawable.addState(new int[]{-android.R.attr.state_checked}, slEmotionObj);
@@ -158,7 +160,7 @@ public class Main extends AppCompatActivity implements CompoundButton.OnCheckedC
 
             @Override
             public void draw(@NonNull Canvas canvas) {
-                if(path.isEmpty()) {
+                if (path.isEmpty()) {
                     bounds = getBounds();
                     paint.setColor(Color.parseColor("#a8e124"));
                     path.moveTo(0, 0);
@@ -204,7 +206,7 @@ public class Main extends AppCompatActivity implements CompoundButton.OnCheckedC
 
             @Override
             public void draw(@NonNull Canvas canvas) {
-                if(path.isEmpty()) {
+                if (path.isEmpty()) {
                     paint.setColor(getResources().getColor(R.color.storyLyne, getTheme()));
                     paint.setPathEffect(new CornerPathEffect(convertToPixel(6)));
                     bounds = getBounds();
@@ -245,8 +247,7 @@ public class Main extends AppCompatActivity implements CompoundButton.OnCheckedC
 
     @Override
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-        if(isChecked)
-        {
+        if (isChecked) {
             getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE, WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
             buttonView.setTextColor(Color.WHITE);
             Parent.toggleButtons(toggleButtons, buttonView);
@@ -256,8 +257,7 @@ public class Main extends AppCompatActivity implements CompoundButton.OnCheckedC
                 alertDialog = Parent.moduleEnd(Main.this, R.color.storyLyne, Main.class, Start.class);
                 alertDialog.show();
             }
-        }
-        else
+        } else
             buttonView.setTextColor(Color.BLACK);
     }
 
@@ -265,20 +265,18 @@ public class Main extends AppCompatActivity implements CompoundButton.OnCheckedC
     protected void onResume() {
         super.onResume();
         getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
-        if(roundNo.equals("4/4") && alertDialog != null)
+        if (roundNo.equals("4/4") && alertDialog != null)
             alertDialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
     }
 
-    class SLEmotion extends Drawable
-    {
+    class SLEmotion extends Drawable {
         Paint paint;
         Path path;
         Random random;
         Rect bounds;
         int strokeWidth;
 
-        void init()
-        {
+        void init() {
             paint = new Paint(Paint.ANTI_ALIAS_FLAG);
             paint.setColor(getResources().getColor(R.color.storyLyne, getTheme()));
             strokeWidth = convertToPixel(3);
@@ -287,15 +285,13 @@ public class Main extends AppCompatActivity implements CompoundButton.OnCheckedC
             random = new Random();
         }
 
-        SLEmotion()
-        {
+        SLEmotion() {
             init();
             path = new Path();
             paint.setStyle(Paint.Style.STROKE);
         }
 
-        SLEmotion(Path path)
-        {
+        SLEmotion(Path path) {
             init();
             paint.setStyle(Paint.Style.FILL_AND_STROKE);
             this.path = path;
@@ -303,7 +299,7 @@ public class Main extends AppCompatActivity implements CompoundButton.OnCheckedC
 
         @Override
         public void draw(@NonNull Canvas canvas) {
-            if(path.isEmpty()) {
+            if (path.isEmpty()) {
                 bounds = getBounds();
                 path.moveTo(convertToPixel(random.nextInt(8)) + strokeWidth, convertToPixel(random.nextInt(8)) + strokeWidth);
                 int Xmax = bounds.width() - strokeWidth;

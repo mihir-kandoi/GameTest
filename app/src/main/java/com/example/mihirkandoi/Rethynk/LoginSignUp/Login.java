@@ -25,7 +25,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
-import com.example.mihirkandoi.Rethynk.StoryLyne.Start;
 import com.example.mihirkandoi.rethynk.R;
 import com.firebase.ui.auth.AuthUI;
 import com.firebase.ui.auth.ErrorCodes;
