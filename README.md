@@ -18,5 +18,5 @@ An easy and straightforward crossword puzzle. The positioning of the words are r
 The image is cut and placed randomly in the question set. The user has to then drag/place it onto the board correctly to go to the next level.
 
 # Animation
-<img src="https://gfycat.com/ifr/SparseCooperativeDeinonychus" width="360" height="740">
+<img src="https://gfycat.com/ifr/SparseCooperativeDeinonychus" width="360" height="740" />
 An Activity where emojis fall from the top of the screen.
